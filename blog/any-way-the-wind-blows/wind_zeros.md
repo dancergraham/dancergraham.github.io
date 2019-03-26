@@ -2,7 +2,7 @@
 ### Adding leading zeros with Python
 Various ways to add leading zeros to a number, for instance a wind direction, using Python.  [Available as a Jupyter Notebook](wind_zeros.ipynb)
 
-### generate a list of wind directions
+### Generate a list of wind directions
 First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing __from__. For instance an easterly wind, ie wind blowing __from__ the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest). 
 
 
@@ -18,7 +18,7 @@ print(directions)
     [0.0, 22.5, 45.0, 67.5, 90.0, 112.5, 135.0, 157.5, 180.0, 202.5, 225.0, 247.5, 270.0, 292.5, 315.0, 337.5]
     
 
-### string zfill method
+### String zfill method
 No doubt the most pythonic way to add leading zeros to a bare string, the built-in `str.zfill()` method is designed to do just that. 
 
 
@@ -150,3 +150,23 @@ for direction in directions:
     d = WindRecord(direction)
     print(d)
 ```
+
+    Wind direction: 000.0 degrees
+    Wind direction: 022.5 degrees
+    Wind direction: 045.0 degrees
+    Wind direction: 067.5 degrees
+    Wind direction: 090.0 degrees
+    Wind direction: 112.5 degrees
+    Wind direction: 135.0 degrees
+    Wind direction: 157.5 degrees
+    Wind direction: 180.0 degrees
+    Wind direction: 202.5 degrees
+    Wind direction: 225.0 degrees
+    Wind direction: 247.5 degrees
+    Wind direction: 270.0 degrees
+    Wind direction: 292.5 degrees
+    Wind direction: 315.0 degrees
+    Wind direction: 337.5 degrees
+    
+
+Thanks to [@clement](https://discourse.mcneel.com/u/clement/summary) for comments

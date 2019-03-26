@@ -60,7 +60,7 @@
   </p>
   <h3>Adding leading zeros with Python</h3>
 <p>Various ways to add leading zeros to a number, for instance a wind direction, using Python.  <a href="../blog/any-way-the-wind-blows/wind_zeros.ipynb">Available as a Jupyter Notebook</a></p>
-<h3>generate a list of wind directions</h3>
+<h3>Generate a list of wind directions</h3>
 <p>First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing <strong>from</strong>. For instance an easterly wind, ie wind blowing <strong>from</strong> the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest).</p>
 <div class="hll"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mf">22.5</span>
 <span class="k">assert</span> <span class="mi">360</span> <span class="o">%</span> <span class="n">interval</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
@@ -70,7 +70,7 @@
 </pre></div>
 <pre><code>[0.0, 22.5, 45.0, 67.5, 90.0, 112.5, 135.0, 157.5, 180.0, 202.5, 225.0, 247.5, 270.0, 292.5, 315.0, 337.5]
 </code></pre>
-<h3>string zfill method</h3>
+<h3>String zfill method</h3>
 <p>No doubt the most pythonic way to add leading zeros to a bare string, the built-in <code>str.zfill()</code> method is designed to do just that.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
@@ -174,6 +174,24 @@ As integer: 337  |  As float: 337.5
     <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
+<pre><code>Wind direction: 000.0 degrees
+Wind direction: 022.5 degrees
+Wind direction: 045.0 degrees
+Wind direction: 067.5 degrees
+Wind direction: 090.0 degrees
+Wind direction: 112.5 degrees
+Wind direction: 135.0 degrees
+Wind direction: 157.5 degrees
+Wind direction: 180.0 degrees
+Wind direction: 202.5 degrees
+Wind direction: 225.0 degrees
+Wind direction: 247.5 degrees
+Wind direction: 270.0 degrees
+Wind direction: 292.5 degrees
+Wind direction: 315.0 degrees
+Wind direction: 337.5 degrees
+</code></pre>
+<p>Thanks to <a href="https://discourse.mcneel.com/u/clement/summary">@clement</a> for comments</p>
 
   </div>
 
