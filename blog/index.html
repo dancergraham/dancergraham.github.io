@@ -59,8 +59,8 @@
     on 2019-03-20
   </p>
   <h3>Adding leading zeros with Python</h3>
-<p>Various ways to add leading zeros to a number, for instance a wind direction, using Python. Available as a <a href="../blog/any-way-the-wind-blows/untitled.ipynb">Jupyter Notebook</a>.</p>
-<h3>Generate a list of wind directions</h3>
+<p>Various ways to add leading zeros to a number, for instance a wind direction, using Python.  <a href="../blog/any-way-the-wind-blows/wind_zeros.ipynb">Available as a Jupyter Notebook</a></p>
+<h3>generate a list of wind directions</h3>
 <p>First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing <strong>from</strong>. For instance an easterly wind, ie wind blowing <strong>from</strong> the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest).</p>
 <div class="hll"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mf">22.5</span>
 <span class="k">assert</span> <span class="mi">360</span> <span class="o">%</span> <span class="n">interval</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
@@ -70,10 +70,10 @@
 </pre></div>
 <pre><code>[0.0, 22.5, 45.0, 67.5, 90.0, 112.5, 135.0, 157.5, 180.0, 202.5, 225.0, 247.5, 270.0, 292.5, 315.0, 337.5]
 </code></pre>
-<h3>String zfill method</h3>
+<h3>string zfill method</h3>
 <p>No doubt the most pythonic way to add leading zeros to a bare string, the built-in <code>str.zfill()</code> method is designed to do just that.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">dir</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 <pre><code>000 000.0
 022 022.5
@@ -92,12 +92,12 @@
 315 315.0
 337 337.5
 </code></pre>
-<p>We can immediately see our first quirk: the integer representation truncates decimal values rather than rounding up (as I learned to do at school) or rounding towards the nearest even number (as the Python round() funtion would do).</p>
+<p>We can immediately see our first quirk: the integer representation truncates decimal values rather than rounding up (as I learned to do at school) or rounding towards the nearest even number (<a href="https://realpython.com/python-rounding/">as the Python round() funtion would do</a>).</p>
 <h3>String slicing</h3>
 <p>Very fast and arguably even more readable for people with a good understanding of basic python syntax but no desire to read the docs or explore the obscure corners of the language. Add the maximum possible number of leading zeros and then slice the desired number of digits.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">((</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">dir</span><span class="p">)))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:],</span>
-    <span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">dir</span><span class="p">))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
+<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">((</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">)))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:],</span>
+    <span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
 </pre></div>
 <pre><code>000 000.0
 022 022.5
@@ -118,8 +118,8 @@
 </code></pre>
 <h3>String format : integers</h3>
 <p>As part of a longer string this allows the  number to be inserted with leading zeros. Compatible with all current versions of Python.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;As integer: {:03d}  |  As float: {:05.1f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">dir</span><span class="p">),</span> <span class="nb">dir</span><span class="p">))</span>
+<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;As integer: {:03d}  |  As float: {:05.1f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">direction</span><span class="p">))</span>
 </pre></div>
 <pre><code>As integer: 000  |  As float: 000.0
 As integer: 022  |  As float: 022.5
@@ -140,8 +140,8 @@ As integer: 337  |  As float: 337.5
 </code></pre>
 <h3>F Strings</h3>
 <p>From Python 3.6 this is even terser.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;As integer: {int(dir):03d}  |  As float: {dir:05.1f}&#39;</span><span class="p">)</span>
+<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;As integer: {int(direction):03d}  |  As float: {direction:05.1f}&#39;</span><span class="p">)</span>
 </pre></div>
 <pre><code>As integer: 000  |  As float: 000.0
 As integer: 022  |  As float: 022.5
@@ -163,34 +163,17 @@ As integer: 337  |  As float: 337.5
 <h3>Class</h3>
 <p>By overloading the built-in <code>__str__()</code> method for the class we can create our own custom string representation of the value.</p>
 <div class="hll"><pre><span></span><span class="k">class</span> <span class="nc">WindRecord</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">dir</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="nb">dir</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;Wind direction: {self.dir:05.1f} degrees&#39;</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;Wind direction: {self.direction:05.1f} degrees&#39;</span>
 
 
-<span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
-<pre><code>Wind direction: 000.0 degrees
-Wind direction: 022.5 degrees
-Wind direction: 045.0 degrees
-Wind direction: 067.5 degrees
-Wind direction: 090.0 degrees
-Wind direction: 112.5 degrees
-Wind direction: 135.0 degrees
-Wind direction: 157.5 degrees
-Wind direction: 180.0 degrees
-Wind direction: 202.5 degrees
-Wind direction: 225.0 degrees
-Wind direction: 247.5 degrees
-Wind direction: 270.0 degrees
-Wind direction: 292.5 degrees
-Wind direction: 315.0 degrees
-Wind direction: 337.5 degrees
-</code></pre>
 
   </div>
 
