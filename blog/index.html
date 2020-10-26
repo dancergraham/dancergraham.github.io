@@ -10,7 +10,7 @@
       <ul class="nav navbar-nav">
         <li><a href="../">Welcome</a></li>
         
-          <li class="active"><a href="../blog/">Blog</a></li>
+          <li class="active"><a href="./">Blog</a></li>
         
           <li><a href="../contact/">Contact</a></li>
         
@@ -25,7 +25,7 @@
     
   <div class="blog-post">
   
-    <h2><a href="../blog/here-comes-the-sun/">Here comes the sun</a></h2>
+    <h2><a href="here-comes-the-sun/">Here comes the sun</a></h2>
   
   <p class="meta">
     written by
@@ -35,13 +35,13 @@
     on 2019-03-23
   </p>
   <p>I spend too much of my life sitting alone in an office working on my conputer or looking at my smartphone. My regular dose of fresh air comes from my bike - I ride to work and back regularly - but I also enjoy getting out into the garden when I can. Trouble is, I dont really <em>enjoy</em> gardening! I do get a lot  of satisfaction from pruning the trees and shrubs, especially if it involves some climbing and as a result we now have an enormous pile of branches, leaves and twigs in the bottom of the garden. I recently found a new activity which satisfies my creative side and starts to diminish the stack o' cuttings : building 'dead hedge' style walls and fences.</p>
-<p><img src="../blog/here-comes-the-sun/garden03.png" alt="garden03"></p>
-<p><img src="../blog/here-comes-the-sun/garden02.png" alt="garden02"></p>
+<p><img src="here-comes-the-sun/garden03.png" alt="garden03"></p>
+<p><img src="here-comes-the-sun/garden02.png" alt="garden02"></p>
 <p>First I sharpen a set of stakes and drive them into the ground, then I weave branches beween the stakes and finally I stuff twigs and leaves between the branches.  I always end up full of splinters with a big grin on my face.</p>
-<p><img src="../blog/here-comes-the-sun/garden04.png" alt="garden04"></p>
+<p><img src="here-comes-the-sun/garden04.png" alt="garden04"></p>
 <h2>Before and after</h2>
-<p><img src="../blog/here-comes-the-sun/garden05.png" alt="garden05"></p>
-<p><img src="../blog/here-comes-the-sun/garden06.png" alt="garden06"></p>
+<p><img src="here-comes-the-sun/garden05.png" alt="garden05"></p>
+<p><img src="here-comes-the-sun/garden06.png" alt="garden06"></p>
 
   </div>
 
@@ -49,7 +49,7 @@
     
   <div class="blog-post">
   
-    <h2><a href="../blog/any-way-the-wind-blows/">Any way the wind blows</a></h2>
+    <h2><a href="any-way-the-wind-blows/">Any way the wind blows</a></h2>
   
   <p class="meta">
     written by
@@ -59,21 +59,21 @@
     on 2019-03-20
   </p>
   <h3>Adding leading zeros with Python</h3>
-<p>Various ways to add leading zeros to a number, for instance a wind direction, using Python.  <a href="../blog/any-way-the-wind-blows/wind_zeros.ipynb">Available as a Jupyter Notebook</a></p>
+<p>Various ways to add leading zeros to a number, for instance a wind direction, using Python.  <a href="any-way-the-wind-blows/wind_zeros.ipynb">Available as a Jupyter Notebook</a></p>
 <h3>Generate a list of wind directions</h3>
 <p>First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing <strong>from</strong>. For instance an easterly wind, ie wind blowing <strong>from</strong> the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest).</p>
 <div class="hll"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mf">22.5</span>
 <span class="k">assert</span> <span class="mi">360</span> <span class="o">%</span> <span class="n">interval</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
 
 <span class="n">directions</span> <span class="o">=</span> <span class="p">[</span><span class="n">interval</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="n">interval</span><span class="p">))]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">directions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">directions</span><span class="p">)</span>
 </pre></div>
 <pre><code>[0.0, 22.5, 45.0, 67.5, 90.0, 112.5, 135.0, 157.5, 180.0, 202.5, 225.0, 247.5, 270.0, 292.5, 315.0, 337.5]
 </code></pre>
 <h3>String zfill method</h3>
 <p>No doubt the most pythonic way to add leading zeros to a bare string, the built-in <code>str.zfill()</code> method is designed to do just that.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 <pre><code>000 000.0
 022 022.5
@@ -96,7 +96,7 @@
 <h3>String slicing</h3>
 <p>Very fast and arguably even more readable for people with a good understanding of basic python syntax but no desire to read the docs or explore the obscure corners of the language. Add the maximum possible number of leading zeros and then slice the desired number of digits.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">((</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">)))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:],</span>
+    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">)))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:],</span>
     <span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
 </pre></div>
 <pre><code>000 000.0
@@ -119,7 +119,7 @@
 <h3>String format : integers</h3>
 <p>As part of a longer string this allows the  number to be inserted with leading zeros. Compatible with all current versions of Python.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;As integer: {:03d}  |  As float: {:05.1f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">direction</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;As integer: </span><span class="si">{:03d}</span><span class="s1">  |  As float: </span><span class="si">{:05.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">direction</span><span class="p">))</span>
 </pre></div>
 <pre><code>As integer: 000  |  As float: 000.0
 As integer: 022  |  As float: 022.5
@@ -141,7 +141,7 @@ As integer: 337  |  As float: 337.5
 <h3>F Strings</h3>
 <p>From Python 3.6 this is even terser.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;As integer: {int(direction):03d}  |  As float: {direction:05.1f}&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;As integer: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span><span class="si">:</span><span class="s1">03d</span><span class="si">}</span><span class="s1">  |  As float: </span><span class="si">{</span><span class="n">direction</span><span class="si">:</span><span class="s1">05.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 <pre><code>As integer: 000  |  As float: 000.0
 As integer: 022  |  As float: 022.5
@@ -167,12 +167,12 @@ As integer: 337  |  As float: 337.5
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;Wind direction: {self.direction:05.1f} degrees&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Wind direction: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="si">:</span><span class="s1">05.1f</span><span class="si">}</span><span class="s1"> degrees&#39;</span>
 
 
 <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 <pre><code>Wind direction: 000.0 degrees
 Wind direction: 022.5 degrees
@@ -199,7 +199,7 @@ Wind direction: 337.5 degrees
     
   <div class="blog-post">
   
-    <h2><a href="../blog/first-post/">Building a blog</a></h2>
+    <h2><a href="first-post/">Building a blog</a></h2>
   
   <p class="meta">
     written by
@@ -211,7 +211,7 @@ Wind direction: 337.5 degrees
   <p>I have had a few ideas for content to share recently and wanted a good way to do so.  I wanted to find a good solution for blog publishing with a few criteria:</p>
 <ul>
 <li>Built using Python, editable in markdown so I can develop my skills.</li>
-<li>Simple to build and maintain - I am not currently a web developer but I have been <a href="https://web.archive.org/web/20010520155249/http://www.fortunecity.co.uk/madchester/latin/336/">building websites</a> on an amateur basis <a href="https://web.archive.org/web/19981202092552/http://www.shef.ac.uk/uni/union/susoc/ftc/">since the 1990s</a> so I'm not afraid of writing a little html if I have to.</li>
+<li>Simple to build and maintain - I am not currently a web developer.  That said, I have been <a href="https://web.archive.org/web/20010520155249/http://www.fortunecity.co.uk/madchester/latin/336/">building websites</a> on an amateur basis <a href="https://web.archive.org/web/19981202092552/http://www.shef.ac.uk/uni/union/susoc/ftc/">since the 1990s</a> so I'm not afraid of writing a little html if I have to.</li>
 <li>Capable of incorporating Jupyter Notebooks</li>
 <li>Simple to deploy, preferably for free.  I am hoping to do this via my internet provider but might go via GitHub failing that or even pay for a small cloud server.</li>
 <li>No initial need for interractive content.</li>
