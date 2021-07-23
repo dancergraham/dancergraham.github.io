@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Consolas,Menlo,Monaco,Andale Mono WT,Andale Mono,Lucida Console,Lucida Sans Typewriter,DejaVu Sans Mono,Bitstream Vera Sans Mono,Liberation Mono,Nimbus Mono L,Courier New,Courier;
     margin: 50px 25px;
 }
 
@@ -12,9 +12,9 @@ a:hover {
 }
 
 header, footer, div.page {
-    width: 760px;
+    width: 100%;
     margin: 0 auto;
-    background: #e1e1e1;
+    background: #e6d8e8;
     padding: 20px 30px;
 }
 
@@ -38,5 +38,5 @@ header nav ul li {
 }
 
 div.page {
-    background: #f1f1f1;
+    background: #ffffff;
 }

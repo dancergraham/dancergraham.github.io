@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../static/style.css">
 <link rel="stylesheet" href="../../static/pygments.css">
-<title>Trouver un musicothérapeute — blog</title>
+<title>🎼Trouver un musicothérapeute🎼 — blog</title>
 <body>
   <header>
     <h1>Graham Knapp</h1>
@@ -24,21 +24,21 @@
   
   <div class="blog-post">
   
-    <h2>Trouver un musicothérapeute</h2>
+    <h2>🎼Trouver un musicothérapeute🎼</h2>
   
   <p class="meta">
     written by
     
-      Graham Knapp
+      <a href="https://twitter.com/knapp_graham">Graham Knapp</a>
     
     on 2021-07-20
   </p>
-  <p>Ma femme est non seulement une superbe musicienne mais <a href="https://www.musicotherapeute-nantes.fr">aussi une musicothérapeute</a> : elle soigne les gens, ou les aide à se soigner eux-mêmes, avec de la musique!</p>
-<p>J'ai crée cette <a href="musicotherapeutes.html">carte des musicothérapeutes français</a> avec la méthode suivante:</p>
+  <p>Ma femme est non seulement une superbe musicienne mais aussi une musicothérapeute : elle soigne les gens, ou les aide à se soigner eux-mêmes, avec de la musique!</p>
+<p>J'ai crée cette <a href="https://dancergraham.github.io/blog/trouver-un-musicotherapeute/musicotherapeutes.html">carte des musicothérapeutes français</a> avec la méthode suivante:</p>
 <ul>
-<li>Scrape le site web de la <a href="https://www.musicotherapie-federationfrancaise.com">Fédération Française de Musicothérapie</a> avec Requests et Beautiful Soup</li>
+<li>Scrape le <a href="https://www.musicotherapie-federationfrancaise.com/trouver-un-musicotherapeute/">site web de la Fédération Française de Musicothérapie</a> avec Requests et Beautiful Soup</li>
 <li>Géocoder les addresses de tous les musicothérapeutes via OSM (cette partie prend plusieurs minutes)</li>
-<li>Créer une carte avec un marqueur par musicothérapeute avec Folium.  </li>
+<li>Créer une carte avec un marqueur par musicothérapeute avec Folium.</li>
 <li>Enregistrer la carte sous format html</li>
 </ul>
 <p>J'utilise la fonction suivantes pour générer mes tags HTML pour les marqueurs:</p>
@@ -49,12 +49,13 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 </pre></div>
+<p>Voici <a href="https://github.com/dancergraham/carte_musicotherapeutes">le script complet sous forme de Jupyter Notebook</a>.</p>
 
   </div>
 
 
   </div>
   <footer>
-    &copy; Copyright 2019 by Graham Knapp.
+    &copy; Copyright 2019 - 2021 by Graham Knapp.
   </footer>
 </body>
