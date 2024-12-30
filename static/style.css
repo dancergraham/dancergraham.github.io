@@ -1,8 +1,13 @@
 body {
-    font-family: Consolas,Menlo,Monaco,Andale Mono WT,Andale Mono,Lucida Console,Lucida Sans Typewriter,DejaVu Sans Mono,Bitstream Vera Sans Mono,Liberation Mono,Nimbus Mono L,Courier New,Courier;
-    margin: 50px 25px;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 20px;
 }
 
+@media (max-width: 600px) {
+    body {
+        margin: 10px;
+    }
+}
 a {
     color: #0C1A7F;
 }
@@ -11,12 +16,21 @@ a:hover {
     color: #33bbdf;
 }
 
-header, footer, div.page {
+img {
     max-width: 100%;
+    height: auto;
+}
+header, footer, div.page {
     margin: 0 auto;
     background: #e6d8e8;
     padding: 20px 30px;
 }
+@media (max-width: 600px) {
+    div.page {
+        padding: 10px 10px;
+    }
+}
+
 
 header h1 {
     color: #0C1A7F;
@@ -39,8 +53,4 @@ header nav ul li {
 
 div.page {
     background: #ffffff;
-}
-
-img {
-	max-width: 100%;
 }
