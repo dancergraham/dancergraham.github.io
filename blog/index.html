@@ -25,6 +25,29 @@
     
   <div class="blog-post">
   
+    <h2><a href="result-pattern-an-exceptional-way-to-handle-errors/">Result pattern - An exceptional way to handle errors</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      Graham Knapp
+    
+    on 2024-12-30
+  </p>
+  <p>People often say that in Python you should use exceptions - "Easier to Ask Forgiveness than Permission" (EAFP) over guard clauses - "Look Before You Leap" (LBYL), but the Result design pattern - returning an object which explicitly states whether the operation succeeded is a useful alternative where error handling is required and, as I learned by exploring in more depth, it can be compatible with both approaches.</p>
+<p>As my <a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python">design patterns repo</a> approaches <code>100⭐</code> on GitHub I decided to add the <a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python/tree/main/extra_result">Result design pattern</a> to the mix</p>
+<h2>EAFP vs LBYL</h2>
+<h3>or Graham plays with GitHub Code Search</h3>
+<p>Prompted by <a href="https://fosstodon.org/@CodenameTim/113730836308245068">a post on Mastodon</a> I looked a bit more into which patterns people are using for error handling specifically for attribute lookup: I'm surprised to see twice as many references to hasattr <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=hasattr+language%3APython">https://github.com/search?type=code&amp;auto_enroll=true&amp;q=hasattr+language%3APython</a></p>
+<p>as for "except AttributeError" <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=except+AttributeError+language%3APython+">https://github.com/search?type=code&amp;auto_enroll=true&amp;q=except+AttributeError+language%3APython+</a></p>
+<p>and not only for dynamic lookups but also for general attribute search, so a win for LBYL vs EAFP style with Python, despite the latter often being recommended ?</p>
+
+  </div>
+
+  
+    
+  <div class="blog-post">
+  
     <h2><a href="trouver-un-musicotherapeute/">🎼Trouver un musicothérapeute🎼</a></h2>
   
   <p class="meta">
