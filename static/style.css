@@ -1,56 +1,109 @@
+/* General styles */
 body {
-    font-family: 'Courier New', Courier, monospace;
-    margin: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f9f9f9;
 }
 
-@media (max-width: 600px) {
-    body {
-        margin: 10px;
-    }
+header {
+  background: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
 }
-a {
-    color: #0C1A7F;
-}
-
-a:hover {
-    color: #33bbdf;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-header, footer, div.page {
-    margin: 0 auto;
-    background: #e6d8e8;
-    padding: 20px 30px;
-}
-@media (max-width: 600px) {
-    div.page {
-        padding: 10px 10px;
-    }
-}
-
 
 header h1 {
-    color: #0C1A7F;
-    margin: 0;
-    font-weight: normal;
-    font-size: 42px;
+  margin: 0;
 }
 
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+nav ul {
+  list-style: none;
+  padding: 0;
 }
 
-header nav ul li {
-    display: inline;
-    margin: 0 8px 0 0;
-    padding: 0;
+nav ul li {
+  display: inline;
+  margin: 0 10px;
 }
 
-div.page {
-    background: #ffffff;
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li.active a {
+  font-weight: bold;
+}
+
+.page {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post {
+  margin-bottom: 40px;
+}
+
+.blog-post h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.blog-post h2 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.blog-post .meta {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.blog-post p {
+  margin-bottom: 20px;
+}
+
+.blog-post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination span {
+  color: #666;
+}
+
+.pagination span.disabled {
+  color: #ccc;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background: #333;
+  color: #fff;
+  margin-top: 40px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .blog-post img {
+    width: 100%;
+  }
 }
