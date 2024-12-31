@@ -1,0 +1,88 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<title>RhinoPython: may the source be with you! — blog</title>
+<body>
+  <header>
+    <h1>Graham Knapp</h1>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="../../">Welcome</a></li>
+        
+          <li class="active"><a href="../">Blog</a></li>
+        
+          <li><a href="../../contact/">Contact</a></li>
+        
+          <li><a href="../../about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+  <div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>RhinoPython: may the source be with you!</h2>
+  
+  <p class="meta">
+    written by
+    
+      Graham Knapp
+    
+    on 2019-05-12
+  </p>
+  <p>Hello everyone,</p>
+<p>I wrote a script to help me code in python and learn RhinoCommon and decided to share it with you 😜</p>
+<p>As you may know, the rhinoscriptsyntax library is written in Python and uses rhinocommon functions, also in Python, under the hood. In order to look up the underlying code you can open up the full python file, you can use the inspect module or you can save the script below to your computer and run it each time you want to look up a particular function. For instance if you search for ‘bounding’ you get the following options:</p>
+<p><img src="rhinopython_source_0.png" alt="Search and select dialog box for library function"></p>
+<p>And by clicking on the 3rd option you get the underlying source code, which you can read in the box, copy elsewhere, …</p>
+<p><img src="rhinopython_source_1.png" alt="Source code view for library function"></p>
+<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">getsource</span><span class="p">,</span> <span class="n">getmembers</span><span class="p">,</span> <span class="n">isfunction</span>
+
+<span class="kn">import</span> <span class="nn">rhinoscriptsyntax</span> <span class="k">as</span> <span class="nn">rs</span>
+
+<span class="sd">&quot;&quot;&quot; Script to view the source code for rhinoscript modules in Rhino 5 + 6</span>
+<span class="sd">By Graham Knapp for personal use and for the McNeel Discourse forums</span>
+<span class="sd">https://discourse.mcneel.com/t/python-may-the-source-be-with-you/84655</span>
+<span class="sd">13/6/2019</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">get_source</span><span class="p">():</span>
+    <span class="n">search_term</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">StringBox</span><span class="p">(</span><span class="s1">&#39;Function name to search for&#39;</span><span class="p">,</span>
+                               <span class="n">title</span><span class="o">=</span><span class="s1">&#39;rhinoscriptsyntax&#39;</span>
+                               <span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">search_term</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">functions</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">obj</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">getmembers</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span> <span class="k">if</span>
+                 <span class="n">isfunction</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="n">search_term</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()}</span>  <span class="c1"># (tuples of name, fuction)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">functions</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ListBox</span><span class="p">(</span><span class="n">functions</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;rhinoscriptsyntax&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">selected</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">the_source</span> <span class="o">=</span> <span class="n">getsource</span><span class="p">(</span><span class="n">functions</span><span class="p">[</span><span class="n">selected</span><span class="p">])</span>
+    <span class="n">box_result</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">EditBox</span><span class="p">(</span><span class="n">the_source</span><span class="p">,</span>
+                            <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Press OK to copy to clipboard&#39;</span><span class="p">,</span>
+                            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Use the source&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">box_result</span><span class="p">:</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">ClipboardText</span><span class="p">(</span><span class="n">box_result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">box_result</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">get_source</span><span class="p">()</span>
+</pre></div>
+
+  </div>
+
+
+  </div>
+  <footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+  </footer>
+</body>
