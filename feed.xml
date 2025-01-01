@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2024-12-30T00:00:00Z</updated><author><name></name></author><entry><title>Result pattern - An exceptional way to handle errors</title><link href="https://grahamknapp.com/blog/result-pattern-an-exceptional-way-to-handle-errors/" rel="alternate"></link><updated>2024-12-30T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:58972ab3-c316-3378-aac0-9567c94b810c</id><content type="html">&lt;p&gt;People often say that in Python you should use exceptions - "Easier to Ask Forgiveness than Permission" (EAFP) over guard clauses - "Look Before You Leap" (LBYL), but the Result design pattern - returning an object which explicitly states whether the operation succeeded is a useful alternative where error handling is required and, as I learned by exploring in more depth, it can be compatible with both approaches.&lt;/p&gt;
+&lt;p&gt;As my &lt;a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python"&gt;design patterns repo&lt;/a&gt; approaches &lt;code&gt;100⭐&lt;/code&gt; on GitHub I decided to add the &lt;a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python/tree/main/extra_result"&gt;Result design pattern&lt;/a&gt; to the mix&lt;/p&gt;
+&lt;h2&gt;EAFP vs LBYL&lt;/h2&gt;
+&lt;p&gt;or &lt;em&gt;Graham plays with GitHub Code Search&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Prompted by &lt;a href="https://fosstodon.org/@CodenameTim/113730836308245068"&gt;a post on Mastodon&lt;/a&gt;
+I looked a bit more into which patterns people are using for error handling
+specifically for attribute lookup: I'm surprised to see twice as many
+references to &lt;a href="https://github.com/search?type=code&amp;amp;auto_enroll=true&amp;amp;q=hasattr+language%3APython"&gt;hasattr&lt;/a&gt;
+as for &lt;a href="https://github.com/search?type=code&amp;amp;auto_enroll=true&amp;amp;q=except+AttributeError+language%3APython+"&gt;"except AttributeError"&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;and not only for dynamic lookups but also for general attribute search, so a win for LBYL vs EAFP style with Python, despite the latter often being recommended ?&lt;/p&gt;
+</content></entry><entry><title>🎼Trouver un musicothérapeute🎼</title><link href="https://grahamknapp.com/blog/trouver-un-musicotherapeute/" rel="alternate"></link><updated>2021-07-20T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:29c101d7-f1b0-374e-939e-48a411d2157f</id><content type="html">&lt;p&gt;Ma femme est non seulement une superbe musicienne mais aussi une musicothérapeute : elle soigne les gens, ou les aide à se soigner eux-mêmes, avec de la musique!&lt;/p&gt;
+&lt;p&gt;J'ai crée cette &lt;a href="https://dancergraham.github.io/blog/trouver-un-musicotherapeute/musicotherapeutes.html"&gt;carte des musicothérapeutes français&lt;/a&gt; avec la méthode suivante:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scrape le &lt;a href="https://www.musicotherapie-federationfrancaise.com/trouver-un-musicotherapeute/"&gt;site web de la Fédération Française de Musicothérapie&lt;/a&gt; avec Requests et Beautiful Soup&lt;/li&gt;
+&lt;li&gt;Géocoder les addresses de tous les musicothérapeutes via OSM (cette partie prend plusieurs minutes)&lt;/li&gt;
+&lt;li&gt;Créer une carte avec un marqueur par musicothérapeute avec Folium.&lt;/li&gt;
+&lt;li&gt;Enregistrer la carte sous format html&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;J'utilise la fonction suivantes pour générer mes tags HTML pour les marqueurs:&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tagged&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Voici &lt;a href="https://github.com/dancergraham/carte_musicotherapeutes"&gt;le script complet sous forme de Jupyter Notebook&lt;/a&gt;.&lt;/p&gt;
+</content></entry><entry><title>Game of life in Rhino 3D</title><link href="https://grahamknapp.com/blog/game-of-life-in-rhino-3d/" rel="alternate"></link><updated>2020-12-18T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:154ac8b0-2905-3273-b590-0fac3bcc544c</id><content type="html">&lt;p&gt;Hello.&lt;/p&gt;
+&lt;p&gt;Prompted by this year’s Advent Of Code challenge I have implemented a 3D version of the game of life in Python in Rhino 7.&lt;/p&gt;
+&lt;p&gt;Here are some images renders from individual steps in my solution, followed by the code I used to generate them.&lt;/p&gt;
+&lt;p&gt;&lt;img src="step-5.jpeg" alt="A rendered 3D image of dozens of white spheres, densely packed, against a white background"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="step-3.jpeg" alt="A rendered 3D image of dozens of white spheres, smaller and densely packed, against a white background"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="step-4.jpeg" alt="A rendered 3D image of dozens of white spheres, more sparsely packed, against a white background"&gt;&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;rhinoscriptsyntax&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;rs&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Rhino&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;permutations&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;conway_cubes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rounds&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EnableRedraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Example from the puzzle&lt;/span&gt;
+    &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;.#.&lt;/span&gt;
+&lt;span class="s2"&gt;..#&lt;/span&gt;
+&lt;span class="s2"&gt;###&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;new_cubes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;# Build the starting grid&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;()):&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;new_cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Initialise sets and lists &lt;/span&gt;
+    &lt;span class="n"&gt;old_spheres&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="n"&gt;neighbouring&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;permutations&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 27 neighbours&lt;/span&gt;
+    &lt;span class="n"&gt;neighbouring&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# a cube is not its own neighbour&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rounds&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;cubes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DeleteObjects&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;old_spheres&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;neighbours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;old_spheres&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+
+        &lt;span class="c1"&gt;# Draw cubes and identify neighbours&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;cube&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cubes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;old_spheres&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AddSphere&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;neighbouring&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;neighbours&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                            &lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                            &lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                            &lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="n"&gt;new_cubes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Redraw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="c1"&gt;# Apply rules for creation of cubes in next round&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;neighbours&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iteritems&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cubes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="n"&gt;new_cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;new_cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EnableRedraw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt;  &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;conway_cubes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rounds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content></entry><entry><title>RhinoPython: may the source be with you!</title><link href="https://grahamknapp.com/blog/rhinopython-may-the-source-be-with-you/" rel="alternate"></link><updated>2019-05-12T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:54288fb4-f32c-31d7-a07a-d45b44dfb8ee</id><content type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
+&lt;p&gt;I wrote a script to help me code in python and learn RhinoCommon and decided to share it with you 😜&lt;/p&gt;
+&lt;p&gt;As you may know, the rhinoscriptsyntax library is written in Python and uses rhinocommon functions, also in Python, under the hood. In order to look up the underlying code you can open up the full python file, you can use the inspect module or you can save the script below to your computer and run it each time you want to look up a particular function. For instance if you search for ‘bounding’ you get the following options:&lt;/p&gt;
+&lt;p&gt;&lt;img src="rhinopython_source_0.png" alt="Search and select dialog box for library function"&gt;&lt;/p&gt;
+&lt;p&gt;And by clicking on the 3rd option you get the underlying source code, which you can read in the box, copy elsewhere, …&lt;/p&gt;
+&lt;p&gt;&lt;img src="rhinopython_source_1.png" alt="Source code view for library function"&gt;&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;inspect&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;getsource&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;getmembers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;isfunction&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;rhinoscriptsyntax&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;rs&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Script to view the source code for rhinoscript modules in Rhino 5 + 6&lt;/span&gt;
+&lt;span class="sd"&gt;By Graham Knapp for personal use and for the McNeel Discourse forums&lt;/span&gt;
+&lt;span class="sd"&gt;https://discourse.mcneel.com/t/python-may-the-source-be-with-you/84655&lt;/span&gt;
+&lt;span class="sd"&gt;13/6/2019&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_source&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;search_term&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;StringBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Function name to search for&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                               &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rhinoscriptsyntax&amp;#39;&lt;/span&gt;
+                               &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;search_term&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
+    &lt;span class="n"&gt;functions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;getmembers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+                 &lt;span class="n"&gt;isfunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;search_term&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()}&lt;/span&gt;  &lt;span class="c1"&gt;# (tuples of name, fuction)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;functions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
+    &lt;span class="n"&gt;selected&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ListBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;functions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rhinoscriptsyntax&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;selected&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
+
+    &lt;span class="n"&gt;the_source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getsource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;functions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;selected&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;box_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EditBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;the_source&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Press OK to copy to clipboard&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Use the source&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;box_result&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;rs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ClipboardText&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;box_result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;box_result&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;get_source&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content></entry><entry><title>Here comes the sun</title><link href="https://grahamknapp.com/blog/here-comes-the-sun/" rel="alternate"></link><updated>2019-03-23T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:80c97444-4748-3939-b2af-fd2d0399a5e6</id><content type="html">&lt;p&gt;I spend too much of my life sitting alone in an office working on my conputer or looking at my smartphone. My regular dose of fresh air comes from my bike - I ride to work and back regularly - but I also enjoy getting out into the garden when I can. Trouble is, I dont really &lt;em&gt;enjoy&lt;/em&gt; gardening! I do get a lot  of satisfaction from pruning the trees and shrubs, especially if it involves some climbing and as a result we now have an enormous pile of branches, leaves and twigs in the bottom of the garden. I recently found a new activity which satisfies my creative side and starts to diminish the stack o' cuttings : building 'dead hedge' style walls and fences.&lt;/p&gt;
+&lt;p&gt;&lt;img src="garden03.png" alt="garden03"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="garden02.png" alt="garden02"&gt;&lt;/p&gt;
+&lt;p&gt;First I sharpen a set of stakes and drive them into the ground, then I weave branches beween the stakes and finally I stuff twigs and leaves between the branches.  I always end up full of splinters with a big grin on my face.&lt;/p&gt;
+&lt;p&gt;&lt;img src="garden04.png" alt="garden04"&gt;&lt;/p&gt;
+&lt;h2&gt;Before and after&lt;/h2&gt;
+&lt;p&gt;&lt;img src="garden05.png" alt="garden05"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="garden06.png" alt="garden06"&gt;&lt;/p&gt;
+</content></entry><entry><title>Any way the wind blows</title><link href="https://grahamknapp.com/blog/any-way-the-wind-blows/" rel="alternate"></link><updated>2019-03-20T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:4255ed85-1019-3014-9501-6dcdb09ead67</id><content type="html">&lt;h3&gt;Adding leading zeros with Python&lt;/h3&gt;
+&lt;p&gt;Various ways to add leading zeros to a number, for instance a wind direction, using Python.  &lt;a href="wind_zeros.ipynb"&gt;Available as a Jupyter Notebook&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Generate a list of wind directions&lt;/h3&gt;
+&lt;p&gt;First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing &lt;strong&gt;from&lt;/strong&gt;. For instance an easterly wind, ie wind blowing &lt;strong&gt;from&lt;/strong&gt; the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest).&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;22.5&lt;/span&gt;
+&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="mi"&gt;360&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mf"&gt;0.001&lt;/span&gt;
+
+&lt;span class="n"&gt;directions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;360&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt;&lt;span class="p"&gt;))]&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;directions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;[0.0, 22.5, 45.0, 67.5, 90.0, 112.5, 135.0, 157.5, 180.0, 202.5, 225.0, 247.5, 270.0, 292.5, 315.0, 337.5]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;String zfill method&lt;/h3&gt;
+&lt;p&gt;No doubt the most pythonic way to add leading zeros to a bare string, the built-in &lt;code&gt;str.zfill()&lt;/code&gt; method is designed to do just that.&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;directions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zfill&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zfill&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;000 000.0
+022 022.5
+045 045.0
+067 067.5
+090 090.0
+112 112.5
+135 135.0
+157 157.5
+180 180.0
+202 202.5
+225 225.0
+247 247.5
+270 270.0
+292 292.5
+315 315.0
+337 337.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can immediately see our first quirk: the integer representation truncates decimal values rather than rounding up (as I learned to do at school) or rounding towards the nearest even number (&lt;a href="https://realpython.com/python-rounding/"&gt;as the Python round() funtion would do&lt;/a&gt;).&lt;/p&gt;
+&lt;h3&gt;String slicing&lt;/h3&gt;
+&lt;p&gt;Very fast and arguably even more readable for people with a good understanding of basic python syntax but no desire to read the docs or explore the obscure corners of the language. Add the maximum possible number of leading zeros and then slice the desired number of digits.&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;directions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;00&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;)))[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:],&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;00&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;))[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;000 000.0
+022 022.5
+045 045.0
+067 067.5
+090 090.0
+112 112.5
+135 135.0
+157 157.5
+180 180.0
+202 202.5
+225 225.0
+247 247.5
+270 270.0
+292 292.5
+315 315.0
+337 337.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;String format : integers&lt;/h3&gt;
+&lt;p&gt;As part of a longer string this allows the  number to be inserted with leading zeros. Compatible with all current versions of Python.&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;directions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;As integer: &lt;/span&gt;&lt;span class="si"&gt;{:03d}&lt;/span&gt;&lt;span class="s1"&gt;  |  As float: &lt;/span&gt;&lt;span class="si"&gt;{:05.1f}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;As integer: 000  |  As float: 000.0
+As integer: 022  |  As float: 022.5
+As integer: 045  |  As float: 045.0
+As integer: 067  |  As float: 067.5
+As integer: 090  |  As float: 090.0
+As integer: 112  |  As float: 112.5
+As integer: 135  |  As float: 135.0
+As integer: 157  |  As float: 157.5
+As integer: 180  |  As float: 180.0
+As integer: 202  |  As float: 202.5
+As integer: 225  |  As float: 225.0
+As integer: 247  |  As float: 247.5
+As integer: 270  |  As float: 270.0
+As integer: 292  |  As float: 292.5
+As integer: 315  |  As float: 315.0
+As integer: 337  |  As float: 337.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;F Strings&lt;/h3&gt;
+&lt;p&gt;From Python 3.6 this is even terser.&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;directions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;As integer: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;03d&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;  |  As float: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;05.1f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;As integer: 000  |  As float: 000.0
+As integer: 022  |  As float: 022.5
+As integer: 045  |  As float: 045.0
+As integer: 067  |  As float: 067.5
+As integer: 090  |  As float: 090.0
+As integer: 112  |  As float: 112.5
+As integer: 135  |  As float: 135.0
+As integer: 157  |  As float: 157.5
+As integer: 180  |  As float: 180.0
+As integer: 202  |  As float: 202.5
+As integer: 225  |  As float: 225.0
+As integer: 247  |  As float: 247.5
+As integer: 270  |  As float: 270.0
+As integer: 292  |  As float: 292.5
+As integer: 315  |  As float: 315.0
+As integer: 337  |  As float: 337.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Class&lt;/h3&gt;
+&lt;p&gt;By overloading the built-in &lt;code&gt;__str__()&lt;/code&gt; method for the class we can create our own custom string representation of the value.&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;WindRecord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__str__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Wind direction: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;05.1f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt; degrees&amp;#39;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;directions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;WindRecord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;Wind direction: 000.0 degrees
+Wind direction: 022.5 degrees
+Wind direction: 045.0 degrees
+Wind direction: 067.5 degrees
+Wind direction: 090.0 degrees
+Wind direction: 112.5 degrees
+Wind direction: 135.0 degrees
+Wind direction: 157.5 degrees
+Wind direction: 180.0 degrees
+Wind direction: 202.5 degrees
+Wind direction: 225.0 degrees
+Wind direction: 247.5 degrees
+Wind direction: 270.0 degrees
+Wind direction: 292.5 degrees
+Wind direction: 315.0 degrees
+Wind direction: 337.5 degrees
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thanks to &lt;a href="https://discourse.mcneel.com/u/clement/summary"&gt;@clement&lt;/a&gt; for comments&lt;/p&gt;
+</content></entry><entry><title>Building a blog</title><link href="https://grahamknapp.com/blog/first-post/" rel="alternate"></link><updated>2019-03-18T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:248517bf-f16c-35e9-b4f6-153079fe67aa</id><content type="html">&lt;p&gt;I have had a few ideas for content to share recently and wanted a good way to do so.  I wanted to find a good solution for blog publishing with a few criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Built using Python, editable in markdown so I can develop my skills.&lt;/li&gt;
+&lt;li&gt;Simple to build and maintain - I am not a web developer and have no desire to become one.  That said, I have been &lt;a href="https://web.archive.org/web/20010520155249/http://www.fortunecity.co.uk/madchester/latin/336/"&gt;building websites&lt;/a&gt; on an amateur basis &lt;a href="https://web.archive.org/web/19981202092552/http://www.shef.ac.uk/uni/union/susoc/ftc/"&gt;since the 1990s&lt;/a&gt; so I'm not afraid of writing a little html if I have to.&lt;/li&gt;
+&lt;li&gt;Capable of incorporating Jupyter Notebooks&lt;/li&gt;
+&lt;li&gt;Simple to deploy, preferably for free.  I am hoping to do this via my internet provider but might go via GitHub failing that or even pay for a small cloud server.&lt;/li&gt;
+&lt;li&gt;No initial need for interractive content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I saw that the static site generators Pelican and Lektor were available.  That sounds like a good solution as it should be quick and have few moving parts which could break.  &lt;a href="https://www.getlektor.com/"&gt;Lektor&lt;/a&gt; looked simple, welcoming and modern enough so I downloaded and installed it. I listened to &lt;a href="https://talkpython.fm/episodes/embed_details/160"&gt;Talk Python episode 160&lt;/a&gt; as I did so and that encouraged me that I was on a good path.&lt;/p&gt;
+&lt;iframe width="100%" height="166" scrolling="no" frameborder="no"
+     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/439465995&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"&gt;
+&lt;/iframe&gt;&lt;p&gt;My initial experience has been great - I got going with no problem except that at the time of writing I have been waiting over a week for free to get around to setting up my personal web space so I can deploy the site.  At least that has given me enough time to configure a basic blog and write my first 2 posts.&lt;/p&gt;
+</content></entry></feed>
