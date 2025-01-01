@@ -26,12 +26,12 @@
             
   <div class="blog-post">
   
-    <h2><a href="result-pattern-an-exceptional-way-to-handle-errors/">Result pattern - An exceptional way to handle errors</a></h2>
+    <h2><a href="result-pattern-an-exceptional-way-to-handle-errors/">Result pattern - An exceptional way to handle errors 🔗</a></h2>
   
   <p class="meta">
     written by
     
-      Graham Knapp
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
     
     on 2024-12-30
   </p>
@@ -55,12 +55,12 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
             
   <div class="blog-post">
   
-    <h2><a href="trouver-un-musicotherapeute/">🎼Trouver un musicothérapeute🎼</a></h2>
+    <h2><a href="trouver-un-musicotherapeute/">🎼Trouver un musicothérapeute🎼 🔗</a></h2>
   
   <p class="meta">
     written by
     
-      <a href="https://twitter.com/knapp_graham">Graham Knapp</a>
+      <a href="knapp_graham">Graham Knapp</a>
     
     on 2021-07-20
   </p>
@@ -91,12 +91,91 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
             
   <div class="blog-post">
   
-    <h2><a href="rhinopython-may-the-source-be-with-you/">RhinoPython: may the source be with you!</a></h2>
+    <h2><a href="game-of-life-in-rhino-3d/">Game of life in Rhino 3D 🔗</a></h2>
   
   <p class="meta">
     written by
     
-      Graham Knapp
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2020-12-18
+  </p>
+  <p>Hello.</p>
+<p>Prompted by this year’s Advent Of Code challenge I have implemented a 3D version of the game of life in Python in Rhino 7.</p>
+<p>Here are some images renders from individual steps in my solution, followed by the code I used to generate them.</p>
+<p><img src="game-of-life-in-rhino-3d/step-5.jpeg" alt="A rendered 3D image of dozens of white spheres, densely packed, against a white background"></p>
+<p><img src="game-of-life-in-rhino-3d/step-3.jpeg" alt="A rendered 3D image of dozens of white spheres, smaller and densely packed, against a white background"></p>
+<p><img src="game-of-life-in-rhino-3d/step-4.jpeg" alt="A rendered 3D image of dozens of white spheres, more sparsely packed, against a white background"></p>
+<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">rhinoscriptsyntax</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="kn">import</span> <span class="nn">Rhino</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">conway_cubes</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">EnableRedraw</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># Example from the puzzle</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;.#.</span>
+<span class="s2">..#</span>
+<span class="s2">###&quot;&quot;&quot;</span>
+
+    <span class="n">new_cubes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="c1"># Build the starting grid</span>
+    <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">cell</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">cell</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+                <span class="n">new_cubes</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="c1"># Initialise sets and lists </span>
+    <span class="n">old_spheres</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">neighbouring</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">permutations</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># 27 neighbours</span>
+    <span class="n">neighbouring</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># a cube is not its own neighbour</span>
+
+    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">cubes</span> <span class="o">=</span> <span class="n">new_cubes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">DeleteObjects</span><span class="p">(</span><span class="n">old_spheres</span><span class="p">)</span>
+        <span class="n">neighbours</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">old_spheres</span><span class="o">=</span><span class="p">[]</span>
+
+        <span class="c1"># Draw cubes and identify neighbours</span>
+        <span class="k">for</span> <span class="n">cube</span> <span class="ow">in</span> <span class="n">cubes</span><span class="p">:</span>
+            <span class="n">old_spheres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">AddSphere</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">neighbouring</span><span class="p">:</span>
+                <span class="n">neighbours</span><span class="p">[(</span><span class="n">cube</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">cube</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="n">cube</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                            <span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">new_cubes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">Redraw</span><span class="p">()</span>
+
+        <span class="c1"># Apply rules for creation of cubes in next round</span>
+        <span class="k">for</span> <span class="n">location</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">neighbours</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">cubes</span><span class="p">:</span>
+                <span class="k">if</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">new_cubes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">new_cubes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">EnableRedraw</span><span class="p">()</span>
+
+
+<span class="k">if</span>  <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">conway_cubes</span><span class="p">(</span><span class="n">rounds</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+  <div class="blog-post">
+  
+    <h2><a href="rhinopython-may-the-source-be-with-you/">RhinoPython: may the source be with you! 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
     
     on 2019-05-12
   </p>
@@ -154,12 +233,12 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
             
   <div class="blog-post">
   
-    <h2><a href="here-comes-the-sun/">Here comes the sun</a></h2>
+    <h2><a href="here-comes-the-sun/">Here comes the sun 🔗</a></h2>
   
   <p class="meta">
     written by
     
-      Graham Knapp
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
     
     on 2019-03-23
   </p>
@@ -181,12 +260,12 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
             
   <div class="blog-post">
   
-    <h2><a href="any-way-the-wind-blows/">Any way the wind blows</a></h2>
+    <h2><a href="any-way-the-wind-blows/">Any way the wind blows 🔗</a></h2>
   
   <p class="meta">
     written by
     
-      Graham Knapp
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
     
     on 2019-03-20
   </p>
@@ -334,12 +413,12 @@ Wind direction: 337.5 degrees
             
   <div class="blog-post">
   
-    <h2><a href="first-post/">Building a blog</a></h2>
+    <h2><a href="first-post/">Building a blog 🔗</a></h2>
   
   <p class="meta">
     written by
     
-      Graham Knapp
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
     
     on 2019-03-18
   </p>
