@@ -1,0 +1,80 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<title>Feature flags Pt 1: Faster feature development with flags. — blog</title>
+<body>
+<header>
+    <h1>Graham Knapp</h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+        <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                             style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>Feature flags Pt 1: Faster feature development with flags.</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-01-02
+  </p>
+  <p>The greatest accelerator of my team's work last year was adopting feature flags. With flags we ship features faster, more confidently and with less stress. We have fewer merge conflicts despite frequently working together on the same part of the code base.</p>
+<p><img src="Sbandieratori_3.JPG" alt="Men in colourful mediaeval costumes throwing huge flags into the air in a central Italian flagged square, thousands of onlookers in the background"></p>
+<p><em>Saracen Joust in Arezzo: Exhibition of the flag-wavers from Archivio Istituzione Giostra del Saracino del Comune di Arezzo</em></p>
+<p>In this post I will share the advantages and potential pain points we have seen. For context we are a team of 5 developers working together on a back end api and front end web app for business users. We have moved towards <strong>trunk-based development</strong>, avoiding long-running branches.</p>
+<h3>What are Feature Flags ?</h3>
+<p>A feature flag lets you turn parts of your code on or off for some or all users, or based on other conditions such as date, time, region, etc.</p>
+<p>✅ In this post I am talking about short-lived flags used during development.</p>
+<p>❌ I am not talking about permanent aspects of your app such as customisations for individuals or groups of users.</p>
+<h3>Advantages</h3>
+<ul>
+<li><strong>Fewer merge conflicts 🎌</strong>. This is the biggest plus: Hiding features which are incomplete or not yet launched behind a flag lets you merge more frequently safe in the knowledge that the new feature is not going to break existing code. By sharing more often, avoiding long-running branches, you hugely reduce the risk of big merge conflicts</li>
+<li><strong>Earlier collaboration 🏳️‍🌈</strong>. Sharing your code earlier means you can start collaborating quickly with other developers, product, sales and designers. There is nothing better for discussion and collaboration than working code.</li>
+<li><strong>Early feedback</strong>. By turning on features for trusted customers and partners you can get early feedback on the design and functionality.</li>
+<li><strong>Increased productivity</strong>. All of this means you are shipping impactful changes earlier with less wasted effort. </li>
+</ul>
+<h3>Pain points</h3>
+<p>Sounds too good to be true?  There is no such thing as a free lunch - here are some possible downsides:</p>
+<ul>
+<li><strong>Upfront investment</strong> It takes time to develop a feature flag system or adopt an external solution and you need to convince the team that the effort is worth it. I hope this blog post helps with that! Adopting feature flags may imply changes to your branching, code review, deployment and ci / cd system. </li>
+<li><strong>Complexity</strong> Each flag adds a new code path - be wary of layering complexity or nesting flags in complex ways. Creating, updating and deleting each flag takes time so do not add them unnecessarily for small features.</li>
+<li><strong>Removal</strong> At some point the flag code needs to be removed. Avoid keeping unused features behind deactivated flags or accepted features inside permanently active flags "just in case".</li>
+</ul>
+<h3>Recommendations</h3>
+<ul>
+<li><strong>Start small</strong> In our team we started with the smallest possible shareable system - a flags namespace in our front-end code. We later adopted an existing open source library in the back end.</li>
+<li><strong>Work together</strong>. Ensure that everyone is adopting the system where appropriate, discuss any challenges as a team and look for solutions. Change course as necessary. </li>
+</ul>
+
+  </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
