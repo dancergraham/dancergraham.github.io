@@ -55,32 +55,36 @@
 
 <span class="kn">import</span> <span class="nn">rhinoscriptsyntax</span> <span class="k">as</span> <span class="nn">rs</span>
 
-<span class="sd">&quot;&quot;&quot; Script to view the source code for rhinoscript modules in Rhino 5 + 6</span>
-<span class="sd">By Graham Knapp for personal use and for the McNeel Discourse forums</span>
-<span class="sd">https://discourse.mcneel.com/t/python-may-the-source-be-with-you/84655</span>
+<span class="sd">&quot;&quot;&quot; Script to view the source code for rhinoscript </span>
+<span class="sd">modules in Rhino 5 + 6 By Graham Knapp for personal </span>
+<span class="sd">use and for the McNeel Discourse forums</span>
 <span class="sd">13/6/2019</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">get_source</span><span class="p">():</span>
-    <span class="n">search_term</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">StringBox</span><span class="p">(</span><span class="s1">&#39;Function name to search for&#39;</span><span class="p">,</span>
-                               <span class="n">title</span><span class="o">=</span><span class="s1">&#39;rhinoscriptsyntax&#39;</span>
-                               <span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">search_term</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">StringBox</span><span class="p">(</span>
+        <span class="s1">&#39;Function name to search for&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;rhinoscriptsyntax&#39;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">search_term</span><span class="p">:</span>
         <span class="k">return</span>
     <span class="c1"># (tuples of name, fuction)</span>
-    <span class="n">functions</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">obj</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">getmembers</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span> <span class="k">if</span>
-                 <span class="n">isfunction</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="n">search_term</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()}</span>  
+    <span class="n">functions</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">obj</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">getmembers</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span>
+                 <span class="k">if</span> <span class="n">isfunction</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                 <span class="ow">and</span> <span class="n">search_term</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()}</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">functions</span><span class="p">:</span>
         <span class="k">return</span>
-    <span class="n">selected</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ListBox</span><span class="p">(</span><span class="n">functions</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;rhinoscriptsyntax&#39;</span><span class="p">)</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">ListBox</span><span class="p">(</span><span class="n">functions</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;rhinoscriptsyntax&#39;</span>
+                          <span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">selected</span><span class="p">:</span>
         <span class="k">return</span>
 
     <span class="n">the_source</span> <span class="o">=</span> <span class="n">getsource</span><span class="p">(</span><span class="n">functions</span><span class="p">[</span><span class="n">selected</span><span class="p">])</span>
     <span class="n">box_result</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">EditBox</span><span class="p">(</span><span class="n">the_source</span><span class="p">,</span>
-                            <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Press OK to copy to clipboard&#39;</span><span class="p">,</span>
-                            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Use the source&#39;</span><span class="p">)</span>
+                <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Press OK to copy to clipboard&#39;</span><span class="p">,</span>
+                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Use the source&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">box_result</span><span class="p">:</span>
         <span class="n">rs</span><span class="o">.</span><span class="n">ClipboardText</span><span class="p">(</span><span class="n">box_result</span><span class="p">)</span>
 

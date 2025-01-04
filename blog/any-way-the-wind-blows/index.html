@@ -56,12 +56,13 @@
 <span class="n">directions</span> <span class="o">=</span> <span class="p">[</span><span class="n">interval</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">directions</span><span class="p">)</span>
 </pre></div>
-<p>[0.0,
+<pre><code>[0.0,
  22.5,
  45.0,
  67.5,
 ...
- 337.5]</p>
+ 337.5]
+</code></pre>
 <h3>String zfill method</h3>
 <p>No doubt the most pythonic way to add leading zeros to a bare string, the built-in <code>str.zfill()</code> method is designed to do just that.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
@@ -138,7 +139,7 @@
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Int: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dir_</span><span class="p">)</span><span class="si">:</span><span class="s1">03d</span><span class="si">}</span><span class="s1"> | Float: </span><span class="si">{</span><span class="n">dir_</span><span class="si">:</span><span class="s1">05.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
-<p>Int: 000  |  Float: 000.0
+<pre><code>  Int: 000  |  Float: 000.0
   Int: 022  |  Float: 022.5
   Int: 045  |  Float: 045.0
   Int: 067  |  Float: 067.5
@@ -153,7 +154,8 @@
   Int: 270  |  Float: 270.0
   Int: 292  |  Float: 292.5
   Int: 315  |  Float: 315.0
-  Int: 337  |  Float: 337.5</p>
+  Int: 337  |  Float: 337.5
+</code></pre>
 <h3>Class</h3>
 <p>By overloading the built-in <code>__str__()</code> method for the class we can create our own custom string representation of the value.</p>
 <div class="hll"><pre><span></span><span class="k">class</span> <span class="nc">WindRecord</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
@@ -168,22 +170,22 @@
     <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
-<pre><code>Wind direction: 000.0 °
-Wind direction: 022.5 °
-Wind direction: 045.0 °
-Wind direction: 067.5 °
-Wind direction: 090.0 °
-Wind direction: 112.5 °
-Wind direction: 135.0 °
-Wind direction: 157.5 °
-Wind direction: 180.0 °
-Wind direction: 202.5 °
-Wind direction: 225.0 °
-Wind direction: 247.5 °
-Wind direction: 270.0 °
-Wind direction: 292.5 °
-Wind direction: 315.0 °
-Wind direction: 337.5 °
+<pre><code>    Wind direction: 000.0 °
+    Wind direction: 022.5 °
+    Wind direction: 045.0 °
+    Wind direction: 067.5 °
+    Wind direction: 090.0 °
+    Wind direction: 112.5 °
+    Wind direction: 135.0 °
+    Wind direction: 157.5 °
+    Wind direction: 180.0 °
+    Wind direction: 202.5 °
+    Wind direction: 225.0 °
+    Wind direction: 247.5 °
+    Wind direction: 270.0 °
+    Wind direction: 292.5 °
+    Wind direction: 315.0 °
+    Wind direction: 337.5 °
 </code></pre>
 <p>Thanks to <a href="https://discourse.mcneel.com/u/clement/summary">@clement</a> for comments</p>
 
