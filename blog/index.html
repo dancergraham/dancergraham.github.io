@@ -40,6 +40,69 @@
             
   <div class="blog-post">
   
+    <h2><a href="feature-flags-pt-2-start-small/">Feature flags Pt 2: Start small 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-01-05
+  </p>
+  <p>In our team we started with the smallest possible shareable system - a flags namespace in our front-end code. We later adopted an existing open source library in the back end.  This got me thinking - what is the smallest possible feature flag system?</p>
+<p>Here's a Hello World example...</p>
+<h3>The world without flags</h3>
+<div class="hll"><pre><span></span><span class="c1"># greet.py</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+</pre></div>
+<p>Let's test it:</p>
+<div class="hll"><pre><span></span><span class="go">python -m greet</span>
+<span class="go">Hello, world!</span>
+</pre></div>
+<h3>Add a flag</h3>
+<p>I have a great idea for a new feature - the script will ask the user's name and greet them personally!</p>
+<p>What's the easiest way to add feature flags to a python script? let's try adding a command line argument.
+We put the flag-specific code inside an if-statement and keep common code outside the flagged block:</p>
+<div class="hll"><pre><span></span><span class="c1"># greet1.py</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">personal_flag</span> <span class="o">=</span> <span class="s2">&quot;personal&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+<span class="k">if</span> <span class="n">personal_flag</span><span class="p">:</span>
+    <span class="n">greeted</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What&#39;s your name? &quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">greeted</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">greeted</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+<p>Let's test it:</p>
+<div class="hll"><pre><span></span><span class="go">&gt; python -m greet1</span>
+<span class="go">Hello, world!</span>
+<span class="go">&gt; python -m greet1 personal</span>
+<span class="go">What&#39;s your name? Graham</span>
+<span class="go">Hello, Graham!</span>
+</pre></div>
+<h3>Remove the flag</h3>
+<p>I love this feature, the team loves it - we have tested it in production by activating the flag and our users love it too. 
+Now it's time to remove the flag and tidy up the code:</p>
+<div class="hll"><pre><span></span><span class="c1"># greet2.py</span>
+<span class="n">greeted</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What&#39;s your name? &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">greeted</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+<p>Let's test it:</p>
+<div class="hll"><pre><span></span><span class="go">&gt; python -m greet2</span>
+<span class="go">What&#39;s your name? Graham</span>
+<span class="go">Hello, Graham!</span>
+</pre></div>
+<p>Perfect!</p>
+
+  </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+  <div class="blog-post">
+  
     <h2><a href="feature-flags-pt-1-whats-so-great-about-feature-flags/">Feature flags Pt 1: Faster feature development with flags. 🔗</a></h2>
   
   <p class="meta">
