@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="../static/pygments.css">
 <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
 <meta name="viewport" content="width=device-width">
+<meta name="description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
 
 <title>Graham Knapp — blog</title>
 <body>
@@ -23,8 +25,8 @@
                 <li><a href="../about/">About</a>
                 </li>
             
-        <li><a href="/feed.xml"><img src="../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
-                                             style="width: 24px; height: 24px;"></a></li>
+            <li><a href="/feed.xml"><img src="../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
         </ul>
     </nav>
     <div>
@@ -349,35 +351,35 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
 <span class="n">directions</span> <span class="o">=</span> <span class="p">[</span><span class="n">interval</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">directions</span><span class="p">)</span>
 </pre></div>
-<pre><code>[0.0,
- 22.5,
- 45.0,
- 67.5,
-...
- 337.5]
-</code></pre>
+<div class="hll"><pre><span></span><span class="go">[0.0,</span>
+<span class="go"> 22.5,</span>
+<span class="go"> 45.0,</span>
+<span class="go"> 67.5,</span>
+<span class="go">...</span>
+<span class="go"> 337.5]</span>
+</pre></div>
 <h3>String zfill method</h3>
 <p>No doubt the most pythonic way to add leading zeros to a bare string, the built-in <code>str.zfill()</code> method is designed to do just that.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dir_</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">dir_</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
-<pre><code>    000 000.0
-    022 022.5
-    045 045.0
-    067 067.5
-    090 090.0
-    112 112.5
-    135 135.0
-    157 157.5
-    180 180.0
-    202 202.5
-    225 225.0
-    247 247.5
-    270 270.0
-    292 292.5
-    315 315.0
-    337 337.5
-</code></pre>
+<div class="hll"><pre><span></span><span class="go">    000 000.0</span>
+<span class="go">    022 022.5</span>
+<span class="go">    045 045.0</span>
+<span class="go">    067 067.5</span>
+<span class="go">    090 090.0</span>
+<span class="go">    112 112.5</span>
+<span class="go">    135 135.0</span>
+<span class="go">    157 157.5</span>
+<span class="go">    180 180.0</span>
+<span class="go">    202 202.5</span>
+<span class="go">    225 225.0</span>
+<span class="go">    247 247.5</span>
+<span class="go">    270 270.0</span>
+<span class="go">    292 292.5</span>
+<span class="go">    315 315.0</span>
+<span class="go">    337 337.5</span>
+</pre></div>
 <p>We can immediately see our first quirk: the integer representation truncates decimal values rather than rounding up (as I learned to do at school) or rounding towards the nearest even number (<a href="https://realpython.com/python-rounding/">as the Python round() funtion would do</a>).</p>
 <h3>String slicing</h3>
 <p>Very fast and arguably even more readable for people with a good understanding of basic python syntax but no desire to read the docs or explore the obscure corners of the language. Add the maximum possible number of leading zeros and then slice the desired number of digits.</p>
@@ -385,23 +387,23 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
     <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">)))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:],</span>
     <span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
 </pre></div>
-<pre><code>    000 000.0
-    022 022.5
-    045 045.0
-    067 067.5
-    090 090.0
-    112 112.5
-    135 135.0
-    157 157.5
-    180 180.0
-    202 202.5
-    225 225.0
-    247 247.5
-    270 270.0
-    292 292.5
-    315 315.0
-    337 337.5
-</code></pre>
+<div class="hll"><pre><span></span><span class="go">    000 000.0</span>
+<span class="go">    022 022.5</span>
+<span class="go">    045 045.0</span>
+<span class="go">    067 067.5</span>
+<span class="go">    090 090.0</span>
+<span class="go">    112 112.5</span>
+<span class="go">    135 135.0</span>
+<span class="go">    157 157.5</span>
+<span class="go">    180 180.0</span>
+<span class="go">    202 202.5</span>
+<span class="go">    225 225.0</span>
+<span class="go">    247 247.5</span>
+<span class="go">    270 270.0</span>
+<span class="go">    292 292.5</span>
+<span class="go">    315 315.0</span>
+<span class="go">    337 337.5</span>
+</pre></div>
 <h3>String format : integers</h3>
 <p>As part of a longer string this allows the  number to be inserted with leading zeros. Compatible with all current versions of Python.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
@@ -410,45 +412,45 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
         <span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">direction</span><span class="p">)</span>
         <span class="p">)</span>
 </pre></div>
-<pre><code>  Int: 000  |  Float: 000.0
-  Int: 022  |  Float: 022.5
-  Int: 045  |  Float: 045.0
-  Int: 067  |  Float: 067.5
-  Int: 090  |  Float: 090.0
-  Int: 112  |  Float: 112.5
-  Int: 135  |  Float: 135.0
-  Int: 157  |  Float: 157.5
-  Int: 180  |  Float: 180.0
-  Int: 202  |  Float: 202.5
-  Int: 225  |  Float: 225.0
-  Int: 247  |  Float: 247.5
-  Int: 270  |  Float: 270.0
-  Int: 292  |  Float: 292.5
-  Int: 315  |  Float: 315.0
-  Int: 337  |  Float: 337.5
-</code></pre>
+<div class="hll"><pre><span></span><span class="go">  Int: 000  |  Float: 000.0</span>
+<span class="go">  Int: 022  |  Float: 022.5</span>
+<span class="go">  Int: 045  |  Float: 045.0</span>
+<span class="go">  Int: 067  |  Float: 067.5</span>
+<span class="go">  Int: 090  |  Float: 090.0</span>
+<span class="go">  Int: 112  |  Float: 112.5</span>
+<span class="go">  Int: 135  |  Float: 135.0</span>
+<span class="go">  Int: 157  |  Float: 157.5</span>
+<span class="go">  Int: 180  |  Float: 180.0</span>
+<span class="go">  Int: 202  |  Float: 202.5</span>
+<span class="go">  Int: 225  |  Float: 225.0</span>
+<span class="go">  Int: 247  |  Float: 247.5</span>
+<span class="go">  Int: 270  |  Float: 270.0</span>
+<span class="go">  Int: 292  |  Float: 292.5</span>
+<span class="go">  Int: 315  |  Float: 315.0</span>
+<span class="go">  Int: 337  |  Float: 337.5</span>
+</pre></div>
 <h3>F Strings</h3>
 <p>From Python 3.6 this is even terser.</p>
 <div class="hll"><pre><span></span><span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Int: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dir_</span><span class="p">)</span><span class="si">:</span><span class="s1">03d</span><span class="si">}</span><span class="s1"> | Float: </span><span class="si">{</span><span class="n">dir_</span><span class="si">:</span><span class="s1">05.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
-<pre><code>  Int: 000  |  Float: 000.0
-  Int: 022  |  Float: 022.5
-  Int: 045  |  Float: 045.0
-  Int: 067  |  Float: 067.5
-  Int: 090  |  Float: 090.0
-  Int: 112  |  Float: 112.5
-  Int: 135  |  Float: 135.0
-  Int: 157  |  Float: 157.5
-  Int: 180  |  Float: 180.0
-  Int: 202  |  Float: 202.5
-  Int: 225  |  Float: 225.0
-  Int: 247  |  Float: 247.5
-  Int: 270  |  Float: 270.0
-  Int: 292  |  Float: 292.5
-  Int: 315  |  Float: 315.0
-  Int: 337  |  Float: 337.5
-</code></pre>
+<div class="hll"><pre><span></span><span class="go">  Int: 000  |  Float: 000.0</span>
+<span class="go">  Int: 022  |  Float: 022.5</span>
+<span class="go">  Int: 045  |  Float: 045.0</span>
+<span class="go">  Int: 067  |  Float: 067.5</span>
+<span class="go">  Int: 090  |  Float: 090.0</span>
+<span class="go">  Int: 112  |  Float: 112.5</span>
+<span class="go">  Int: 135  |  Float: 135.0</span>
+<span class="go">  Int: 157  |  Float: 157.5</span>
+<span class="go">  Int: 180  |  Float: 180.0</span>
+<span class="go">  Int: 202  |  Float: 202.5</span>
+<span class="go">  Int: 225  |  Float: 225.0</span>
+<span class="go">  Int: 247  |  Float: 247.5</span>
+<span class="go">  Int: 270  |  Float: 270.0</span>
+<span class="go">  Int: 292  |  Float: 292.5</span>
+<span class="go">  Int: 315  |  Float: 315.0</span>
+<span class="go">  Int: 337  |  Float: 337.5</span>
+</pre></div>
 <h3>Class</h3>
 <p>By overloading the built-in <code>__str__()</code> method for the class we can create our own custom string representation of the value.</p>
 <div class="hll"><pre><span></span><span class="k">class</span> <span class="nc">WindRecord</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
@@ -463,23 +465,23 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
     <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
-<pre><code>    Wind direction: 000.0 °
-    Wind direction: 022.5 °
-    Wind direction: 045.0 °
-    Wind direction: 067.5 °
-    Wind direction: 090.0 °
-    Wind direction: 112.5 °
-    Wind direction: 135.0 °
-    Wind direction: 157.5 °
-    Wind direction: 180.0 °
-    Wind direction: 202.5 °
-    Wind direction: 225.0 °
-    Wind direction: 247.5 °
-    Wind direction: 270.0 °
-    Wind direction: 292.5 °
-    Wind direction: 315.0 °
-    Wind direction: 337.5 °
-</code></pre>
+<div class="hll"><pre><span></span><span class="go">    Wind direction: 000.0 °</span>
+<span class="go">    Wind direction: 022.5 °</span>
+<span class="go">    Wind direction: 045.0 °</span>
+<span class="go">    Wind direction: 067.5 °</span>
+<span class="go">    Wind direction: 090.0 °</span>
+<span class="go">    Wind direction: 112.5 °</span>
+<span class="go">    Wind direction: 135.0 °</span>
+<span class="go">    Wind direction: 157.5 °</span>
+<span class="go">    Wind direction: 180.0 °</span>
+<span class="go">    Wind direction: 202.5 °</span>
+<span class="go">    Wind direction: 225.0 °</span>
+<span class="go">    Wind direction: 247.5 °</span>
+<span class="go">    Wind direction: 270.0 °</span>
+<span class="go">    Wind direction: 292.5 °</span>
+<span class="go">    Wind direction: 315.0 °</span>
+<span class="go">    Wind direction: 337.5 °</span>
+</pre></div>
 <p>Thanks to <a href="https://discourse.mcneel.com/u/clement/summary">@clement</a> for comments</p>
 
   </div>
