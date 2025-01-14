@@ -52,6 +52,12 @@ nav ul li.active a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
 .blog-post {
   margin-bottom: 40px;
 }
@@ -74,11 +80,6 @@ nav ul li.active a {
 
 .blog-post p {
   margin-bottom: 20px;
-}
-
-.blog-post img {
-  max-width: 100%;
-  height: auto;
 }
 
 .pagination {

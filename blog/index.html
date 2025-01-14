@@ -40,6 +40,86 @@
             
   <div class="blog-post">
   
+    <h2><a href="the-zen-of-python-revisited/">The Zen of Python: Gur Mra bs Clguba. 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-01-14
+  </p>
+  <p>I love The Zen of Python - one of the delights of the language is typing <code>import this</code> in a REPL and discovering this gem:</p>
+<div class="hll"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">this</span>
+</pre></div>
+<div class="hll"><pre><span></span><span class="go">The Zen of Python, by Tim Peters</span>
+
+<span class="go">Beautiful is better than ugly.</span>
+<span class="go">Explicit is better than implicit.</span>
+<span class="go">Simple is better than complex.</span>
+<span class="go">Complex is better than complicated.</span>
+<span class="go">Flat is better than nested.</span>
+<span class="go">Sparse is better than dense.</span>
+<span class="go">Readability counts.</span>
+<span class="go">Special cases aren&#39;t special enough to break the rules.</span>
+<span class="go">Although practicality beats purity.</span>
+<span class="go">Errors should never pass silently.</span>
+<span class="go">Unless explicitly silenced.</span>
+<span class="go">In the face of ambiguity, refuse the temptation to guess.</span>
+<span class="go">There should be one-- and preferably only one --obvious way to do it.</span>
+<span class="go">Although that way may not be obvious at first unless you&#39;re Dutch.</span>
+<span class="go">Now is better than never.</span>
+<span class="go">Although never is often better than *right* now.</span>
+<span class="go">If the implementation is hard to explain, it&#39;s a bad idea.</span>
+<span class="go">If the implementation is easy to explain, it may be a good idea.</span>
+<span class="go">Namespaces are one honking great idea -- let&#39;s do more of those!</span>
+</pre></div>
+<p>It neatly captures the way in which Guido van Rossum and a group of Pythonistas thought about 
+the language, constructed and used it, sharing thoughts on user forums in in-person meetings.</p>
+<p>But I think it is particularly well paired with the <a href="https://github.com/python/cpython/blob/main/Lib/this.py"><em>source code</em></a> 
+of this module, which is notable for breaking almost all of the suggestions from the poem
+in a huge kludge of unreadable script with ROT-13 text and single-letter variable names:</p>
+<div class="hll"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">this</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">this</span><span class="p">))</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Gur Mra bs Clguba, ol Gvz Crgref</span>
+
+<span class="s2">Ornhgvshy vf orggre guna htyl.</span>
+<span class="s2">Rkcyvpvg vf orggre guna vzcyvpvg.</span>
+<span class="s2">Fvzcyr vf orggre guna pbzcyrk.</span>
+<span class="s2">Pbzcyrk vf orggre guna pbzcyvpngrq.</span>
+<span class="s2">Syng vf orggre guna arfgrq.</span>
+<span class="s2">Fcnefr vf orggre guna qrafr.</span>
+<span class="s2">Ernqnovyvgl pbhagf.</span>
+<span class="s2">Fcrpvny pnfrf nera&#39;g fcrpvny rabhtu gb oernx gur ehyrf.</span>
+<span class="s2">Nygubhtu cenpgvpnyvgl orngf chevgl.</span>
+<span class="s2">Reebef fubhyq arire cnff fvyragyl.</span>
+<span class="s2">Hayrff rkcyvpvgyl fvyraprq.</span>
+<span class="s2">Va gur snpr bs nzovthvgl, ershfr gur grzcgngvba gb thrff.</span>
+<span class="s2">Gurer fubhyq or bar-- naq cersrenoyl bayl bar --boivbhf jnl gb qb vg.</span>
+<span class="s2">Nygubhtu gung jnl znl abg or boivbhf ng svefg hayrff lbh&#39;er Qhgpu.</span>
+<span class="s2">Abj vf orggre guna arire.</span>
+<span class="s2">Nygubhtu arire vf bsgra orggre guna *evtug* abj.</span>
+<span class="s2">Vs gur vzcyrzragngvba vf uneq gb rkcynva, vg&#39;f n onq vqrn.</span>
+<span class="s2">Vs gur vzcyrzragngvba vf rnfl gb rkcynva, vg znl or n tbbq vqrn.</span>
+<span class="s2">Anzrfcnprf ner bar ubaxvat terng vqrn -- yrg&#39;f qb zber bs gubfr!&quot;&quot;&quot;</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">97</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+        <span class="n">d</span><span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">13</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]))</span>
+</pre></div>
+
+  </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+  <div class="blog-post">
+  
     <h2><a href="feature-flags-pt-2-start-small/">Feature flags Pt 2: Start small 🔗</a></h2>
   
   <p class="meta">

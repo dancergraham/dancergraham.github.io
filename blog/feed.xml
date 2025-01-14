@@ -1,5 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/blog/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-05T00:00:00Z</updated><author><name></name></author><entry><title>Feature flags Pt 2: Start small</title><link href="https://grahamknapp.com/blog/feature-flags-pt-2-start-small/" rel="alternate"></link><updated>2025-01-05T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:a18ea485-2d68-3a6a-9c31-6722c0d71362</id><content type="html">&lt;p&gt;In our team we started with the smallest possible shareable system - a flags namespace in our front-end code. We later adopted an existing open source library in the back end.  This got me thinking - what is the smallest possible feature flag system?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/blog/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-14T00:00:00Z</updated><author><name></name></author><entry><title>The Zen of Python: Gur Mra bs Clguba.</title><link href="https://grahamknapp.com/blog/the-zen-of-python-revisited/" rel="alternate"></link><updated>2025-01-14T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:a01b967b-99e5-33ad-b4c3-761164a2cc3b</id><content type="html">&lt;p&gt;I love The Zen of Python - one of the delights of the language is typing &lt;code&gt;import this&lt;/code&gt; in a REPL and discovering this gem:&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;this&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;The Zen of Python, by Tim Peters&lt;/span&gt;
+
+&lt;span class="go"&gt;Beautiful is better than ugly.&lt;/span&gt;
+&lt;span class="go"&gt;Explicit is better than implicit.&lt;/span&gt;
+&lt;span class="go"&gt;Simple is better than complex.&lt;/span&gt;
+&lt;span class="go"&gt;Complex is better than complicated.&lt;/span&gt;
+&lt;span class="go"&gt;Flat is better than nested.&lt;/span&gt;
+&lt;span class="go"&gt;Sparse is better than dense.&lt;/span&gt;
+&lt;span class="go"&gt;Readability counts.&lt;/span&gt;
+&lt;span class="go"&gt;Special cases aren&amp;#39;t special enough to break the rules.&lt;/span&gt;
+&lt;span class="go"&gt;Although practicality beats purity.&lt;/span&gt;
+&lt;span class="go"&gt;Errors should never pass silently.&lt;/span&gt;
+&lt;span class="go"&gt;Unless explicitly silenced.&lt;/span&gt;
+&lt;span class="go"&gt;In the face of ambiguity, refuse the temptation to guess.&lt;/span&gt;
+&lt;span class="go"&gt;There should be one-- and preferably only one --obvious way to do it.&lt;/span&gt;
+&lt;span class="go"&gt;Although that way may not be obvious at first unless you&amp;#39;re Dutch.&lt;/span&gt;
+&lt;span class="go"&gt;Now is better than never.&lt;/span&gt;
+&lt;span class="go"&gt;Although never is often better than *right* now.&lt;/span&gt;
+&lt;span class="go"&gt;If the implementation is hard to explain, it&amp;#39;s a bad idea.&lt;/span&gt;
+&lt;span class="go"&gt;If the implementation is easy to explain, it may be a good idea.&lt;/span&gt;
+&lt;span class="go"&gt;Namespaces are one honking great idea -- let&amp;#39;s do more of those!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It neatly captures the way in which Guido van Rossum and a group of Pythonistas thought about 
+the language, constructed and used it, sharing thoughts on user forums in in-person meetings.&lt;/p&gt;
+&lt;p&gt;But I think it is particularly well paired with the &lt;a href="https://github.com/python/cpython/blob/main/Lib/this.py"&gt;&lt;em&gt;source code&lt;/em&gt;&lt;/a&gt; 
+of this module, which is notable for breaking almost all of the suggestions from the poem
+in a huge kludge of unreadable script with ROT-13 text and single-letter variable names:&lt;/p&gt;
+&lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;inspect&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;this&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inspect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;Gur Mra bs Clguba, ol Gvz Crgref&lt;/span&gt;
+
+&lt;span class="s2"&gt;Ornhgvshy vf orggre guna htyl.&lt;/span&gt;
+&lt;span class="s2"&gt;Rkcyvpvg vf orggre guna vzcyvpvg.&lt;/span&gt;
+&lt;span class="s2"&gt;Fvzcyr vf orggre guna pbzcyrk.&lt;/span&gt;
+&lt;span class="s2"&gt;Pbzcyrk vf orggre guna pbzcyvpngrq.&lt;/span&gt;
+&lt;span class="s2"&gt;Syng vf orggre guna arfgrq.&lt;/span&gt;
+&lt;span class="s2"&gt;Fcnefr vf orggre guna qrafr.&lt;/span&gt;
+&lt;span class="s2"&gt;Ernqnovyvgl pbhagf.&lt;/span&gt;
+&lt;span class="s2"&gt;Fcrpvny pnfrf nera&amp;#39;g fcrpvny rabhtu gb oernx gur ehyrf.&lt;/span&gt;
+&lt;span class="s2"&gt;Nygubhtu cenpgvpnyvgl orngf chevgl.&lt;/span&gt;
+&lt;span class="s2"&gt;Reebef fubhyq arire cnff fvyragyl.&lt;/span&gt;
+&lt;span class="s2"&gt;Hayrff rkcyvpvgyl fvyraprq.&lt;/span&gt;
+&lt;span class="s2"&gt;Va gur snpr bs nzovthvgl, ershfr gur grzcgngvba gb thrff.&lt;/span&gt;
+&lt;span class="s2"&gt;Gurer fubhyq or bar-- naq cersrenoyl bayl bar --boivbhf jnl gb qb vg.&lt;/span&gt;
+&lt;span class="s2"&gt;Nygubhtu gung jnl znl abg or boivbhf ng svefg hayrff lbh&amp;#39;er Qhgpu.&lt;/span&gt;
+&lt;span class="s2"&gt;Abj vf orggre guna arire.&lt;/span&gt;
+&lt;span class="s2"&gt;Nygubhtu arire vf bsgra orggre guna *evtug* abj.&lt;/span&gt;
+&lt;span class="s2"&gt;Vs gur vzcyrzragngvba vf uneq gb rkcynva, vg&amp;#39;f n onq vqrn.&lt;/span&gt;
+&lt;span class="s2"&gt;Vs gur vzcyrzragngvba vf rnfl gb rkcynva, vg znl or n tbbq vqrn.&lt;/span&gt;
+&lt;span class="s2"&gt;Anzrfcnprf ner bar ubaxvat terng vqrn -- yrg&amp;#39;f qb zber bs gubfr!&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;97&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;26&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content></entry><entry><title>Feature flags Pt 2: Start small</title><link href="https://grahamknapp.com/blog/feature-flags-pt-2-start-small/" rel="alternate"></link><updated>2025-01-05T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:a18ea485-2d68-3a6a-9c31-6722c0d71362</id><content type="html">&lt;p&gt;In our team we started with the smallest possible shareable system - a flags namespace in our front-end code. We later adopted an existing open source library in the back end.  This got me thinking - what is the smallest possible feature flag system?&lt;/p&gt;
 &lt;p&gt;&lt;img src="640px-Britains_Deetail_Waterloo_British_Officer_with_Sword_and_Flag.jpg" alt="Britains Deetail Waterloo British Officer with Sword and Flag by Sclight"&gt;&lt;/p&gt;
 &lt;p&gt;Here's a Hello World example...&lt;/p&gt;
 &lt;h3&gt;The world without flags&lt;/h3&gt;
