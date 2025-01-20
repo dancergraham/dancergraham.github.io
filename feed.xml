@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-14T00:00:00Z</updated><author><name></name></author><entry><title>The Zen of Python: Gur Mra bs Clguba.</title><link href="https://grahamknapp.com/blog/the-zen-of-python-revisited/" rel="alternate"></link><updated>2025-01-14T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:a01b967b-99e5-33ad-b4c3-761164a2cc3b</id><content type="html">&lt;p&gt;I love The Zen of Python - one of the delights of the language is typing &lt;code&gt;import this&lt;/code&gt; in a REPL and discovering this gem:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-20T00:00:00Z</updated><author><name></name></author><entry><title>Two's company, three's a crowd</title><link href="https://grahamknapp.com/blog/twos-company-threes-a-crowd/" rel="alternate"></link><updated>2025-01-20T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:ed6dbdec-ee81-39bb-a442-de84d4d63d18</id><content type="html">&lt;p&gt;My version of YAGNI - "You Ain't Gonna Need It" - is a rule of three: only spend time refactoring your code when you have repeated yourself 3 times. Don't aim for truly DRY code devoid of all repetition.&lt;/p&gt;
+&lt;p&gt;I'm not saying not to apply SOLID design principles from the start - I definitely try to separate concerns, giving a single responsibility to a class or function and avoid, for instance, a single method handling file reading, data transformation and reporting.  This simplicity will make it much easier to refactor the code later.&lt;/p&gt;
+&lt;p&gt;I am saying to avoid using sophisticated design patterns, architecture or abstractions before you have used of your code enough to know what is likely to change (and require encapsulation) and what will stay constant (creating a useful abstraction).&lt;/p&gt;
+&lt;h2&gt;My recipe for success&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Write simple code, leaning on the &lt;strong&gt;S&lt;/strong&gt; from SOLID - separating code into small logical blocks&lt;/li&gt;
+&lt;li&gt;When you find yourself repeating the same code 3 times, refactor it into a function or class&lt;/li&gt;
+&lt;li&gt;Yes &lt;strong&gt;3.&lt;/strong&gt; When you have &lt;strong&gt;3&lt;/strong&gt; sufficiently different examples of the same pattern, reach for design patterns and modularisation.  Have fun. Don't be afraid to delete your existing code and start again using all you have learned. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/SOLID"&gt;Solid design principles&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Design Patterns: elements of reusable object oriented software (Gang of Four)&lt;/li&gt;
+&lt;li&gt;Head First Design Patterns : Standard reusable code patterns to help meet the solid principals&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wickedlysmart.com/head-first-design-patterns"&gt;Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python"&gt;Sample python code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://talkpython.fm/episodes/show/18/python-anti-patterns-and-other-mistakes"&gt;Podcast on anti-patterns&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Conlin Durbin makes a similar point for front-end code in his article &lt;a href="https://dev.to/wuz/stop-trying-to-be-so-dry-instead-write-everything-twice-wet-5g33"&gt;Stop trying to be so DRY, instead Write Everything Twice (WET)&lt;/a&gt;.&lt;/p&gt;
+</content></entry><entry><title>The Zen of Python: Gur Mra bs Clguba.</title><link href="https://grahamknapp.com/blog/the-zen-of-python-revisited/" rel="alternate"></link><updated>2025-01-14T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:a01b967b-99e5-33ad-b4c3-761164a2cc3b</id><content type="html">&lt;p&gt;I love The Zen of Python - one of the delights of the language is typing &lt;code&gt;import this&lt;/code&gt; in a REPL and discovering this gem:&lt;/p&gt;
 &lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;this&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;The Zen of Python, by Tim Peters&lt;/span&gt;
