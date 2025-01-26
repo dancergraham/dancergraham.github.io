@@ -64,6 +64,7 @@
     
         <div>
             
+            
   <div class="blog-post">
   
     <h2><a href="../../any-way-the-wind-blows/">Any way the wind blows 🔗</a></h2>
@@ -75,156 +76,26 @@
     
     on 2019-03-20
   </p>
-  <h3>Adding leading zeros with Python</h3>
+  
+      <h3>Adding leading zeros with Python</h3>
 <p>Various ways to add leading zeros to a number, for instance a wind direction, using Python.  <a href="../../any-way-the-wind-blows/wind_zeros.ipynb">Available as a Jupyter Notebook</a></p>
 <h3>Generate a list of wind directions</h3>
 <p>First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing <strong>from</strong>. For instance an easterly wind, i.e. wind blowing <strong>from</strong> the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest).</p>
-<div class="hll"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mf">22.5</span>  <span class="c1"># degrees</span>
-<span class="k">assert</span> <span class="mi">360</span> <span class="o">%</span> <span class="n">interval</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="n">interval</span><span class="p">)</span>
+<p>```python
+interval = 22.5  # degrees
+assert 360 % interval &lt; 0.001
+n = int(360/interval)</p>
+<p>directions = [interval * x for x in range(n)]
+print(directions)
+```<br><br><a href="../../any-way-the-wind-blows/">Read Full Post</a></p>
 
-<span class="n">directions</span> <span class="o">=</span> <span class="p">[</span><span class="n">interval</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">directions</span><span class="p">)</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">[0.0,</span>
-<span class="go"> 22.5,</span>
-<span class="go"> 45.0,</span>
-<span class="go"> 67.5,</span>
-<span class="go">...</span>
-<span class="go"> 337.5]</span>
-</pre></div>
-<h3>String zfill method</h3>
-<p>No doubt the most pythonic way to add leading zeros to a bare string, the built-in <code>str.zfill()</code> method is designed to do just that.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dir_</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">dir_</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">    000 000.0</span>
-<span class="go">    022 022.5</span>
-<span class="go">    045 045.0</span>
-<span class="go">    067 067.5</span>
-<span class="go">    090 090.0</span>
-<span class="go">    112 112.5</span>
-<span class="go">    135 135.0</span>
-<span class="go">    157 157.5</span>
-<span class="go">    180 180.0</span>
-<span class="go">    202 202.5</span>
-<span class="go">    225 225.0</span>
-<span class="go">    247 247.5</span>
-<span class="go">    270 270.0</span>
-<span class="go">    292 292.5</span>
-<span class="go">    315 315.0</span>
-<span class="go">    337 337.5</span>
-</pre></div>
-<p>We can immediately see our first quirk: the integer representation truncates decimal values rather than rounding up (as I learned to do at school) or rounding towards the nearest even number (<a href="https://realpython.com/python-rounding/">as the Python round() funtion would do</a>).</p>
-<h3>String slicing</h3>
-<p>Very fast and arguably even more readable for people with a good understanding of basic python syntax but no desire to read the docs or explore the obscure corners of the language. Add the maximum possible number of leading zeros and then slice the desired number of digits.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">)))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:],</span>
-    <span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">direction</span><span class="p">))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">    000 000.0</span>
-<span class="go">    022 022.5</span>
-<span class="go">    045 045.0</span>
-<span class="go">    067 067.5</span>
-<span class="go">    090 090.0</span>
-<span class="go">    112 112.5</span>
-<span class="go">    135 135.0</span>
-<span class="go">    157 157.5</span>
-<span class="go">    180 180.0</span>
-<span class="go">    202 202.5</span>
-<span class="go">    225 225.0</span>
-<span class="go">    247 247.5</span>
-<span class="go">    270 270.0</span>
-<span class="go">    292 292.5</span>
-<span class="go">    315 315.0</span>
-<span class="go">    337 337.5</span>
-</pre></div>
-<h3>String format : integers</h3>
-<p>As part of a longer string this allows the  number to be inserted with leading zeros. Compatible with all current versions of Python.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Int: </span><span class="si">{:03d}</span><span class="s1"> | Float: </span><span class="si">{:05.1f}</span><span class="s1">&#39;</span><span class="o">.</span>
-        <span class="nb">format</span><span class="p">(</span>
-        <span class="nb">int</span><span class="p">(</span><span class="n">direction</span><span class="p">),</span> <span class="n">direction</span><span class="p">)</span>
-        <span class="p">)</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">  Int: 000  |  Float: 000.0</span>
-<span class="go">  Int: 022  |  Float: 022.5</span>
-<span class="go">  Int: 045  |  Float: 045.0</span>
-<span class="go">  Int: 067  |  Float: 067.5</span>
-<span class="go">  Int: 090  |  Float: 090.0</span>
-<span class="go">  Int: 112  |  Float: 112.5</span>
-<span class="go">  Int: 135  |  Float: 135.0</span>
-<span class="go">  Int: 157  |  Float: 157.5</span>
-<span class="go">  Int: 180  |  Float: 180.0</span>
-<span class="go">  Int: 202  |  Float: 202.5</span>
-<span class="go">  Int: 225  |  Float: 225.0</span>
-<span class="go">  Int: 247  |  Float: 247.5</span>
-<span class="go">  Int: 270  |  Float: 270.0</span>
-<span class="go">  Int: 292  |  Float: 292.5</span>
-<span class="go">  Int: 315  |  Float: 315.0</span>
-<span class="go">  Int: 337  |  Float: 337.5</span>
-</pre></div>
-<h3>F Strings</h3>
-<p>From Python 3.6 this is even terser.</p>
-<div class="hll"><pre><span></span><span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Int: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dir_</span><span class="p">)</span><span class="si">:</span><span class="s1">03d</span><span class="si">}</span><span class="s1"> | Float: </span><span class="si">{</span><span class="n">dir_</span><span class="si">:</span><span class="s1">05.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">  Int: 000  |  Float: 000.0</span>
-<span class="go">  Int: 022  |  Float: 022.5</span>
-<span class="go">  Int: 045  |  Float: 045.0</span>
-<span class="go">  Int: 067  |  Float: 067.5</span>
-<span class="go">  Int: 090  |  Float: 090.0</span>
-<span class="go">  Int: 112  |  Float: 112.5</span>
-<span class="go">  Int: 135  |  Float: 135.0</span>
-<span class="go">  Int: 157  |  Float: 157.5</span>
-<span class="go">  Int: 180  |  Float: 180.0</span>
-<span class="go">  Int: 202  |  Float: 202.5</span>
-<span class="go">  Int: 225  |  Float: 225.0</span>
-<span class="go">  Int: 247  |  Float: 247.5</span>
-<span class="go">  Int: 270  |  Float: 270.0</span>
-<span class="go">  Int: 292  |  Float: 292.5</span>
-<span class="go">  Int: 315  |  Float: 315.0</span>
-<span class="go">  Int: 337  |  Float: 337.5</span>
-</pre></div>
-<h3>Class</h3>
-<p>By overloading the built-in <code>__str__()</code> method for the class we can create our own custom string representation of the value.</p>
-<div class="hll"><pre><span></span><span class="k">class</span> <span class="nc">WindRecord</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Wind direction: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="si">:</span><span class="s1">05.1f</span><span class="si">}</span><span class="s1"> °&#39;</span>
-
-
-<span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">WindRecord</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">    Wind direction: 000.0 °</span>
-<span class="go">    Wind direction: 022.5 °</span>
-<span class="go">    Wind direction: 045.0 °</span>
-<span class="go">    Wind direction: 067.5 °</span>
-<span class="go">    Wind direction: 090.0 °</span>
-<span class="go">    Wind direction: 112.5 °</span>
-<span class="go">    Wind direction: 135.0 °</span>
-<span class="go">    Wind direction: 157.5 °</span>
-<span class="go">    Wind direction: 180.0 °</span>
-<span class="go">    Wind direction: 202.5 °</span>
-<span class="go">    Wind direction: 225.0 °</span>
-<span class="go">    Wind direction: 247.5 °</span>
-<span class="go">    Wind direction: 270.0 °</span>
-<span class="go">    Wind direction: 292.5 °</span>
-<span class="go">    Wind direction: 315.0 °</span>
-<span class="go">    Wind direction: 337.5 °</span>
-</pre></div>
-<p>Thanks to <a href="https://discourse.mcneel.com/u/clement/summary">@clement</a> for comments</p>
-
-  </div>
+    </div>
 
         </div>
         <hr>
     
         <div>
+            
             
   <div class="blog-post">
   
@@ -237,7 +108,8 @@
     
     on 2019-03-18
   </p>
-  <p>I have had a few ideas for content to share recently and wanted a good way to do so.  I wanted to find a good solution for blog publishing with a few criteria:</p>
+  
+      <p>I have had a few ideas for content to share recently and wanted a good way to do so.  I wanted to find a good solution for blog publishing with a few criteria:</p>
 <ul>
 <li>Built using Python, editable in markdown so I can develop my skills.</li>
 <li>Simple to build and maintain - I am not a web developer and have no desire to become one.  That said, I have been <a href="https://web.archive.org/web/20010520155249/http://www.fortunecity.co.uk/madchester/latin/336/">building websites</a> on an amateur basis <a href="https://web.archive.org/web/19981202092552/http://www.shef.ac.uk/uni/union/susoc/ftc/">since the 1990s</a> so I'm not afraid of writing a little html if I have to.</li>
@@ -254,7 +126,7 @@
 <h4>Post-deployment update</h4>
 <p>OK so I have gone for GitHub pages for hosting with a custom web domain - buying the domain name and <a href="https://www.getlektor.com/docs/deployment/ghpages/#cname-support">specifying it in Lektor</a> and <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">in GitHub pages</a> was enough to get it working properly with https - no need to update certificates every few months !</p>
 
-  </div>
+    </div>
 
         </div>
         <hr>
