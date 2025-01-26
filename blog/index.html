@@ -79,7 +79,11 @@
 pointcloud, the number of points and how the points and other information are organised in the file.</p>
 <p>I wrote it with a bit of help from Claude ai by describing what I wanted and pasting a description of the e57 file
 format before doing a lot of debugging to get the entire xml section and then integrating it with my blog.</p>
-<p>This tool is written in javascript and runs in your browser - no files are uploaded to any server (in fact this blog has no backend server - it
+<p>I find the e57 file format a bit <em>wierd</em> - it starts with a header including a file version number and an offset to the XML portion, 
+which comes at the <em>end</em> of the file so you need to read both ends of the file before you can understand the middle bit. So 
+if you download the file you have to wait for it to finish downloading - you can't start to interpret or display the 
+points and other data whilst streaming data.</p>
+<p>This tool is written in JavaScript and runs in your browser - no files are uploaded to any server (in fact this blog has no backend server - it
 is a static web site - it is downloaded and runs entirely in your browser).</p>
 <p><div id="file-upload">
     <label>
