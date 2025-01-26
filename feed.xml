@@ -1,5 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-20T00:00:00Z</updated><author><name></name></author><entry><title>Two's company, three's a crowd</title><link href="https://grahamknapp.com/blog/twos-company-threes-a-crowd/" rel="alternate"></link><updated>2025-01-20T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:ed6dbdec-ee81-39bb-a442-de84d4d63d18</id><content type="html">&lt;p&gt;My version of YAGNI - "You Ain't Gonna Need It" - is a rule of three: only spend time refactoring your code when you have repeated yourself 3 times. Don't aim for truly DRY code devoid of all repetition.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-26T00:00:00Z</updated><author><name></name></author><entry><title>E57 file xml extractor</title><link href="https://grahamknapp.com/blog/e57-file-xml-tool/" rel="alternate"></link><updated>2025-01-26T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:beb0029f-73c0-39e8-b0e1-c18821683cef</id><content type="html">&lt;p&gt;See the xml portion from the end of an &lt;code&gt;.e57&lt;/code&gt; pointcloud file. This contains information like the bounding box of the
+pointcloud, the number of points and how the points and other information are organised in the file.&lt;/p&gt;
+&lt;p&gt;I wrote it with a bit of help from Claude ai by describing what I wanted and pasting a description of the e57 file
+format before doing a lot of debugging to get the entire xml section and then integrating it with my blog.&lt;/p&gt;
+&lt;p&gt;This tool is written in javascript and runs in your browser - no files are uploaded to any server (in fact this blog has no backend server - it
+is a static web site - it is downloaded and runs entirely in your browser).&lt;/p&gt;
+&lt;p&gt;&lt;div id="file-upload"&gt;
+    &lt;label&gt;
+        Select E57 File
+        &lt;input type="file" id="e57-input" accept=".e57" style="display:none;"&gt;
+    &lt;/label&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div id="error" style="display:none;"&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;pre id="xml-content" class="highlight"&gt;
+&lt;/pre&gt;&lt;script&gt;
+    document.getElementById('file-upload').addEventListener('click', () =&gt; {
+        document.getElementById('e57-input').click();
+    });
+
+document.getElementById('e57-input').addEventListener('change', async (event) =&gt; {
+        if (!event.target.files.length) {
+            return;
+        }
+        const file = event.target.files[0];
+        const errorDiv = document.getElementById('error');
+        const xmlContentDiv = document.getElementById('xml-content');
+
+        errorDiv.textContent = '';
+        xmlContentDiv.textContent = '';
+
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const buffer = new Uint8Array(arrayBuffer);
+            errorDiv.style.display = 'none';
+
+            // Parse file header
+            const fileHeader = {
+                fileSignature: new TextDecoder().decode(buffer.slice(0, 8)),
+                majorVersion: new DataView(buffer.buffer).getUint32(8, true),
+                minorVersion: new DataView(buffer.buffer).getUint32(12, true),
+                xmlPhysicalOffset: new DataView(buffer.buffer).getBigUint64(24, true)
+            };
+
+            // Validate file signature
+            if (fileHeader.fileSignature !== 'ASTM-E57') {
+                throw new Error('Not a valid E57 file');
+            }
+
+            // Extract XML section
+            let xmlBytes = [];
+            let offset = Number(fileHeader.xmlPhysicalOffset);
+
+            while (offset &lt; buffer.length) {
+                const pageStart = Math.floor(offset / 1024) * 1024;
+                const pageEnd = Math.min(pageStart + 1020, buffer.length);  // Exclude 4-byte checksum
+                const pageData = buffer.slice(pageStart, pageEnd);
+                xmlBytes.push(...pageData.slice(offset % 1024));
+                offset += (1024 - (offset % 1024));
+            }
+            // Convert XML bytes to string
+            let xmlString = new TextDecoder().decode(new Uint8Array(xmlBytes));
+
+            // Find the start of the XML declaration
+            const xmlStart = xmlString.indexOf('&lt;?xml');
+            if (xmlStart === -1) {
+                throw new Error('No valid XML found');
+            }
+
+            // end at the first instance of &lt;/e57Root&gt;
+            const xmlEnd = xmlString.indexOf('&lt;/e57Root&gt;');
+            if (xmlEnd === -1) {
+                throw new Error('No valid XML found');
+            }
+
+            xmlString = xmlString.slice(xmlStart, xmlEnd + 10);
+            xmlContentDiv.textContent = xmlString;
+
+        } catch (err) {
+            errorDiv.textContent = err.message;
+            errorDiv.style.display = 'block';
+        } finally {
+            event.target.value = '';
+        }
+    });
+
+&lt;/script&gt;</content></entry><entry><title>Two's company, three's a crowd</title><link href="https://grahamknapp.com/blog/twos-company-threes-a-crowd/" rel="alternate"></link><updated>2025-01-20T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:ed6dbdec-ee81-39bb-a442-de84d4d63d18</id><content type="html">&lt;p&gt;My version of YAGNI - "You Ain't Gonna Need It" - is a rule of three: only spend time refactoring your code when you have repeated yourself 3 times. Don't aim for truly DRY code devoid of all repetition.&lt;/p&gt;
 &lt;p&gt;I'm not saying not to apply SOLID design principles from the start - I definitely try to separate concerns, giving a single responsibility to a class or function and avoid, for instance, a single method handling file reading, data transformation and reporting.  This simplicity will make it much easier to refactor the code later.&lt;/p&gt;
 &lt;p&gt;I am saying to avoid using sophisticated design patterns, architecture or abstractions before you have used of your code enough to know what is likely to change (and require encapsulation) and what will stay constant (creating a useful abstraction).&lt;/p&gt;
 &lt;h2&gt;My recipe for success&lt;/h2&gt;

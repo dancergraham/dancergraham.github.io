@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<meta name="og:title" content="Graham Knapp's Blog">
+<meta name="og:url" content="https://grahamknapp.com">
+<meta name="og:type" content="website">
+<meta name="og:description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+<meta name="description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+<meta property="og:image" content="https://grahamknapp.com/graham.png" />
+
+<title>E57 file xml extractor — blog</title>
+</head>
+<body>
+<header>
+    <h1>Graham Knapp</h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>E57 file xml extractor</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-01-26
+  </p>
+  <p>See the xml portion from the end of an <code>.e57</code> pointcloud file. This contains information like the bounding box of the
+pointcloud, the number of points and how the points and other information are organised in the file.</p>
+<p>I wrote it with a bit of help from Claude ai by describing what I wanted and pasting a description of the e57 file
+format before doing a lot of debugging to get the entire xml section and then integrating it with my blog.</p>
+<p>This tool is written in javascript and runs in your browser - no files are uploaded to any server (in fact this blog has no backend server - it
+is a static web site - it is downloaded and runs entirely in your browser).</p>
+<p><div id="file-upload">
+    <label>
+        Select E57 File
+        <input type="file" id="e57-input" accept=".e57" style="display:none;">
+    </label>
+</div></p>
+<p><div id="error" style="display:none;"></div></p>
+<pre id="xml-content" class="highlight">
+</pre><script>
+    document.getElementById('file-upload').addEventListener('click', () => {
+        document.getElementById('e57-input').click();
+    });
+
+document.getElementById('e57-input').addEventListener('change', async (event) => {
+        if (!event.target.files.length) {
+            return;
+        }
+        const file = event.target.files[0];
+        const errorDiv = document.getElementById('error');
+        const xmlContentDiv = document.getElementById('xml-content');
+
+        errorDiv.textContent = '';
+        xmlContentDiv.textContent = '';
+
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const buffer = new Uint8Array(arrayBuffer);
+            errorDiv.style.display = 'none';
+
+            // Parse file header
+            const fileHeader = {
+                fileSignature: new TextDecoder().decode(buffer.slice(0, 8)),
+                majorVersion: new DataView(buffer.buffer).getUint32(8, true),
+                minorVersion: new DataView(buffer.buffer).getUint32(12, true),
+                xmlPhysicalOffset: new DataView(buffer.buffer).getBigUint64(24, true)
+            };
+
+            // Validate file signature
+            if (fileHeader.fileSignature !== 'ASTM-E57') {
+                throw new Error('Not a valid E57 file');
+            }
+
+            // Extract XML section
+            let xmlBytes = [];
+            let offset = Number(fileHeader.xmlPhysicalOffset);
+
+            while (offset < buffer.length) {
+                const pageStart = Math.floor(offset / 1024) * 1024;
+                const pageEnd = Math.min(pageStart + 1020, buffer.length);  // Exclude 4-byte checksum
+                const pageData = buffer.slice(pageStart, pageEnd);
+                xmlBytes.push(...pageData.slice(offset % 1024));
+                offset += (1024 - (offset % 1024));
+            }
+            // Convert XML bytes to string
+            let xmlString = new TextDecoder().decode(new Uint8Array(xmlBytes));
+
+            // Find the start of the XML declaration
+            const xmlStart = xmlString.indexOf('<?xml');
+            if (xmlStart === -1) {
+                throw new Error('No valid XML found');
+            }
+
+            // end at the first instance of </e57Root>
+            const xmlEnd = xmlString.indexOf('</e57Root>');
+            if (xmlEnd === -1) {
+                throw new Error('No valid XML found');
+            }
+
+            xmlString = xmlString.slice(xmlStart, xmlEnd + 10);
+            xmlContentDiv.textContent = xmlString;
+
+        } catch (err) {
+            errorDiv.textContent = err.message;
+            errorDiv.style.display = 'block';
+        } finally {
+            event.target.value = '';
+        }
+    });
+
+</script>
+  </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>
