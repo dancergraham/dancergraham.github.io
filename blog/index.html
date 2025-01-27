@@ -335,6 +335,54 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
             
   <div class="blog-post">
   
+    <h2><a href="city-modelling-with-gen-ai/">City Modelling with Generative AI: Tool or toy? 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2023-01-02
+  </p>
+  
+      <p>AI tools such as Chat-Gpt (text generation) and Dall-E (image generation) are making impressive leaps, allowing people to rapidly generate text, code and images from simple input prompts. The next frontier in generative AI may be 3D modelling, and OpenAI recently released the open source 3D modelling software Point·E. Could computer games, films and even architecture use these techniques to replace or improve manual city modelling?</p>
+<p><img src="city-modelling-with-gen-ai/33_3D_models.jpg" alt="33 3D mesh models, each generated from the text prompt &quot;a buildng&quot;​
+"></p>
+<p><em>33 3D mesh models, each generated from the text prompt "a buildng"​</em></p>
+<p>Point·E first uses a text to image diffusion model to generate a single image from a text prompt and then passes this image into a second diffusion model to create a 3D point cloud. And it is blazing quick compared to other approaches, creating a 3D point cloud from text in 2 minutes on the GPU of my laptop (a modest GeForce 1650). The provided code includes a method for converting the point cloud into a surface mesh. This works well for some models but struggles with fine details such as cables and grids.</p>
+<p><img src="city-modelling-with-gen-ai/building_mesh.jpg" alt="3D render of a tall square building with a pointed roof"></p>
+<p><em>Polygon mesh model generated from the text prompt "a building"</em></p>
+<p>So how does it cope with generating buildings? The results are mixed and, as with AI image generation, it is a good idea to create multiple images and choose between them. I'm quite impressed by the diversity of forms created from slender towers to simple cubes to domed structures.</p>
+<p>My early experiments suggest that Point·E is best at creating individual "bounded" boxy objects such as round fruit, cars, etc. Long linear objects such as bridges seem to be harder as they can have indistinct start and end points and may be composed of slender elements which do not convert neatly to a polygon mesh.</p>
+<p>I downloaded the Python source code and used it to generate over 30 point clouds from the same input text "a building" and got a very wide range of results: all of these are shown in greyscale in the title image at the top of this page.</p>
+<h3>Curious colours</h3>
+<p>Rendered image of two buildings with blue-green walls and brown rooves
+polygon mesh model generated from the text prompt "a building"
+Whilst most of the generated buildings appear with sober colours : mostly grey, brown or tan, some have strange colour combinations with blue or green walls and, sometimes, red rooves. It looks like some additional colour prompting or recolouring the finished output may be needed.</p>
+<h3>Legal and ethical issues</h3>
+<p>The AI model is trained on a data set of models and images made by real people but the authors provide no information or guarantees on respect for copyright and licensing of the original works. Users should be made aware of the risks of bizarre or even dangerous (for some applications) outputs. Prejudice against and lack of representation of disadvantaged groups is likely to be present in available datasets and will probably appear in some form in the outputs, as it does with text and image generation techniques.</p>
+<h3>Tool or toy ?</h3>
+<p>I've had a lot of fun experimenting with this but could it be useful in the professional world? Clearly the results so far are pretty limited but here are some ideas for real-world use cases as the AI tech and associated tools develop:</p>
+<p><img src="city-modelling-with-gen-ai/building_pointcloud.jpg" alt="A tall yellow building with a white upper section in front of a green and blue strip"></p>
+<p><em>pointcloud generated from the text prompt "a building"</em></p>
+<ul>
+<li>Computer games and film designers could use these techniques to generate unique virtual worlds. Careful prompt selection, colouring and surface texture choices could create dramatic effects with limited human intervention. First draft storybook models could be largely AI generated.</li>
+<li>Architects and urban physicists could use generative AI to create surrounds models for buildings surrounding a new planned building or masterplan. Whilst some detail may be needed on the planned building, in some cases the surrounds are only needed to set the project in an urban context, often no 3D model is available for the surroundings and the actual building forms may not be required.</li>
+<li>Generative design can give inspiration or baseline models for professional cad modellers. This is particularly appealing because most 3D design software needs good quality graphics cards. Those graphics cards could be put to use overnight generating dozens or hundreds of candidate 3D models, which the modeller could select from for the following day's work; recombining, reworking and colouring the models, just as professional artists and illustrators today use Dall-E to assist their own artistic creation.</li>
+<li>Generating 3D models of real buildings from photos: Point·E can be seeded from text or from an image.</li>
+<li>Generating 3D point clouds as inputs to train specialist classifiers. Specialist applications abound for point cloud scans and data sets are needed for testing and training purposes. Generative approaches could be useful here, particularly for simple classifiers which may not need very large training data sets.</li>
+</ul>
+
+    </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="trouver-un-musicotherapeute/">🎼Trouver un musicothérapeute🎼 🔗</a></h2>
   
   <p class="meta">
@@ -412,29 +460,6 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
 <p>I wrote a script to help me code in python and learn RhinoCommon and decided to share it with you 😜</p>
 <p>As you may know, the rhinoscriptsyntax library is written in Python and uses rhinocommon functions, also in Python, under the hood. In order to look up the underlying code you can open up the full python file, you can use the inspect module or you can save the script below to your computer and run it each time you want to look up a particular function. For instance if you search for ‘bounding’ you get the following options:</p>
 <p><img src="rhinopython-may-the-source-be-with-you/rhinopython_source_0.png" alt="Search and select dialog box for library function"><br><br><a href="rhinopython-may-the-source-be-with-you/">Read Full Post</a></p>
-
-    </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="here-comes-the-sun/">Here comes the sun 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2019-03-23
-  </p>
-  
-      <p>I spend too much of my life sitting alone in an office working on my conputer or looking at my smartphone. My regular dose of fresh air comes from my bike - I ride to work and back regularly - but I also enjoy getting out into the garden when I can. Trouble is, I dont really <em>enjoy</em> gardening! I do get a lot  of satisfaction from pruning the trees and shrubs, especially if it involves some climbing and as a result we now have an enormous pile of branches, leaves and twigs in the bottom of the garden. I recently found a new activity which satisfies my creative side and starts to diminish the stack o' cuttings : building 'dead hedge' style walls and fences.</p>
-<p><img src="here-comes-the-sun/garden03.png" alt="garden03"><br><br><a href="here-comes-the-sun/">Read Full Post</a></p>
 
     </div>
 
