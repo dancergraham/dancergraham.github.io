@@ -298,6 +298,19 @@ Whilst most of the generated buildings appear with sober colours : mostly grey, 
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Voici &lt;a href="https://github.com/dancergraham/carte_musicotherapeutes"&gt;le script complet sous forme de Jupyter Notebook&lt;/a&gt;.&lt;/p&gt;
+</content></entry><entry><title>Aerodynamic Behaviour and Structural Safety of Tower Cranes</title><link href="https://grahamknapp.com/blog/wind-and-tower-cranes/" rel="alternate"></link><updated>2021-05-18T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:e6c676a9-4fb2-33dd-bed8-50e6c3981c58</id><content type="html">&lt;p&gt;Upon moving to work at the French national scientific research organisation for the built environment, CSTB, 
+I was surprised to see the attention to detail in tower crane studies - looking at the risk of strong winds, construction site 
+exposure and swirling winds potentially setting tower cranes rotating.&lt;/p&gt;
+&lt;p&gt;Following some &lt;a href="https://www.linkedin.com/posts/windengineer_souffleries-atmosph%C3%A9riques-stabilit%C3%A9-des-activity-6498189400827138048-1ipc/"&gt;LinkedIn posts&lt;/a&gt; and academic articles on the subject I was invited by the UK Wind Engineering Society to give an online talk.
+I gave some of the history of the subject, the key factors influencing risk levels and the methods used by the CSTB and
+by French insurers to assess and reduce risk levels.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.ice.org.uk/events/recorded-lectures/aerodynamic-behaviour-and-structural-safety-of-tower-cranes"&gt;📺Watch here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="cstb_slide.png" alt="Slide from the talk showing CFD streamlines illustrating wind flow between tall buildings and wind acceleration and sheltering behind the corner of a rectangular building"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.windengineering.org.uk/events/aerodynamic-behaviour-and-structural-safety-of-tower-cranes/"&gt;Announcement&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Abstract&lt;/h3&gt;
+&lt;p&gt;The Lothar and Martin winter storms of 1999 were a wake-up call for the French construction industry : two particularly violent winter storms swept the country in the space of several days causing multiple tower cranes to collapse.&lt;/p&gt;
+&lt;p&gt;This led to a long-term research project at the CSTB and a new methodology for the study of dynamic stability of tower cranes including desk study and wind tunnel analysis methods to identify and mitigate the risk of crane autorotation due to surrounding buildings and to quantify dynamic loads on the crane and its foundations. This method is underpinned by the national site-safety certification and insurance system.&lt;/p&gt;
+&lt;p&gt;This talk covers the main technical considerations, the different techniques used as well as the legal framework in which it operates.&lt;/p&gt;
 </content></entry><entry><title>Game of life in Rhino 3D</title><link href="https://grahamknapp.com/blog/game-of-life-in-rhino-3d/" rel="alternate"></link><updated>2020-12-18T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:154ac8b0-2905-3273-b590-0fac3bcc544c</id><content type="html">&lt;p&gt;Hello.&lt;/p&gt;
 &lt;p&gt;Prompted by this year’s Advent Of Code challenge I have implemented a 3D version of the game of life in Python in Rhino 7.&lt;/p&gt;
 &lt;p&gt;Here are some images renders from individual steps in my solution, followed by the code I used to generate them.&lt;/p&gt;
