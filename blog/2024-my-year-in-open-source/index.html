@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<meta name="og:title" content="Graham Knapp's Blog">
+<meta name="og:url" content="https://grahamknapp.com">
+<meta name="og:type" content="website">
+<meta name="og:description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+<meta name="description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+<meta property="og:image" content="https://grahamknapp.com/graham.png" />
+
+<title>2024 - My year in Open Source — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>2024 - My year in Open Source</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-02-07
+  </p>
+  
+      <p><a href="https://github.com/dancergraham?tab=overview&amp;from=2024-01-01&amp;to=2024-12-31">Looking back on 2024</a> here are some personal highlights:</p>
+<h3>Maintaining an established pypi package 📦</h3>
+<p>Early in 2024 I took over maintenance of the very useful <a href="https://pypi.org/project/pye57/">Python package pye57</a> for 
+reading and writing e57 format pointcloud files. I have been using it at work for several years and was 
+worried that it was not being maintained, blocking upgrade of our project to Python 3.11. 
+I had already started working on an alternative library, cleverly titled <code>e57</code> - essentially I got in touch with 
+the project maintainer, providing some evidence that I was a real human being not a sham account, 
+many thanks to David Caron for creating the library and maintaining it for so many years, and for trusting
+me to carry it on.</p>
+<p>In the first 6 months 6 months I and other contributors ensured that pye57 now supports Python 11 and 12 
+and macOS is now supported (on apple silicon only). There are 3 or 4 new contributors beside myself 
+with a few bug fixes, quality of life improvements, photo writing, and an update to a more recent version of libe57Format
+I closed 10+ issues and saw some engagement from past contributors in the issue tracker and PR comments. 
+I once released broken wheels to pypi and reverted them within a few hours. Wheels are now tested in ci before release.</p>
+<h3>Joining Jazzband 🎶🎷</h3>
+<p>Looking for a <a href="../tags/feature-flags/">feature flags</a> library I came across <a href="https://waffle.readthedocs.io/en/stable/">Django Waffle</a>, 
+which looked good but the ci tests were a couple of versions behind and the docs were broken and 
+looked sparse and outdated, including some references to Django version 1!
+I started contributing and after a rough start getting up to speed with other contributors' expectations of git workflow and
+PR etiquette I made 9 contributions, mostly around the documentation and testing. 
+This gave me enough confidence to adopt the library at work and I'm very happy with it so far.</p>
+<h3>Meetups and events 📅🍕</h3>
+<p>I continued contributing to the <a href="https://www.meetup.com/nantes-python-meetup/">Nantes Python Meetup</a>, kicking off some
+collaborations with other meetups in Nantes and I went to the Nantes React meetup twice as well, which was very nice. 
+Unfortunately I couldn't make it to <a href="https://www.pycon.fr/2024/">PyCon France in 2024</a> but I submitted a proposal for DjangoCon Europe at the 
+end of 2024 and I'm very happy to have <a href="https://pretalx.evolutio.pt/djangocon-europe-2025/talk/KNLFS8/">been accepted</a> and looking forward to visiting Dublin for the first time in 20
+years.</p>
+<h3>Advent of Code 🎄🧑🏻‍🎄</h3>
+<p>I found the motivation and skilz to <a href="https://github.com/dancergraham/advent_of_code_2024/tree/main/advent_of_code_2024">solve roughly the first half</a> of the puzzles in this year's event. I was less motivated than in previous years but there were some fun challenges in there.</p>
+<h3>Misc. ⁉️</h3>
+<p>A few other highlights:</p>
+<ul>
+<li>Contributing HTTP Status Codes to the <a href="https://github.com/joke2k/faker">Faker library</a> having been surprised not to find them already in there.</li>
+<li>Maintaining my rust-backed <a href="https://pypi.org/project/e57/">e57 Python library</a></li>
+<li>Minor contribution to the upstream <a href="https://crates.io/crates/e57">e57 rust library</a></li>
+<li>Adding e57 file support to a pointcloud visualisation library</li>
+<li>Adding the Result design pattern to my <a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python">Design Patterns repo</a></li>
+</ul>
+
+    </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>

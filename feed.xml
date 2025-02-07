@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-01-26T00:00:00Z</updated><author><name></name></author><entry><title>E57 file xml extractor</title><link href="https://grahamknapp.com/blog/e57-file-xml-tool/" rel="alternate"></link><updated>2025-01-26T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:beb0029f-73c0-39e8-b0e1-c18821683cef</id><content type="html">&lt;p&gt;See the xml portion from the end of an &lt;code&gt;.e57&lt;/code&gt; pointcloud file. This contains information like the bounding box of the
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-02-07T00:00:00Z</updated><author><name></name></author><entry><title>2024 - My year in Open Source</title><link href="https://grahamknapp.com/blog/2024-my-year-in-open-source/" rel="alternate"></link><updated>2025-02-07T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:2ae11379-da9f-3159-a452-ca5717a7f142</id><content type="html">&lt;p&gt;&lt;a href="https://github.com/dancergraham?tab=overview&amp;amp;from=2024-01-01&amp;amp;to=2024-12-31"&gt;Looking back on 2024&lt;/a&gt; here are some personal highlights:&lt;/p&gt;
+&lt;h3&gt;Maintaining an established pypi package 📦&lt;/h3&gt;
+&lt;p&gt;Early in 2024 I took over maintenance of the very useful &lt;a href="https://pypi.org/project/pye57/"&gt;Python package pye57&lt;/a&gt; for 
+reading and writing e57 format pointcloud files. I have been using it at work for several years and was 
+worried that it was not being maintained, blocking upgrade of our project to Python 3.11. 
+I had already started working on an alternative library, cleverly titled &lt;code&gt;e57&lt;/code&gt; - essentially I got in touch with 
+the project maintainer, providing some evidence that I was a real human being not a sham account, 
+many thanks to David Caron for creating the library and maintaining it for so many years, and for trusting
+me to carry it on.&lt;/p&gt;
+&lt;p&gt;In the first 6 months 6 months I and other contributors ensured that pye57 now supports Python 11 and 12 
+and macOS is now supported (on apple silicon only). There are 3 or 4 new contributors beside myself 
+with a few bug fixes, quality of life improvements, photo writing, and an update to a more recent version of libe57Format
+I closed 10+ issues and saw some engagement from past contributors in the issue tracker and PR comments. 
+I once released broken wheels to pypi and reverted them within a few hours. Wheels are now tested in ci before release.&lt;/p&gt;
+&lt;h3&gt;Joining Jazzband 🎶🎷&lt;/h3&gt;
+&lt;p&gt;Looking for a &lt;a href="../tags/feature-flags/"&gt;feature flags&lt;/a&gt; library I came across &lt;a href="https://waffle.readthedocs.io/en/stable/"&gt;Django Waffle&lt;/a&gt;, 
+which looked good but the ci tests were a couple of versions behind and the docs were broken and 
+looked sparse and outdated, including some references to Django version 1!
+I started contributing and after a rough start getting up to speed with other contributors' expectations of git workflow and
+PR etiquette I made 9 contributions, mostly around the documentation and testing. 
+This gave me enough confidence to adopt the library at work and I'm very happy with it so far.&lt;/p&gt;
+&lt;h3&gt;Meetups and events 📅🍕&lt;/h3&gt;
+&lt;p&gt;I continued contributing to the &lt;a href="https://www.meetup.com/nantes-python-meetup/"&gt;Nantes Python Meetup&lt;/a&gt;, kicking off some
+collaborations with other meetups in Nantes and I went to the Nantes React meetup twice as well, which was very nice. 
+Unfortunately I couldn't make it to &lt;a href="https://www.pycon.fr/2024/"&gt;PyCon France in 2024&lt;/a&gt; but I submitted a proposal for DjangoCon Europe at the 
+end of 2024 and I'm very happy to have &lt;a href="https://pretalx.evolutio.pt/djangocon-europe-2025/talk/KNLFS8/"&gt;been accepted&lt;/a&gt; and looking forward to visiting Dublin for the first time in 20
+years.&lt;/p&gt;
+&lt;h3&gt;Advent of Code 🎄🧑🏻‍🎄&lt;/h3&gt;
+&lt;p&gt;I found the motivation and skilz to &lt;a href="https://github.com/dancergraham/advent_of_code_2024/tree/main/advent_of_code_2024"&gt;solve roughly the first half&lt;/a&gt; of the puzzles in this year's event. I was less motivated than in previous years but there were some fun challenges in there.&lt;/p&gt;
+&lt;h3&gt;Misc. ⁉️&lt;/h3&gt;
+&lt;p&gt;A few other highlights:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Contributing HTTP Status Codes to the &lt;a href="https://github.com/joke2k/faker"&gt;Faker library&lt;/a&gt; having been surprised not to find them already in there.&lt;/li&gt;
+&lt;li&gt;Maintaining my rust-backed &lt;a href="https://pypi.org/project/e57/"&gt;e57 Python library&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Minor contribution to the upstream &lt;a href="https://crates.io/crates/e57"&gt;e57 rust library&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Adding e57 file support to a pointcloud visualisation library&lt;/li&gt;
+&lt;li&gt;Adding the Result design pattern to my &lt;a href="https://github.com/dancergraham/HeadFirstDesignPatterns_python"&gt;Design Patterns repo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content></entry><entry><title>E57 file xml extractor</title><link href="https://grahamknapp.com/blog/e57-file-xml-tool/" rel="alternate"></link><updated>2025-01-26T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:beb0029f-73c0-39e8-b0e1-c18821683cef</id><content type="html">&lt;p&gt;See the xml portion from the end of an &lt;code&gt;.e57&lt;/code&gt; pointcloud file. This contains information like the bounding box of the
 pointcloud, the number of points and how the points and other information are organised in the file.&lt;/p&gt;
 &lt;p&gt;I wrote it with a bit of help from Claude ai by describing what I wanted and pasting a description of the e57 file
 format before doing a lot of debugging to get the entire xml section and then integrating it with my blog.&lt;/p&gt;
