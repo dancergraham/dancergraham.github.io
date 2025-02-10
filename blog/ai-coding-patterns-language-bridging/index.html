@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<meta name="og:title" content="Graham Knapp's Blog">
+<meta name="og:url" content="https://grahamknapp.com">
+<meta name="og:type" content="website">
+<meta name="og:description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+<meta name="description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+<meta property="og:image" content="https://grahamknapp.com/graham.png" />
+
+<title>AI coding patterns: Language bridging — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>AI coding patterns: Language bridging</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-02-10
+  </p>
+      
+          <p>A pattern I enjoy with Copilot or other AI coding tools is something I'm calling "Language bridging":</p>
+<blockquote><p><strong> Language bridging </strong>: Write code to solve a problem in a language you know well, then 
+use an AI to translate the code into the language you want or need to use.</p>
+</blockquote>
+<p><img src="language_bridging.png" alt="A bridge between Python and Typescript"></p>
+<p><strong>LLMs help to bridge the gap between my knowledge of different programming languages</strong></p>
+<h3>Steps</h3>
+<p>The pattern looks like this:</p>
+<ol>
+<li>Write the code in Python (the programming language I know best)</li>
+<li>[Optional, recommended] Simplify the code, refactor into small functions, add comments</li>
+<li>Translate the code with an AI - I usually use Claude 3 at the moment.</li>
+<li>[Strongly recommended] Ask someone with better skills in the target language to carefully review the code.</li>
+<li>[Strongly recommended] Read the code line by line, identify one or two subjects to learn more about.</li>
+</ol>
+<p>I find the refactoring and commenting stage improves the chances of success and makes it easier for me to understand the code after translation.</p>
+<h3>Use cases</h3>
+<p>I mainly use this for Proof Of Concept (POC) building, personal projects, one-off tools and for exploring ideas.  I don't find it efficient for general coding.</p>
+<p>I find it especially effective where I am combining a number of simple actions (cli commands, file parsing, data transformation, image manipulation, etc) in a custom way.  LLMs are often very good at these simple tasks and they can combine them much more quickly than me in a programming language I don't use regularly.</p>
+
+          
+              <a href="../tags/python" class="tag" title="all python articles">python</a>
+          
+              <a href="../tags/typescript" class="tag" title="all typescript articles">typescript</a>
+          
+              <a href="../tags/ai" class="tag" title="all ai articles">ai</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>
