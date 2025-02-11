@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-02-10T00:00:00Z</updated><author><name></name></author><entry><title>AI coding patterns: Language bridging</title><link href="https://grahamknapp.com/blog/ai-coding-patterns-language-bridging/" rel="alternate"></link><updated>2025-02-10T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:adce3633-fecf-38df-8d43-1bd616153951</id><content type="html">&lt;p&gt;A pattern I enjoy with Copilot or other AI coding tools is something I'm calling "Language bridging":&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:8a477849-9042-3546-ad86-3566efc7fe93</id><updated>2025-02-11T00:00:00Z</updated><author><name></name></author><entry><title>TIL: Django caching doesn't cross versions</title><link href="https://grahamknapp.com/blog/til-django-caching-doesnt-cross-versions/" rel="alternate"></link><updated>2025-02-11T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:21e6d558-d98d-3d27-abb5-fe52258775aa</id><content type="html">&lt;p&gt;Reading into &lt;a href="https://github.com/jazzband/django-waffle/issues/546"&gt;this issue on Django-waffle&lt;/a&gt; 
+I learned that Django uses pickle to store objects in its cache but does not guarantee that these objects
+will remain valid between versions, so it &lt;a href="https://github.com/django/django/blob/47c837a1ff96ef1b10b44477a7a9f72283d12e83/django/db/models/base.py#L637"&gt;raises a &lt;code&gt;RuntimeWarning&lt;/code&gt;&lt;/a&gt; 
+ when you access potentially stale objects.&lt;/p&gt;
+&lt;p&gt;The Django docs recommend clearing the cache on upgrade, and this &lt;a href="https://stackoverflow.com/questions/5942759/best-place-to-clear-cache-when-restarting-django-server"&gt;Stackoverflow post&lt;/a&gt;
+discusses ways of doing that.&lt;/p&gt;
+</content></entry><entry><title>AI coding patterns: Language bridging</title><link href="https://grahamknapp.com/blog/ai-coding-patterns-language-bridging/" rel="alternate"></link><updated>2025-02-10T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:adce3633-fecf-38df-8d43-1bd616153951</id><content type="html">&lt;p&gt;A pattern I enjoy with Copilot or other AI coding tools is something I'm calling "Language bridging":&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;&lt;strong&gt; Language bridging &lt;/strong&gt;: Write code to solve a problem in a language you know well, then 
 use an AI to translate the code into the language you want or need to use.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src="language_bridging.png" alt="A bridge between Python and Typescript"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;LLMs help to bridge the gap between my knowledge of different programming languages&lt;/strong&gt;&lt;/p&gt;
 &lt;h3&gt;Steps&lt;/h3&gt;
-&lt;p&gt;The pattern looks like this:&lt;/p&gt;
+&lt;p&gt;The pattern looks like this for me:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Write the code in Python (the programming language I know best)&lt;/li&gt;
-&lt;li&gt;[Optional, recommended] Simplify the code, refactor into small functions, add comments&lt;/li&gt;
-&lt;li&gt;Translate the code with an AI - I usually use Claude 3 at the moment.&lt;/li&gt;
-&lt;li&gt;[Strongly recommended] Ask someone with better skills in the target language to carefully review the code.&lt;/li&gt;
-&lt;li&gt;[Strongly recommended] Read the code line by line, identify one or two subjects to learn more about.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write the code&lt;/strong&gt; in Python (the programming language I know best)&lt;/li&gt;
+&lt;li&gt;[Optional, recommended] &lt;strong&gt;Simplify the code&lt;/strong&gt;, refactor into small functions, add comments&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Translate the code&lt;/strong&gt; with an AI - I usually use Claude 3 at the moment.&lt;/li&gt;
+&lt;li&gt;[Strongly recommended for production code] Ask someone with better skills in the target language to carefully &lt;strong&gt;review the code&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;[Recommended for personal growth] &lt;strong&gt;Read the code&lt;/strong&gt; line by line, identify one or two subjects to learn more about.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;I find the refactoring and commenting stage improves the chances of success and makes it easier for me to understand the code after translation.&lt;/p&gt;
+&lt;p&gt;I find that stage 2 - refactoring and commenting - improves the chances of success and makes it easier for me to understand the code after translation.&lt;/p&gt;
 &lt;h3&gt;Use cases&lt;/h3&gt;
 &lt;p&gt;I mainly use this for Proof Of Concept (POC) building, personal projects, one-off tools and for exploring ideas.  I don't find it efficient for general coding.&lt;/p&gt;
-&lt;p&gt;I find it especially effective where I am combining a number of simple actions (cli commands, file parsing, data transformation, image manipulation, etc) in a custom way.  LLMs are often very good at these simple tasks and they can combine them much more quickly than me in a programming language I don't use regularly.&lt;/p&gt;
+&lt;p&gt;I find it especially effective where I am combining a number of simple actions (cli commands, file parsing, data transformation, image manipulation, etc.) in a custom way.  LLMs are often very good at these simple tasks and they can combine them much more quickly than me in a programming language I don't use regularly.&lt;/p&gt;
 </content></entry><entry><title>Real developers</title><link href="https://grahamknapp.com/blog/real-developers/" rel="alternate"></link><updated>2025-02-08T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:8b266471-0b7c-3ad1-8cf7-88000cb6d45b</id><content type="html">&lt;p&gt;There's this myth we tell ourselves about &lt;em&gt;"Real developers"&lt;/em&gt; and especially &lt;em&gt;"this is why I am not a Real developer"&lt;/em&gt;. It got me thinking - is there actually a useful definition out there?&lt;/p&gt;
 &lt;p&gt;Here is my best try:&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;*A &lt;strong&gt;'Real Developer'&lt;/strong&gt; is someone who writes code or other instructions for a computer 

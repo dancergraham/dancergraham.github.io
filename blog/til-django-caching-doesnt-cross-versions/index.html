@@ -15,7 +15,7 @@
       content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
 <meta property="og:image" content="https://grahamknapp.com/graham.png" />
 
-<title>Article Tags — blog</title>
+<title>TIL: Django caching doesn&#39;t cross versions — blog</title>
 </head>
 <body>
 <header>
@@ -25,7 +25,7 @@
         <ul class="nav navbar-nav">
             <li><a href="../../">Welcome</a></li>
             
-                <li><a href="../">Blog</a>
+                <li class="active"><a href="../">Blog</a>
                 </li>
             
                 <li><a href="../../contact/">Contact</a>
@@ -44,32 +44,32 @@
 </header>
 <div class="page">
     
-  <h1>Article Tags</h1>
   
+  <div class="blog-post">
   
-    <a href="ai/" class="tag" title="AI articles">AI</a>
+    <h2>TIL: Django caching doesn&#39;t cross versions</h2>
   
-    <a href="design-patterns/" class="tag" title="design patterns articles">design patterns</a>
-  
-    <a href="django/" class="tag" title="django articles">django</a>
-  
-    <a href="e57/" class="tag" title="e57 articles">e57</a>
-  
-    <a href="feature-flags/" class="tag" title="feature flags articles">feature flags</a>
-  
-    <a href="pointcloud/" class="tag" title="pointcloud articles">pointcloud</a>
-  
-    <a href="python/" class="tag" title="python articles">python</a>
-  
-    <a href="rhino-3d/" class="tag" title="Rhino 3D articles">Rhino 3D</a>
-  
-    <a href="talks/" class="tag" title="talks articles">talks</a>
-  
-    <a href="typescript/" class="tag" title="TypeScript articles">TypeScript</a>
-  
-    <a href="wind-engineering/" class="tag" title="wind engineering articles">wind engineering</a>
-  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-02-11
+  </p>
+      
+          <p>Reading into <a href="https://github.com/jazzband/django-waffle/issues/546">this issue on Django-waffle</a> 
+I learned that Django uses pickle to store objects in its cache but does not guarantee that these objects
+will remain valid between versions, so it <a href="https://github.com/django/django/blob/47c837a1ff96ef1b10b44477a7a9f72283d12e83/django/db/models/base.py#L637">raises a <code>RuntimeWarning</code></a> 
+ when you access potentially stale objects.</p>
+<p>The Django docs recommend clearing the cache on upgrade, and this <a href="https://stackoverflow.com/questions/5942759/best-place-to-clear-cache-when-restarting-django-server">Stackoverflow post</a>
+discusses ways of doing that.</p>
 
+          
+              <a href="../tags/python" class="tag" title="all python articles">python</a>
+          
+              <a href="../tags/django" class="tag" title="all django articles">django</a>
+          
+        </div>
 
 
 </div>
