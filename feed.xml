@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:b7a2e87a-5f6f-31d6-b156-0660f07f115d</id><updated>2025-02-11T00:00:00Z</updated><author><name></name></author><entry><title>TIL: Django caching doesn't cross versions</title><link href="https://grahamknapp.com/blog/til-django-caching-doesnt-cross-versions/" rel="alternate"></link><updated>2025-02-11T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:3211ad6c-890b-3bce-88cf-8d7486cdfe3e</id><content type="html">&lt;p&gt;Reading into &lt;a href="https://github.com/jazzband/django-waffle/issues/546"&gt;this issue on Django-waffle&lt;/a&gt; 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Graham Knapp's Blog</title><link href="https://grahamknapp.com/blog/" rel="alternate"></link><link href="https://grahamknapp.com/feed.xml" rel="self"></link><id>urn:uuid:b7a2e87a-5f6f-31d6-b156-0660f07f115d</id><updated>2025-03-01T00:00:00Z</updated><author><name></name></author><entry><title>AI coding - stone soup</title><link href="https://grahamknapp.com/blog/ai-coding-stone-soup/" rel="alternate"></link><updated>2025-03-01T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:de1bc4c1-c20f-3db3-a1e9-19385f3ff269</id><content type="html">&lt;p&gt;There's an old European folk tale of a man going into a village and asking for a pot and some water so he can make stone soup. Intrigued, the villagers give him a pot and some water and he boils it up. After a while he tastes it and says "not bad but it could use some onion - do you have some leftovers". The villagers give him a bit of onion and a few herbs whilst they are at it. It carries on like this until he has a delicious soup and the villagers are amazed that he did all that with just a pot of water and a stone.&lt;/p&gt;
+&lt;p&gt;I love Copilot, Claude and all the good things but the iterations of GitHub issues, suggested actions, debugging and fixing in the newer tool previews often taste suspiciously like stone soup 😅 🪨🍲 .&lt;/p&gt;
+</content></entry><entry><title>TIL: Django caching doesn't cross versions</title><link href="https://grahamknapp.com/blog/til-django-caching-doesnt-cross-versions/" rel="alternate"></link><updated>2025-02-11T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:3211ad6c-890b-3bce-88cf-8d7486cdfe3e</id><content type="html">&lt;p&gt;Reading into &lt;a href="https://github.com/jazzband/django-waffle/issues/546"&gt;this issue on Django-waffle&lt;/a&gt; 
 I learned that Django uses pickle to store objects in its cache but does not guarantee that these objects
 will remain valid between versions, so it &lt;a href="https://github.com/django/django/blob/47c837a1ff96ef1b10b44477a7a9f72283d12e83/django/db/models/base.py#L637"&gt;raises a &lt;code&gt;RuntimeWarning&lt;/code&gt;&lt;/a&gt; 
  when you access potentially stale objects.&lt;/p&gt;
@@ -89,13 +91,13 @@ is a static web site - it is downloaded and runs entirely in your browser).&lt;/
     &lt;/label&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;&lt;div id="error" style="display:none;"&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;pre id="xml-content" class="highlight"&gt;
-&lt;/pre&gt;&lt;script&gt;
+&lt;p&gt;&lt;button class="clipboard-button" onclick="copyToClipboard()"&gt;Copy to Clipboard&lt;/button&gt;&lt;/p&gt;
+&lt;pre id="xml-content" class="highlight"&gt;&lt;/pre&gt;&lt;script&gt;
     document.getElementById('file-upload').addEventListener('click', () =&gt; {
         document.getElementById('e57-input').click();
     });
 
-document.getElementById('e57-input').addEventListener('change', async (event) =&gt; {
+    document.getElementById('e57-input').addEventListener('change', async (event) =&gt; {
         if (!event.target.files.length) {
             return;
         }
@@ -161,6 +163,19 @@ document.getElementById('e57-input').addEventListener('change', async (event) =&
         }
     });
 
+    function copyToClipboard() {
+        const xmlContentDiv = document.getElementById('xml-content');
+        const text = xmlContentDiv.innerText;
+
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        alert('Code copied to clipboard!');
+    }
 &lt;/script&gt;</content></entry><entry><title>Two's company, three's a crowd</title><link href="https://grahamknapp.com/blog/twos-company-threes-a-crowd/" rel="alternate"></link><updated>2025-01-20T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:f5c87d0c-77ef-31cb-8ff8-29a1df5d6d3a</id><content type="html">&lt;p&gt;My version of YAGNI - "You Ain't Gonna Need It" - is a rule of three: only spend time refactoring your code when you have repeated yourself 3 times. Don't aim for truly DRY code devoid of all repetition.&lt;/p&gt;
 &lt;p&gt;I'm not saying not to apply SOLID design principles from the start - I definitely try to separate concerns, giving a single responsibility to a class or function and avoid, for instance, a single method handling file reading, data transformation and reporting.  This simplicity will make it much easier to refactor the code later.&lt;/p&gt;
 &lt;p&gt;I am saying to avoid using sophisticated design patterns, architecture or abstractions before you have used of your code enough to know what is likely to change (and require encapsulation) and what will stay constant (creating a useful abstraction).&lt;/p&gt;

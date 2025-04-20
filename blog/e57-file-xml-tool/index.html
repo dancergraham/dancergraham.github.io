@@ -77,13 +77,13 @@ is a static web site - it is downloaded and runs entirely in your browser).</p>
     </label>
 </div></p>
 <p><div id="error" style="display:none;"></div></p>
-<pre id="xml-content" class="highlight">
-</pre><script>
+<p><button class="clipboard-button" onclick="copyToClipboard()">Copy to Clipboard</button></p>
+<pre id="xml-content" class="highlight"></pre><script>
     document.getElementById('file-upload').addEventListener('click', () => {
         document.getElementById('e57-input').click();
     });
 
-document.getElementById('e57-input').addEventListener('change', async (event) => {
+    document.getElementById('e57-input').addEventListener('change', async (event) => {
         if (!event.target.files.length) {
             return;
         }
@@ -149,6 +149,19 @@ document.getElementById('e57-input').addEventListener('change', async (event) =>
         }
     });
 
+    function copyToClipboard() {
+        const xmlContentDiv = document.getElementById('xml-content');
+        const text = xmlContentDiv.innerText;
+
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        alert('Code copied to clipboard!');
+    }
 </script>
           
               <a href="../tags/pointcloud" class="tag" title="all pointcloud articles">pointcloud</a>
