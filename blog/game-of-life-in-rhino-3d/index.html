@@ -5,16 +5,18 @@
 <link rel="stylesheet" href="../../static/style.css">
 <link rel="stylesheet" href="../../static/pygments.css">
 <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width">
 
-  <meta name="og:title" content="Game of life in Rhino 3D" />
-  <meta name="title" content="Game of life in Rhino 3D" />
+  <meta name="og:title" content="Game of life in Rhino 3D">
+  <meta name="title" content="Game of life in Rhino 3D">
 
-<meta name="og:type" content="website" />
+<meta name="og:url" content="https://grahamknapp.com">
+<meta name="og:type" content="website">
 
-<meta name=description" property="og:description" content="Prompted by this year’s Advent Of Code challenge I have implemented a 3D version of the game of life in Python in Rhino 7." />
+<meta name="og:description" content="Prompted by this year’s Advent Of Code challenge I have implemented a 3D version of the game of life in Python in Rhino 7.">
+<meta name="ogescription" content="Prompted by this year’s Advent Of Code challenge I have implemented a 3D version of the game of life in Python in Rhino 7.">
 
-<meta property="og:image" content="https://grahamknapp.com/GrahamKnapp.png" />
+<meta property="og:image" content="../../GrahamKnapp.png" />
 
 <title>Game of life in Rhino 3D — blog</title>
 </head>
@@ -64,12 +66,12 @@
 <p><img src="step-5.jpeg" alt="A rendered 3D image of dozens of white spheres, densely packed, against a white background"></p>
 <p><img src="step-3.jpeg" alt="A rendered 3D image of dozens of white spheres, smaller and densely packed, against a white background"></p>
 <p><img src="step-4.jpeg" alt="A rendered 3D image of dozens of white spheres, more sparsely packed, against a white background"></p>
-<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">rhinoscriptsyntax</span> <span class="k">as</span> <span class="nn">rs</span>
-<span class="kn">import</span> <span class="nn">Rhino</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<div class="hll"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rhinoscriptsyntax</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">permutations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 
-<span class="k">def</span> <span class="nf">conway_cubes</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">conway_cubes</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
     <span class="n">rs</span><span class="o">.</span><span class="n">EnableRedraw</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
     <span class="c1"># Example from the puzzle</span>
     <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;.#.</span>
