@@ -197,6 +197,35 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
             
   <div class="blog-post">
   
+    <h2><a href="../../fail-fast-coder-sereinement-tests-dans-jupyter/">Fail fast - coder sereinement : Tests dans Jupyter 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2021-06-14
+  </p>
+      
+          <p>Following the "fail fast" principal I have found it really useful when coding engineering and data science code in Jupyter to follow this pattern:</p>
+<ol>
+<li>Write the code in a Jupyter notebook - this is a great option for scientific and technical computing as it lets you combine code, visualisation and documentation all in the same place.</li>
+<li>Find independent sample calculations from text books or other commonly used tools - the key is that the examples should not be generated from your own code.</li>
+<li>Add sample calculations with assert statements <strong>in the same cell as the function definition</strong> to demonstrate that the function works.</li>
+</ol>
+<p>This last point is the key to the method I suggest here - the tests are run every time you update your definition but if the test is slow it will only be run the first time you reopen the notebook, once you are happy with the function you can reuse it without re-running the tests</p>
+<p><a href="https://github.com/dancergraham/fail_fast">https://github.com/dancergraham/fail_fast</a></p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="../../wind-and-tower-cranes/">Aerodynamic Behaviour and Structural Safety of Tower Cranes 🔗</a></h2>
   
   <p class="meta">
@@ -310,38 +339,6 @@ by French insurers to assess and reduce risk levels.</p>
       
           <p>I spend too much of my life sitting alone in an office working on my conputer or looking at my smartphone. My regular dose of fresh air comes from my bike - I ride to work and back regularly - but I also enjoy getting out into the garden when I can. Trouble is, I dont really <em>enjoy</em> gardening! I do get a lot  of satisfaction from pruning the trees and shrubs, especially if it involves some climbing and as a result we now have an enormous pile of branches, leaves and twigs in the bottom of the garden. I recently found a new activity which satisfies my creative side and starts to diminish the stack o' cuttings : building 'dead hedge' style walls and fences.</p>
 <p><img src="../../here-comes-the-sun/garden03.png" alt="garden03"><br><br><a href="../../here-comes-the-sun/">Read Full Post</a></p>
-
-        </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="../../any-way-the-wind-blows/">Any way the wind blows 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2019-03-20
-  </p>
-      
-          <h3>Adding leading zeros with Python</h3>
-<p>Various ways to add leading zeros to a number, for instance a wind direction, using Python.  <a href="../../any-way-the-wind-blows/wind_zeros.ipynb">Available as a Jupyter Notebook</a></p>
-<h3>Generate a list of wind directions</h3>
-<p>First some definitions. The wind direction is measured in degrees clockwise from north and represents the direction the wind is blowing <strong>from</strong>. For instance an easterly wind, i.e. wind blowing <strong>from</strong> the east has a direction of 90 degrees. Let's generate 16 wind directions from 0 (north) to 337.5 (north by northwest).</p>
-<p>```python
-interval = 22.5  # degrees
-assert 360 % interval &lt; 0.001
-n = int(360/interval)</p>
-<p>directions = [interval * x for x in range(n)]
-print(directions)
-```<br><br><a href="../../any-way-the-wind-blows/">Read Full Post</a></p>
 
         </div>
 

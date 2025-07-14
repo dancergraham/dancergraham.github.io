@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+
+  <meta name="og:title" content="Graham Knapp's Blog">
+  <meta name="title" property="og:title" content="Graham Knapp's Blog">
+
+<meta name="author" content="Graham Knapp">
+
+  <meta name="og:description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+  <meta name="description" property="og:description"
+      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+
+<meta name="image" property="og:image" content="../../GrahamKnapp.png" />
+
+<title>Fail fast - coder sereinement : Tests dans Jupyter — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>Fail fast - coder sereinement : Tests dans Jupyter</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2021-06-14
+  </p>
+      
+          <p>Following the "fail fast" principal I have found it really useful when coding engineering and data science code in Jupyter to follow this pattern:</p>
+<ol>
+<li>Write the code in a Jupyter notebook - this is a great option for scientific and technical computing as it lets you combine code, visualisation and documentation all in the same place.</li>
+<li>Find independent sample calculations from text books or other commonly used tools - the key is that the examples should not be generated from your own code.</li>
+<li>Add sample calculations with assert statements <strong>in the same cell as the function definition</strong> to demonstrate that the function works.</li>
+</ol>
+<p>This last point is the key to the method I suggest here - the tests are run every time you update your definition but if the test is slow it will only be run the first time you reopen the notebook, once you are happy with the function you can reuse it without re-running the tests</p>
+<p><a href="https://github.com/dancergraham/fail_fast">https://github.com/dancergraham/fail_fast</a></p>
+
+          
+              <a href="../tags/talks" class="tag" title="all talks articles">talks</a>
+          
+              <a href="../tags/python" class="tag" title="all python articles">python</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>

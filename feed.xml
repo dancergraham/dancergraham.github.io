@@ -397,6 +397,14 @@ Whilst most of the generated buildings appear with sober colours : mostly grey, 
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Voici &lt;a href="https://github.com/dancergraham/carte_musicotherapeutes"&gt;le script complet sous forme de Jupyter Notebook&lt;/a&gt;.&lt;/p&gt;
+</content></entry><entry><title>Fail fast - coder sereinement : Tests dans Jupyter</title><link href="https://grahamknapp.com/blog/fail-fast-coder-sereinement-tests-dans-jupyter/" rel="alternate"></link><updated>2021-06-14T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:789415b6-a22d-3899-8f91-85caba0f7761</id><content type="html">&lt;p&gt;Following the "fail fast" principal I have found it really useful when coding engineering and data science code in Jupyter to follow this pattern:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Write the code in a Jupyter notebook - this is a great option for scientific and technical computing as it lets you combine code, visualisation and documentation all in the same place.&lt;/li&gt;
+&lt;li&gt;Find independent sample calculations from text books or other commonly used tools - the key is that the examples should not be generated from your own code.&lt;/li&gt;
+&lt;li&gt;Add sample calculations with assert statements &lt;strong&gt;in the same cell as the function definition&lt;/strong&gt; to demonstrate that the function works.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This last point is the key to the method I suggest here - the tests are run every time you update your definition but if the test is slow it will only be run the first time you reopen the notebook, once you are happy with the function you can reuse it without re-running the tests&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/dancergraham/fail_fast"&gt;https://github.com/dancergraham/fail_fast&lt;/a&gt;&lt;/p&gt;
 </content></entry><entry><title>Aerodynamic Behaviour and Structural Safety of Tower Cranes</title><link href="https://grahamknapp.com/blog/wind-and-tower-cranes/" rel="alternate"></link><updated>2021-05-18T00:00:00Z</updated><author><name>Graham Knapp</name></author><id>urn:uuid:e6c676a9-4fb2-33dd-bed8-50e6c3981c58</id><content type="html">&lt;p&gt;Upon moving to work at the French national scientific research organisation for the built environment, CSTB, 
 I was surprised to see the attention to detail in tower crane studies - looking at the risk of strong winds, construction site 
 exposure and swirling winds potentially setting tower cranes rotating.&lt;/p&gt;
