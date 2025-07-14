@@ -178,7 +178,7 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
 <li>Enregistrer la carte sous format html</li>
 </ul>
 <p>J'utilise la fonction suivantes pour générer mes tags HTML pour les marqueurs:</p>
-<div class="hll"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tagged</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<div class="hll"><pre><span></span><span class="k">def</span> <span class="nf">tagged</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="nb">str</span> <span class="o">=</span> <span class="n">txt</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&gt;</span><span class="si">{</span><span class="n">txt</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -215,6 +215,28 @@ I gave some of the history of the subject, the key factors influencing risk leve
 by French insurers to assess and reduce risk levels.</p>
 <p><a href="https://www.ice.org.uk/events/recorded-lectures/aerodynamic-behaviour-and-structural-safety-of-tower-cranes">📺Watch here</a>
 <br><br><a href="../../wind-and-tower-cranes/">Read Full Post</a></p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
+    <h2><a href="../../en-attendant-la-pyconfr-022021-traitement-des-resultats-dessai-en-soufflerie/">En attendant la PyConFr (02/2021) — Traitement des résultats d’essai en soufflerie 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2021-02-18
+  </p>
+      
+          <p>Un résumé de mes expériences de l'utilisation de Python en équipe d'ingénierie du vent <a href="https://pyvideo.org/en-attendant-la-pyconfr-2020-2021/traitement-des-resultats-dessai-en-soufflerie.html">https://pyvideo.org/en-attendant-la-pyconfr-2020-2021/traitement-des-resultats-dessai-en-soufflerie.html</a></p>
 
         </div>
 
@@ -326,43 +348,6 @@ print(directions)
         </div>
         <hr>
     
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="../../first-post/">Building a blog 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2019-03-18
-  </p>
-      
-          <p>I have had a few ideas for content to share recently and wanted a good way to do so.  I wanted to find a good solution for blog publishing with a few criteria:</p>
-<ul>
-<li>Built using Python, editable in markdown so I can develop my skills.</li>
-<li>Simple to build and maintain - I am not a web developer and have no desire to become one.  That said, I have been <a href="https://web.archive.org/web/20010520155249/http://www.fortunecity.co.uk/madchester/latin/336/">building websites</a> on an amateur basis <a href="https://web.archive.org/web/19981202092552/http://www.shef.ac.uk/uni/union/susoc/ftc/">since the 1990s</a> so I'm not afraid of writing a little html if I have to.</li>
-<li>Capable of incorporating Jupyter Notebooks</li>
-<li>Simple to deploy, preferably for free.  I am hoping to do this via my internet provider but might go via GitHub failing that or even pay for a small cloud server.</li>
-<li>No initial need for interractive content.</li>
-</ul>
-<p>I saw that the static site generators Pelican and Lektor were available.  That sounds like a good solution as it should be quick and have few moving parts which could break.  <a href="https://www.getlektor.com/">Lektor</a> looked simple, welcoming and modern enough so I downloaded and installed it. I listened to <a href="https://talkpython.fm/episodes/show/160/lektor-beautiful-websites-out-of-flat-files">Talk Python episode 160</a> as I did so and that encouraged me that I was on a good path.</p>
-<blockquote><audio preload="none" controls="" id="direct_player">
-                                    <source src="https://talkpython.fm/episodes/download/160/lektor-beautiful-websites-out-of-flat-files.mp3" type="audio/mpeg">
-                                </audio><p><em>Listen to Talk Python Episode 160 - Lektor (2018)</em></p>
-</blockquote>
-<p>My initial experience has been great - I got going with no problem except that at the time of writing I have been waiting over a week for free to get around to setting up my personal web space so I can deploy the site.  At least that has given me enough time to configure a basic blog and write my first 2 posts.</p>
-<h4>Post-deployment update</h4>
-<p>OK so I have gone for GitHub pages for hosting with a custom web domain - buying the domain name and <a href="https://www.getlektor.com/docs/deployment/ghpages/#cname-support">specifying it in Lektor</a> and <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">in GitHub pages</a> was enough to get it working properly with https - no need to update certificates every few months !</p>
-
-        </div>
-
-        </div>
-        <hr>
-    
 
     
   <div class="pagination">
@@ -371,7 +356,7 @@ print(directions)
     
     | 2 |
     
-      <span class="disabled">Next &raquo;</span>
+      <a href="../3/">Next &raquo;</a>
     
   </div>
 
