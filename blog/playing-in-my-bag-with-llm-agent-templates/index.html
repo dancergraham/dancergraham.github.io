@@ -7,15 +7,13 @@
 <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
 <meta name="viewport" content="width=device-width">
 
-  <meta name="og:title" content="Graham Knapp's Blog">
-  <meta name="title" property="og:title" content="Graham Knapp's Blog">
+  <meta name="og:title" content="Playing &#34;In my bag...&#34; with LLM agent templates">
+  <meta name="title" property="og:title" content="Playing &#34;In my bag...&#34; with LLM agent templates">
 
 <meta name="author" content="Graham Knapp">
 
-  <meta name="og:description"
-      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
-  <meta name="description" property="og:description"
-      content="Graham Knapp's homepage and blog.  Graham is a British Engineer and musician living in France">
+  <meta name="og:description" content="Using the &#34;In my bag&#34; game as an analogy for how LLM chat templates build up the history of the conversation to prompt the next response.">
+  <meta name="description" property="og:description" content="Using the &#34;In my bag&#34; game as an analogy for how LLM chat templates build up the history of the conversation to prompt the next response.">
 
 <meta name="image" property="og:image" content="../../GrahamKnapp.png" />
 
@@ -58,11 +56,11 @@
     
       <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
     
-    on 
+    on 2025-08-10
   </p>
       
-          <p>There's a memory game "In my bag..." where you pretend you have a list of things in your bag. The next person in the circle has to list all the same things and add one more at the end. The game ends when someone fails to remember the previous list.</p>
-<p>It occurred to me that this is a great analogy for the templates used in LLM chatbots! Every time you chat with an LLM the LLM re-reads the whole history of the conversation before responding. This is why they get slower over time, particularly if they are making web searches, viewing images, using MCPs or other tools which add a lot of hidden tokens to the script.</p>
+          <p>There's a memory game "In my bag..." where you pretend you have a list of things in your bag "In my bag I have a comb and a cat". The next person in the circle has to list all the same things and add one more at the end "In my bag I have a comb, a cat and a clock". The game ends when someone makes a mistake or gives up.</p>
+<p>It occurred to me that this is a great analogy for the templates used in LLM chatbots! Every time you chat with an LLM the LLM re-reads the whole history of the conversation before responding. This is why they get slower over time, particularly if they are making web searches, viewing images, using MCPs or other tools which add a lot of hidden tokens to the chat history.</p>
 <p>The ollama docs describe a simple template here ... <a href="https://github.com/ollama/ollama/blob/main/docs/template.md">https://github.com/ollama/ollama/blob/main/docs/template.md</a></p>
 
           
