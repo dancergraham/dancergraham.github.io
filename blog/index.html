@@ -79,6 +79,44 @@
             
   <div class="blog-post">
   
+    <h2><a href="testing-github-copilot-agent-mode/">Testing GitHub Copilot agent mode 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-08-23
+  </p>
+      
+          <p>I tested GitHub Copilot agent mode in July 2025, setting Copilot to work online on different sized features - the workflow looks like this:</p>
+<ol>
+<li>Chat with Copilot online - ask it to open a PR to work on a specific feature. Copilot starts working in its own virtual machine on GitHub.</li>
+<li>30 minutes later I get an email saying the PR is ready for review - I read it online and ask for any corrections via github.com</li>
+<li>If and when I am happy with it I pull the branch to my PC, review, modify, fix, change.</li>
+<li>I push from my machine and merge to trunk</li>
+</ol>
+<p>Some stats:</p>
+<ul>
+<li>19 Pull requests opened against our main monorepo in 5 weeks. </li>
+<li>7 merged</li>
+<li>8 still open on the 31st of July (3 of those created on the final day)</li>
+<li>3 closed unmerged because they clearly didn't work or were not worth finishing</li>
+<li>1 closed because I reimplemented it more successfully on my dev PC</li>
+</ul>
+<p>For example, I tasked Copilot with refactoring 3 instances of near-duplicate code into a common service and make some improvements to error handling on the refactored service. My experience of code review from the last 4 years definitely helps with this workflow - reviewing code from an agent is similar to reviewing colleagues' code except that I don't feel guilty about leaving a PR unread for more than a day. Those PRs still become stale however and merge conflicts are a pain if the agent changes overlap with other PRs.</p>
+<p>One challenge is that this makes it very easy to set Copilot working on easy to define low-impact work but that work still takes to review. It would be easy to get into the habit of doing lots of unimportant busy work with this workflow. I now want to explore how to use coding agents to achieve more ambitious changes, perhaps changes I would not take on individually because they lie near the limits of my current knowledge.</p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="playing-in-my-bag-with-llm-agent-templates/">Playing &#34;In my bag...&#34; with LLM agent templates 🔗</a></h2>
   
   <p class="meta">
@@ -404,55 +442,6 @@ is a static web site - it is downloaded and runs entirely in your browser).</p>
 <p>I'm not saying not to apply SOLID design principles from the start - I definitely try to separate concerns, giving a single responsibility to a class or function and avoid, for instance, a single method handling file reading, data transformation and reporting.  This simplicity will make it much easier to refactor the code later.</p>
 <p>I am saying to avoid using sophisticated design patterns, architecture or abstractions before you have used of your code enough to know what is likely to change (and require encapsulation) and what will stay constant (creating a useful abstraction). 
 <br><br><a href="twos-company-threes-a-crowd/">Read Full Post</a></p>
-
-        </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="the-zen-of-python-revisited/">The Zen of Python: Gur Mra bs Clguba. 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2025-01-14
-  </p>
-      
-          <p>I love The Zen of Python - one of the delights of the language is typing <code>import this</code> in a REPL and discovering this gem:</p>
-<div class="hll"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">this</span>
-</pre></div>
-<div class="hll"><pre><span></span><span class="go">The Zen of Python, by Tim Peters</span>
-
-<span class="go">Beautiful is better than ugly.</span>
-<span class="go">Explicit is better than implicit.</span>
-<span class="go">Simple is better than complex.</span>
-<span class="go">Complex is better than complicated.</span>
-<span class="go">Flat is better than nested.</span>
-<span class="go">Sparse is better than dense.</span>
-<span class="go">Readability counts.</span>
-<span class="go">Special cases aren&#39;t special enough to break the rules.</span>
-<span class="go">Although practicality beats purity.</span>
-<span class="go">Errors should never pass silently.</span>
-<span class="go">Unless explicitly silenced.</span>
-<span class="go">In the face of ambiguity, refuse the temptation to guess.</span>
-<span class="go">There should be one-- and preferably only one --obvious way to do it.</span>
-<span class="go">Although that way may not be obvious at first unless you&#39;re Dutch.</span>
-<span class="go">Now is better than never.</span>
-<span class="go">Although never is often better than *right* now.</span>
-<span class="go">If the implementation is hard to explain, it&#39;s a bad idea.</span>
-<span class="go">If the implementation is easy to explain, it may be a good idea.</span>
-<span class="go">Namespaces are one honking great idea -- let&#39;s do more of those!</span>
-</pre></div>
-<p>It neatly captures the way in which Guido van Rossum and a group of Pythonistas thought about 
-the language, constructed and used it, sharing thoughts on user forums in in-person meetings.
-<br><br><a href="the-zen-of-python-revisited/">Read Full Post</a></p>
 
         </div>
 

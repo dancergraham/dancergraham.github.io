@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+
+  <meta name="og:title" content="Testing GitHub Copilot agent mode">
+  <meta name="title" property="og:title" content="Testing GitHub Copilot agent mode">
+
+<meta name="author" content="Graham Knapp">
+
+  <meta name="og:description" content="Stats, results and thoughts from 19 agent created PRs in July 2025.">
+  <meta name="description" property="og:description" content="Stats, results and thoughts from 19 agent created PRs in July 2025.">
+
+<meta name="image" property="og:image" content="../../GrahamKnapp.png" />
+
+<title>Testing GitHub Copilot agent mode — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>Testing GitHub Copilot agent mode</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-08-23
+  </p>
+      
+          <p>I tested GitHub Copilot agent mode in July 2025, setting Copilot to work online on different sized features - the workflow looks like this:</p>
+<ol>
+<li>Chat with Copilot online - ask it to open a PR to work on a specific feature. Copilot starts working in its own virtual machine on GitHub.</li>
+<li>30 minutes later I get an email saying the PR is ready for review - I read it online and ask for any corrections via github.com</li>
+<li>If and when I am happy with it I pull the branch to my PC, review, modify, fix, change.</li>
+<li>I push from my machine and merge to trunk</li>
+</ol>
+<p>Some stats:</p>
+<ul>
+<li>19 Pull requests opened against our main monorepo in 5 weeks. </li>
+<li>7 merged</li>
+<li>8 still open on the 31st of July (3 of those created on the final day)</li>
+<li>3 closed unmerged because they clearly didn't work or were not worth finishing</li>
+<li>1 closed because I reimplemented it more successfully on my dev PC</li>
+</ul>
+<p>For example, I tasked Copilot with refactoring 3 instances of near-duplicate code into a common service and make some improvements to error handling on the refactored service. My experience of code review from the last 4 years definitely helps with this workflow - reviewing code from an agent is similar to reviewing colleagues' code except that I don't feel guilty about leaving a PR unread for more than a day. Those PRs still become stale however and merge conflicts are a pain if the agent changes overlap with other PRs.</p>
+<p>One challenge is that this makes it very easy to set Copilot working on easy to define low-impact work but that work still takes to review. It would be easy to get into the habit of doing lots of unimportant busy work with this workflow. I now want to explore how to use coding agents to achieve more ambitious changes, perhaps changes I would not take on individually because they lie near the limits of my current knowledge.</p>
+
+          
+              <a href="../tags/python" class="tag" title="all python articles">python</a>
+          
+              <a href="../tags/typescript" class="tag" title="all typescript articles">typescript</a>
+          
+              <a href="../tags/ai" class="tag" title="all ai articles">ai</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>
