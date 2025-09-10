@@ -52,6 +52,8 @@
   
     <a href="tags/ai/" class="tag" title="AI articles">AI</a>
   
+    <a href="tags/bookmarks/" class="tag" title="bookmarks articles">bookmarks</a>
+  
     <a href="tags/design-patterns/" class="tag" title="design patterns articles">design patterns</a>
   
     <a href="tags/django/" class="tag" title="django articles">django</a>
@@ -94,6 +96,38 @@
 <p>But when you say 'thank you,' the AI has to reprocess the entire conversation from start to finish, plus the extra "thank you", taking up significantly more resources. Where "Please" costs 3 tokens, "thank you" costs an extra api call with many hundreds of tokens.</p>
 <p>Lets avoid "thank you" but with the new generation of AI tools having memory, saying 'please' can help the AI understand your personality and communication style better over time. <a href="https://arxiv.org/html/2402.14531v1">Yin et al (2024)</a> show us that it may give better results - but don't overdo it! Overly polite requests can degrade results.</p>
 <p>OK so mind your Qs, please and thank you for reading!</p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
+    <h2><a href="bookmark-system-design-interview-an-insiders-guide-by-alex-xu/">Bookmark: System Design Interview: An Insider’s Guide by Alex Xu 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-09-10
+  </p>
+      
+          <p>A structured guide to approaching system design interview questions using real-world case studies and a repeatable framework—from scaling basics to designing complex systems.</p>
+<h3>​ Key Ideas / Takeaways</h3>
+<p>Alex Introduces a <strong>4-step framework</strong> to tackle system design questions:</p>
+<ol>
+<li>Understand the problem and establish the scope  </li>
+<li>Propose a high-level design and get buy-in from the interviewer  </li>
+<li>Dive deep into chosen components </li>
+<li>Wrap up with optimizations, bottlenecks, and improvements </li>
+</ol>
+<p>I found this really useful for demystifying the process and giving some structure to help tackle this kind of interview. The repetition helps to reinforce the process.
+<br><br><a href="bookmark-system-design-interview-an-insiders-guide-by-alex-xu/">Read Full Post</a></p>
 
         </div>
 
@@ -321,129 +355,6 @@ many thanks to David Caron for creating the library and maintaining it for so ma
 me to carry it on.
 <br><br><a href="2024-my-year-in-open-source/">Read Full Post</a></p>
 
-        </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="e57-file-xml-tool/">E57 file xml extractor 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2025-01-26
-  </p>
-      
-          <p>See the xml portion from the end of an <code>.e57</code> pointcloud file. This contains information like the bounding box of the
-pointcloud, the number of points and how the points and other information are organised in the file.</p>
-<p>I wrote it with a bit of help from Claude ai by describing what I wanted and pasting a description of the e57 file
-format before doing a lot of debugging to get the entire xml section and then integrating it with my blog.</p>
-<p>I find the e57 file format a bit <em>wierd</em> - it starts with a header including a file version number and an offset to the XML portion, 
-which comes at the <em>end</em> of the file so you need to read both ends of the file before you can understand the middle bit. So 
-if you download the file you have to wait for it to finish downloading - you can't start to interpret or display the 
-points and other data whilst streaming data.</p>
-<p>This tool is written in JavaScript and runs in your browser - no files are uploaded to any server (in fact this blog has no backend server - it
-is a static web site - it is downloaded and runs entirely in your browser).</p>
-<p><div id="file-upload">
-    <label>
-        Select E57 File
-        <input type="file" id="e57-input" accept=".e57" style="display:none;">
-    </label>
-</div></p>
-<p><div id="error" style="display:none;"></div></p>
-<p><button class="clipboard-button" onclick="copyToClipboard()">Copy to Clipboard</button></p>
-<pre id="xml-content" class="highlight"></pre><script>
-    document.getElementById('file-upload').addEventListener('click', () => {
-        document.getElementById('e57-input').click();
-    });
-
-    document.getElementById('e57-input').addEventListener('change', async (event) => {
-        if (!event.target.files.length) {
-            return;
-        }
-        const file = event.target.files[0];
-        const errorDiv = document.getElementById('error');
-        const xmlContentDiv = document.getElementById('xml-content');
-
-        errorDiv.textContent = '';
-        xmlContentDiv.textContent = '';
-
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const buffer = new Uint8Array(arrayBuffer);
-            errorDiv.style.display = 'none';
-
-            // Parse file header
-            const fileHeader = {
-                fileSignature: new TextDecoder().decode(buffer.slice(0, 8)),
-                majorVersion: new DataView(buffer.buffer).getUint32(8, true),
-                minorVersion: new DataView(buffer.buffer).getUint32(12, true),
-                xmlPhysicalOffset: new DataView(buffer.buffer).getBigUint64(24, true)
-            };
-
-            // Validate file signature
-            if (fileHeader.fileSignature !== 'ASTM-E57') {
-                throw new Error('Not a valid E57 file');
-            }
-
-            // Extract XML section
-            let xmlBytes = [];
-            let offset = Number(fileHeader.xmlPhysicalOffset);
-
-            while (offset < buffer.length) {
-                const pageStart = Math.floor(offset / 1024) * 1024;
-                const pageEnd = Math.min(pageStart + 1020, buffer.length);  // Exclude 4-byte checksum
-                const pageData = buffer.slice(pageStart, pageEnd);
-                xmlBytes.push(...pageData.slice(offset % 1024));
-                offset += (1024 - (offset % 1024));
-            }
-            // Convert XML bytes to string
-            let xmlString = new TextDecoder().decode(new Uint8Array(xmlBytes));
-
-            // Find the start of the XML declaration
-            const xmlStart = xmlString.indexOf('<?xml');
-            if (xmlStart === -1) {
-                throw new Error('No valid XML found');
-            }
-
-            // end at the first instance of </e57Root>
-            const xmlEnd = xmlString.indexOf('</e57Root>');
-            if (xmlEnd === -1) {
-                throw new Error('No valid XML found');
-            }
-
-            xmlString = xmlString.slice(xmlStart, xmlEnd + 10);
-            xmlContentDiv.textContent = xmlString;
-
-        } catch (err) {
-            errorDiv.textContent = err.message;
-            errorDiv.style.display = 'block';
-        } finally {
-            event.target.value = '';
-        }
-    });
-
-    function copyToClipboard() {
-        const xmlContentDiv = document.getElementById('xml-content');
-        const text = xmlContentDiv.innerText;
-
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-
-        alert('Code copied to clipboard!');
-    }
-</script>
         </div>
 
         </div>

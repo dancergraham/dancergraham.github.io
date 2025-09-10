@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+
+  <meta name="og:title" content="Bookmark: System Design Interview: An Insider’s Guide">
+  <meta name="title" property="og:title" content="Bookmark: System Design Interview: An Insider’s Guide">
+
+<meta name="author" content="Graham Knapp">
+
+  <meta name="og:description" content="My notes on this widely recommended text on how to tackle system design interviews as a candidate.">
+  <meta name="description" property="og:description" content="My notes on this widely recommended text on how to tackle system design interviews as a candidate.">
+
+<meta name="image" property="og:image" content="../../GrahamKnapp.png" />
+
+<title>Bookmark: System Design Interview: An Insider’s Guide by Alex Xu — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>Bookmark: System Design Interview: An Insider’s Guide by Alex Xu</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-09-10
+  </p>
+      
+          <p>A structured guide to approaching system design interview questions using real-world case studies and a repeatable framework—from scaling basics to designing complex systems.</p>
+<h3>​ Key Ideas / Takeaways</h3>
+<p>Alex Introduces a <strong>4-step framework</strong> to tackle system design questions:</p>
+<ol>
+<li>Understand the problem and establish the scope  </li>
+<li>Propose a high-level design and get buy-in from the interviewer  </li>
+<li>Dive deep into chosen components </li>
+<li>Wrap up with optimizations, bottlenecks, and improvements </li>
+</ol>
+<p>I found this really useful for demystifying the process and giving some structure to help tackle this kind of interview. The repetition helps to reinforce the process.</p>
+<p><img src="system_design.jpg" alt="The System Design Interview book cover"></p>
+<p>The first chapter <strong>Scale from Zero to Millions</strong> covers: vertical/horizontal scaling, load balancers, database replication, caching, CDN, stateless vs stateful architecture, decoupling via queues, and sharding.</p>
+<p>Other design examples include: rate limiter, consistent hashing, key-value store, unique ID generator, URL shortener, web crawler, notification system, news feed, chat system, search autocomplete, YouTube, Google Drive.</p>
+<h3>What Stuck With Me</h3>
+<ul>
+<li>The <strong>framework</strong> is a powerful tool—I want to internalize the 4-step approach and apply it systematically.</li>
+<li>The <strong>scaling chapter</strong>, especially the discussion around load balancers and replication, feels foundational even if the examples are somewhat dated.</li>
+<li>Some examples—like explaining Amazon S3 basics—feel unnecessary now, especially for an experienced engineering audience.</li>
+<li>I will come back to this book as needed for future work or job interviews - autocomplete, chat systems and notification system all come up regularly in software design.</li>
+</ul>
+<h3>​ Applications / Relevance</h3>
+<ul>
+<li>As a learning exercise, I'd like to **implement a load-balancing pattern in Django, e.g. round-robin or sticky sessions.</li>
+<li>Planning to revisit this bookmark when tackling distributed features or app architectural decisions.</li>
+<li>The general patterns (e.g., caching, sharding, queues) remain relevant and can inform future projects like large-scale data ingest or feature expansion.</li>
+</ul>
+<h3>Lingering Questions</h3>
+<ul>
+<li>How is a load balancer implemented? I've never needed this in practice but would probably choose an off the shelf solution.</li>
+<li>How do you choose between load balancer strategies: simple round-robin, least-connections, or sticky sessions?</li>
+<li>How do newer trends—like Kubernetes —map back to these patterns?</li>
+</ul>
+
+          
+              <a href="../tags/design-patterns" class="tag" title="all design-patterns articles">design-patterns</a>
+          
+              <a href="../tags/bookmarks" class="tag" title="all bookmarks articles">bookmarks</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>
