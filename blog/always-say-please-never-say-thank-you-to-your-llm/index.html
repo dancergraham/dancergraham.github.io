@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+
+  <meta name="og:title" content="Always say &#34;Please&#34;, never say &#34;Thank you&#34; to your LLM">
+  <meta name="title" property="og:title" content="Always say &#34;Please&#34;, never say &#34;Thank you&#34; to your LLM">
+
+<meta name="author" content="Graham Knapp">
+
+  <meta name="og:description" content="That simple &#39;thank you&#39; could have more environmental impact than you think">
+  <meta name="description" property="og:description" content="That simple &#39;thank you&#39; could have more environmental impact than you think">
+
+<meta name="image" property="og:image" content="../../GrahamKnapp.png" />
+
+<title>Always say &#34;Please&#34;, never say &#34;Thank you&#34; to your LLM — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>Always say &#34;Please&#34;, never say &#34;Thank you&#34; to your LLM</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-09-10
+  </p>
+      
+          <p>We've all been there – that moment when you catch yourself thanking your AI assistant. But could that simple 'thank you' could have more environmental impact than you think?</p>
+<p>LLMs run on tokens - one token is roughly equivalent to one word so when you say 'please,' you're feeding 1 extra token into your request. In an average  3-turn conversation with an LLM the LLM will re-read that token 3 times, so that's a cost of 3 extra tokens in an exchange which probably includes many hundreds or thousands of tokens.</p>
+<p>But when you say 'thank you,' the AI has to reprocess the entire conversation from start to finish, plus the extra "thank you", taking up significantly more resources. Where "Please" costs 3 tokens, "thank you" costs an extra api call with many hundreds of tokens.</p>
+<p>Lets avoid "thank you" but with the new generation of AI tools having memory, saying 'please' can help the AI understand your personality and communication style better over time. <a href="https://arxiv.org/html/2402.14531v1">Yin et al (2024)</a> show us that it may give better results - but don't overdo it! Overly polite requests can degrade results.</p>
+<p>OK so mind your Qs, please and thank you for reading!</p>
+
+          
+              <a href="../tags/ai" class="tag" title="all ai articles">ai</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>
