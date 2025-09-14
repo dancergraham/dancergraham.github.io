@@ -81,6 +81,35 @@
             
   <div class="blog-post">
   
+    <h2><a href="../../fail-fast-coder-sereinement-tests-dans-jupyter/">Fail fast - coder sereinement : Tests dans Jupyter 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2021-06-14
+  </p>
+      
+          <p>Following the "fail fast" principal I have found it really useful when coding engineering and data science code in Jupyter to follow this pattern:</p>
+<ol>
+<li>Write the code in a Jupyter notebook - this is a great option for scientific and technical computing as it lets you combine code, visualisation and documentation all in the same place.</li>
+<li>Find independent sample calculations from text books or other commonly used tools - the key is that the examples should not be generated from your own code.</li>
+<li>Add sample calculations with assert statements <strong>in the same cell as the function definition</strong> to demonstrate that the function works.</li>
+</ol>
+<p>This last point is the key to the method I suggest here - the tests are run every time you update your definition but if the test is slow it will only be run the first time you reopen the notebook, once you are happy with the function you can reuse it without re-running the tests</p>
+<p><a href="https://github.com/dancergraham/fail_fast">https://github.com/dancergraham/fail_fast</a></p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="../../wind-and-tower-cranes/">Aerodynamic Behaviour and Structural Safety of Tower Cranes 🔗</a></h2>
   
   <p class="meta">
