@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+
+  <meta name="og:title" content="Adopting LLMs in a startup">
+  <meta name="title" property="og:title" content="Adopting LLMs in a startup">
+
+<meta name="author" content="Graham Knapp">
+
+  <meta name="og:description" content="Personal recommendations on using LLMs at work in 2025.">
+  <meta name="description" property="og:description" content="Personal recommendations on using LLMs at work in 2025.">
+
+<meta name="image" property="og:image" content="../../GrahamKnapp.png" />
+
+<title>Adopting LLMs in a startup — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>Adopting LLMs in a startup</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-09-14
+  </p>
+      
+          <p>I have been gradually increasing my use of LLM tools since 2022 when I started experimenting with the preview version of GitHub Copilot before encouraging my team to try it out. But adopting AI tools effectively requires more than just signing up for ChatGPT or GitHub Copilot. From my own experience testing and deploying AI across different workflows alone and in a team, here are some practical lessons worth sharing.</p>
+<hr>
+<h2>1. Be Clear About Context and “Why”</h2>
+<p>AI works best when you don’t just tell it <em>what</em> to do, but also <em>why</em>. For example, instead of asking “write a sales pitch,” tell it what audience you’re targeting, what problem they have, and why your product solves it. This mirrors how we delegate tasks to humans: explaining the reasoning improves the output.</p>
+<hr>
+<h2>2. Keep a Library of Prompts and Context</h2>
+<p>Rather than reinventing the wheel each time, save prompts that work well. These can be stored in text files, docs, or even as custom GPTs that your team can share. The memory function in modern tools aims to provide this automatically but I like to have as much control as possible over what is in the LLM context so I prefer to manage this myself for important tasks.</p>
+<p>For coding tasks, provide a standardized context file describing your project’s architecture, frameworks, and conventions. This ensures tools like GitHub Copilot work with higher accuracy and fewer hallucinations. Over time, expand this file with lessons learned from past errors so the model doesn’t repeat them. In particular I try to start each new piece of coding work with a review and update of the relevant sections of my agent instructions and repo context files.</p>
+<hr>
+<h2>3. Know When to Start Fresh</h2>
+<p>Trying to “correct” a messy AI conversation often leads to worse results. If a chat goes off track, don’t force it—restart the conversation from the last good point with better input. It’s often faster and more reliable than patching mistakes.</p>
+<hr>
+<h2>4. Use Multiple Models for Perspective</h2>
+<p>Sometimes it helps to cross-check outputs. If one model gives a poor response, hand it over to another (e.g., Claude, GPT, Gemini) and see how it compares. Putting “AI subcontractors” in competition can surface better results and highlight blind spots. Using weaker local models via Ollama helps me to understand the weak spots of LLMs. Regularly seeing extreme examples of failure like this helps me see where stronger models may fail more subtly or infrequently. I can then update my prompts to avoid these errors.</p>
+<hr>
+<h2>5. Build Custom AI Tools for Repeated Tasks</h2>
+<p>If your startup has recurring workflows—parsing documents, extracting structured data, or analysing standard formats—it’s worth creating a custom GPT or fine-tuned workflow. For example, I built a “scan to Excel” tool that turns messy drawings into clean, structured tables. This kind of internal utility saves hours of repetitive work and opens up opportunities for whole new workflows.</p>
+<p>The How I AI podcast has a <a href="https://www.youtube.com/watch?v=xDMkkOC-EhI">nice episode on building custom GPTs</a>.</p>
+<hr>
+<h2>6. Protect Sensitive Information</h2>
+<p>Don’t paste credit card numbers or shareholder agreements into an AI tool. Even if you use a paid account with stricter data policies, it’s best practice to avoid exposing sensitive data. Treat AI tools like external contractors—share enough context to do the job, but keep confidential material secure.</p>
+<hr>
+<h2>7. Ask for Criticism, Not Just Praise</h2>
+<p>Most AI tools lean toward being agreeable. To avoid shallow validation, explicitly ask the model to critique, roast, or challenge your ideas. Negative prompting can surface weaknesses in your thinking or code that would otherwise go unnoticed.</p>
+<hr>
+<h2>Final Thoughts</h2>
+<p>By treating AI like a junior team member with clear instructions and careful checking you can unlock real value without falling into the traps of vague prompts and drowning in AI generated slop. By regularly reviewing the results alone and as a team you can iterate towards a more efficient workflow with LLMs at the heart.</p>
+<p>The key is to combine experimentation, transparency and discipline: play with the tools, but also put guardrails in place so your team scales their productivity safely.</p>
+<p>This blog post was seeded from a ChatGPT rewrite of my personal contributions to a 1-hour discussion about LLMs at work - thank you to all my colleagues for their participation.</p>
+
+          
+              <a href="../tags/ai" class="tag" title="all ai articles">ai</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>

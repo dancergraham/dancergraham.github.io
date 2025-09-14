@@ -81,6 +81,37 @@
             
   <div class="blog-post">
   
+    <h2><a href="../../2024-my-year-in-open-source/">2024 - My year in Open Source 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-02-07
+  </p>
+      
+          <p><a href="https://github.com/dancergraham?tab=overview&amp;from=2024-01-01&amp;to=2024-12-31">Looking back on 2024</a> here are some personal highlights:</p>
+<h3>Maintaining an established pypi package 📦</h3>
+<p>Early in 2024 I took over maintenance of the very useful <a href="https://pypi.org/project/pye57/">Python package pye57</a> for 
+reading and writing e57 format pointcloud files. I have been using it at work for several years and was 
+worried that it was not being maintained, blocking upgrade of our project to Python 3.11. 
+I had already started working on an alternative library, cleverly titled <code>e57</code> - essentially I got in touch with 
+the project maintainer, providing some evidence that I was a real human being not a sham account, 
+many thanks to David Caron for creating the library and maintaining it for so many years, and for trusting
+me to carry it on.
+<br><br><a href="../../2024-my-year-in-open-source/">Read Full Post</a></p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="../../e57-file-xml-tool/">E57 file xml extractor 🔗</a></h2>
   
   <p class="meta">
@@ -430,44 +461,6 @@ as for <a href="https://github.com/search?type=code&amp;auto_enroll=true&amp;q=e
 </ol>
 <p>The lack of Pytorch coverage is the most glaring omission - will there be a 4th edition ?
 <br><br><a href="../../bookmark-python-machine-learning-by-sebastian-raschka-and-vahid-mirjalili/">Read Full Post</a></p>
-
-        </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="../../trouver-un-musicotherapeute/">🎼Trouver un musicothérapeute🎼 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="knapp_graham">Graham Knapp</a>
-    
-    on 2021-07-20
-  </p>
-      
-          <p>Ma femme est non seulement une superbe musicienne mais aussi une musicothérapeute : elle soigne les gens, ou les aide à se soigner eux-mêmes, avec de la musique!</p>
-<p>J'ai crée cette <a href="https://dancergraham.github.io/blog/trouver-un-musicotherapeute/musicotherapeutes.html">carte des musicothérapeutes français</a> avec la méthode suivante:</p>
-<ul>
-<li>Scrape le <a href="https://www.musicotherapie-federationfrancaise.com/trouver-un-musicotherapeute/">site web de la Fédération Française de Musicothérapie</a> avec Requests et Beautiful Soup</li>
-<li>Géocoder les addresses de tous les musicothérapeutes via OSM (cette partie prend plusieurs minutes)</li>
-<li>Créer une carte avec un marqueur par musicothérapeute avec Folium.</li>
-<li>Enregistrer la carte sous format html</li>
-</ul>
-<p>J'utilise la fonction suivantes pour générer mes tags HTML pour les marqueurs:</p>
-<div class="hll"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tagged</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-    <span class="nb">str</span> <span class="o">=</span> <span class="n">txt</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&gt;</span><span class="si">{</span><span class="n">txt</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
-</pre></div>
-<p>Voici <a href="https://github.com/dancergraham/carte_musicotherapeutes">le script complet sous forme de Jupyter Notebook</a>.</p>
 
         </div>
 
