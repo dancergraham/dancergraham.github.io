@@ -77,7 +77,7 @@ For demonstration purposes we will just add a command line argument but this cou
 with an environment variable or by looking at the user id or configuration.
 We put the flag-specific code inside an if-statement and keep common code outside the flagged block:</p>
 <div class="hll"><pre><span></span><span class="c1"># greet1.py</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="n">personal_flag</span> <span class="o">=</span> <span class="s2">&quot;personal&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
 <span class="k">if</span> <span class="n">personal_flag</span><span class="p">:</span>
