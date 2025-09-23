@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/style.css">
+<link rel="stylesheet" href="../../static/pygments.css">
+<link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+<meta name="viewport" content="width=device-width">
+
+  <meta name="og:title" content="What&#39;s in my Copilot instructions file, and why?">
+  <meta name="title" property="og:title" content="What&#39;s in my Copilot instructions file, and why?">
+
+<meta name="author" content="Graham Knapp">
+
+  <meta name="og:description" content="What’s in my agent instructions file, why it’s structured the way it is, and how it differs from standard Python/Django agents guideline templates.">
+  <meta name="description" property="og:description" content="What’s in my agent instructions file, why it’s structured the way it is, and how it differs from standard Python/Django agents guideline templates.">
+
+<meta name="image" property="og:image" content="../../GrahamKnapp.png" />
+
+<title>What&#39;s in my Copilot instructions file, and why? — blog</title>
+</head>
+<body>
+<header>
+    <h1><a href="../../">Graham Knapp</a></h1>
+
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="../../">Welcome</a></li>
+            
+                <li class="active"><a href="../">Blog</a>
+                </li>
+            
+                <li><a href="../../contact/">Contact</a>
+                </li>
+            
+                <li><a href="../../about/">About</a>
+                </li>
+            
+            <li><a href="/feed.xml"><img src="../../static/rss-feed.png" title="RSS Feed" alt="RSS Feed"
+                                                 style="width: 24px; height: 24px;"></a></li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</header>
+<div class="page">
+    
+  
+  <div class="blog-post">
+  
+    <h2>What&#39;s in my Copilot instructions file, and why?</h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-09-22
+  </p>
+      
+          <p>Following my article on <a href="../adopting-llms-in-a-startup/">adopting LLMs in a startup</a>, I was asked about the <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions">GitHub Copilot instructions file</a> I maintain for one of our core projects. I’d like to explain what’s in that file, why it’s structured the way it is, and how it differs from standard Python/Django agents guideline templates.</p>
+<p>My team uses GitHub Copilot in 3 main ways in VSCode and JetBrains PyCharm:</p>
+<ol>
+<li><strong>Autocomplete on steroids</strong> - the classic in-IDE use case.</li>
+<li><strong>Copilot Chat / Edit</strong> - in-IDE discussions or targeted edits on specific files or sections</li>
+<li><a href="../testing-github-copilot-agent-mode"><strong>Agentic coding</strong></a> - in a dedicated environment on GitHub or in the IDE</li>
+</ol>
+<p>This file is used in Copilot Chat/Edit and in agentic coding sessions — not for raw autocomplete.</p>
+<h3>What’s in the file</h3>
+<p>My copilot instructions markdown file is a <strong>project overview</strong> — a map of the terrain rather than a rulebook. It gives LLMs, but also developers, the essential context to work productively without overloading the context window. It covers:</p>
+<ul>
+<li><strong>Framework and language information</strong>: stating clearly that the backend is Django/DRF with PostgreSQL and the frontend is React/Next.js with Tailwind. This prevents confusion when switching between backend and frontend files.</li>
+<li><strong>Key objects and relationships</strong>: a description of the main models, their attributes, and how they connect. I don’t list every sub-object, but I do capture the backbone entities that show up across multiple features.</li>
+<li><strong>App namespaces and state containers</strong>: the boundaries that structure the system and guide where new functionality belongs.</li>
+<li><strong>Helper functions</strong>: brief descriptions of the translation function for localization, the error-handling wrapper, and the logging service, since these are invoked often and underpin consistent behavior.</li>
+<li><strong>Frontend system</strong>: design framework, routing, state management libraries, and the main customer/staff pages, each with file paths for the top-level component. LLMs are good at following these links when needed.</li>
+<li><strong>Testing commands</strong>: a short note on how to run unit and end-to-end tests. (I’ve found Copilot can sometimes guess these correctly, but not reliably.)</li>
+</ul>
+<h3>How I got here</h3>
+<p>The file is mostly my own work, built up over the course of 2025 in about a dozen revisions. I’ve discussed the contents with my team — our full-stack engineer helped refine frontend conventions and our QA/dev-ex specialist contributed to the testing sections. But as the main AI enthusiast and early adopter, I’ve done most of the drafting and revisions myself.</p>
+<h3>Why I wrote it this way</h3>
+<ol>
+<li><strong>Painfully gained experience</strong> - Many of the details here are the result of multiple frustrating coding sessions seeing Copilot (or Claude or Junie or ...) making the same mistakes or giving me results which are OK in isolation but don't follow my project's conventions.</li>
+<li><strong>Save time when working with LLMs</strong> – I can start a session without re-explaining the project’s structure, and the model can follow references to objects, state containers, or pages directly.</li>
+<li><strong>Support ongoing development</strong> – when I’m focused on a feature, I add detail to the objects or modules in play, so that both I and any agent I’m using can work with the right context in hand.</li>
+</ol>
+<p>It’s not an exhaustive manual. Instead, it’s a <strong>lightweight and evolving scaffold</strong>: the things my team and I need most often, written once and reused many times.</p>
+<h3>How It differs from standard agent templates</h3>
+<p>Standard agent templates for Python / Django projects usually focus on:</p>
+<ul>
+<li><strong>Coding best practices</strong> (PEP 8, ORM usage, query optimization).</li>
+<li><strong>Framework conventions</strong> (signals, <code>__str__</code> methods, template inheritance, URL naming).</li>
+<li><strong>Security and testing standards</strong> (CSRF protection, migrations, unit test coverage).</li>
+</ul>
+<p>My file is different because it’s:</p>
+<ul>
+<li><strong>Contextual, not prescriptive</strong> – it documents what already exists in the project rather than telling you how to code.</li>
+<li><strong>Project-specific</strong> – it sets out actual objects, modules, and frontend structure rather than abstract patterns.</li>
+<li><strong>Optimized for agent use</strong> – it’s structured so that an LLM can follow references and drill into the right files with minimal prompting.</li>
+</ul>
+<p>In short: templates are <strong>rulebooks</strong>, my file is a <strong>map</strong>.  That said, looking now at the <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions#writing-effective-repository-custom-instructions">recommendations from GitHub</a> (published in July 2025) I do seem to have reached similar conclusions on what to include and what to omit.</p>
+<h3>What’s Next ?</h3>
+<p>Right now, my Copilot instructions file, Claude instructions file, and JetBrains Junie instructions file are all identical. I don’t yet have agent-specific guidance. I look forward to <a href="https://youtrack.jetbrains.com/issue/JUNIE-618">JetBrains adopting the <code>AGENTS.md</code> convention</a> so I can unify around a single source of truth and only add agent-specific sections where needed.</p>
+<p>I also want to work on, and then document, some project-specific tools such as an access to feature PRD documents in Notion and a GitHub Workspaces definition file so my Copilot agents can run unit tests and end to end tests in their own environment.</p>
+
+          
+              <a href="../tags/ai" class="tag" title="all ai articles">ai</a>
+          
+              <a href="../tags/django" class="tag" title="all django articles">django</a>
+          
+              <a href="../tags/python" class="tag" title="all python articles">python</a>
+          
+              <a href="../tags/typescript" class="tag" title="all typescript articles">typescript</a>
+          
+        </div>
+
+
+</div>
+<footer>
+    &copy; Copyright 2019 - 2025 by Graham Knapp.
+</footer>
+</body>
+</html>

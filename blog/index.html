@@ -81,6 +81,38 @@
             
   <div class="blog-post">
   
+    <h2><a href="my-copilot-instructions-file/">What&#39;s in my Copilot instructions file, and why? 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-09-22
+  </p>
+      
+          <p>Following my article on <a href="adopting-llms-in-a-startup/">adopting LLMs in a startup</a>, I was asked about the <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions">GitHub Copilot instructions file</a> I maintain for one of our core projects. I’d like to explain what’s in that file, why it’s structured the way it is, and how it differs from standard Python/Django agents guideline templates.</p>
+<p>My team uses GitHub Copilot in 3 main ways in VSCode and JetBrains PyCharm:</p>
+<ol>
+<li><strong>Autocomplete on steroids</strong> - the classic in-IDE use case.</li>
+<li><strong>Copilot Chat / Edit</strong> - in-IDE discussions or targeted edits on specific files or sections</li>
+<li><a href="testing-github-copilot-agent-mode"><strong>Agentic coding</strong></a> - in a dedicated environment on GitHub or in the IDE</li>
+</ol>
+<p>This file is used in Copilot Chat/Edit and in agentic coding sessions — not for raw autocomplete.</p>
+<h3>What’s in the file</h3>
+<p>My copilot instructions markdown file is a <strong>project overview</strong> — a map of the terrain rather than a rulebook. It gives LLMs, but also developers, the essential context to work productively without overloading the context window. It covers:
+<br><br><a href="my-copilot-instructions-file/">Read Full Post</a></p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="bookmark-the-technological-republic/">Bookmark: The Technological Republic by Karp &amp; Zamiska (2024) 🔗</a></h2>
   
   <p class="meta">
@@ -319,32 +351,6 @@ will remain valid between versions, so it <a href="https://github.com/django/dja
  when you access potentially stale objects.</p>
 <p>The Django docs recommend clearing the cache on upgrade, and this <a href="https://stackoverflow.com/questions/5942759/best-place-to-clear-cache-when-restarting-django-server">Stackoverflow post</a>
 discusses ways of doing that.</p>
-
-        </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="ai-coding-patterns-language-bridging/">AI coding patterns: Language bridging 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2025-02-10
-  </p>
-      
-          <p>A pattern I enjoy with Copilot or other AI coding tools is something I'm calling "Language bridging":</p>
-<blockquote><p><strong> Language bridging </strong>: Write code to solve a problem in a language you know well, then 
-use an AI to translate the code into the language you want or need to use.
-<br><br><a href="ai-coding-patterns-language-bridging/">Read Full Post</a></p>
-</blockquote>
 
         </div>
 
