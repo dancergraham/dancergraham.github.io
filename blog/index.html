@@ -81,6 +81,32 @@
             
   <div class="blog-post">
   
+    <h2><a href="looking-beyond-code-customer-support/">Looking beyond code - AI for a beginner&#39;s mind 🔗</a></h2>
+  
+  <p class="meta">
+    written by
+    
+      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
+    
+    on 2025-10-09
+  </p>
+      
+          <p>Most of the research on large language models (LLMs) suggests a familiar pattern: experts, already skilled in their field, benefit most from AI assistance. So I was surprised to come across <a href="https://academic.oup.com/qje/article/140/2/889/7990658">a study in The Quarterly Journal of Economics</a> that seems to show the opposite:</p>
+<blockquote><p><em>"Less skilled and less experienced workers improve significantly across all productivity measures, including a 30% increase in the number of issues resolved per hour... AI has little effect on the productivity of higher-skilled or more experienced workers"</em></p>
+</blockquote>
+<p>Note that this finding comes from a very specific context: customer support for business software. Here, the AI was trained on the full archive of support calls, tasks are relatively uniform, and staff turnover is high. In that environment, AI not only boosted productivity but also reduced customer complaints and helped retain new employees. Still, the result raises a broader question: where might we benefit from this effect? Perhaps in any domain where we are thrown into unfamiliar work and the AI has access to rich, relevant training data.</p>
+<p>The study also suggests a way forward: when novices follow AI recommendations closely, they not only become more productive in the moment but also retain those improvements when the AI support is removed. That’s encouraging — it hints that AI can be more than a crutch. Used well, it can help us build lasting skills and confidence, rather than leaving us permanently dependent on the machine.</p>
+
+        </div>
+
+        </div>
+        <hr>
+    
+        <div>
+            
+            
+  <div class="blog-post">
+  
     <h2><a href="my-copilot-instructions-file/">What&#39;s in my Copilot instructions file, and why? 🔗</a></h2>
   
   <p class="meta">
@@ -324,33 +350,6 @@
       
           <p>There's an old European folk tale of a man going into a village and asking for a pot and some water so he can make stone soup. Intrigued, the villagers give him a pot and some water and he boils it up. After a while he tastes it and says "not bad but it could use some onion - do you have some leftovers". The villagers give him a bit of onion and a few herbs whilst they are at it. It carries on like this until he has a delicious soup and the villagers are amazed that he did all that with just a pot of water and a stone.</p>
 <p>I love Copilot, Claude and all the good things but the iterations of GitHub issues, suggested actions, debugging and fixing in the newer tool previews often taste suspiciously like stone soup 😅 🪨🍲 .</p>
-
-        </div>
-
-        </div>
-        <hr>
-    
-        <div>
-            
-            
-  <div class="blog-post">
-  
-    <h2><a href="til-django-caching-doesnt-cross-versions/">TIL: Django caching doesn&#39;t cross versions 🔗</a></h2>
-  
-  <p class="meta">
-    written by
-    
-      <a href="https://hachyderm.io/@graham_knapp">Graham Knapp</a>
-    
-    on 2025-02-11
-  </p>
-      
-          <p>Reading into <a href="https://github.com/jazzband/django-waffle/issues/546">this issue on Django-waffle</a> 
-I learned that Django uses pickle to store objects in its cache but does not guarantee that these objects
-will remain valid between versions, so it <a href="https://github.com/django/django/blob/47c837a1ff96ef1b10b44477a7a9f72283d12e83/django/db/models/base.py#L637">raises a <code>RuntimeWarning</code></a> 
- when you access potentially stale objects.</p>
-<p>The Django docs recommend clearing the cache on upgrade, and this <a href="https://stackoverflow.com/questions/5942759/best-place-to-clear-cache-when-restarting-django-server">Stackoverflow post</a>
-discusses ways of doing that.</p>
 
         </div>
 
