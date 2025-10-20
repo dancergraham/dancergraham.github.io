@@ -63,33 +63,33 @@
 <h3>​ Key Ideas / Takeaways</h3>
 <p>Alex Introduces a <strong>4-step framework</strong> to tackle system design questions:</p>
 <ol>
-<li>Understand the problem and establish the scope  </li>
-<li>Propose a high-level design and get buy-in from the interviewer  </li>
-<li>Dive deep into chosen components </li>
-<li>Wrap up with optimizations, bottlenecks, and improvements </li>
+<li>Understand the problem and establish the scope</li>
+<li>Propose a high-level design and get buy-in from the interviewer</li>
+<li>Dive deep into chosen components</li>
+<li>Wrap up with optimizations, bottlenecks, and improvements</li>
 </ol>
 <p>I found this really useful for demystifying the process and giving some structure to help tackle this kind of interview. The repetition helps to reinforce the process.</p>
 <p><img src="system_design.jpg" alt="The System Design Interview book cover"></p>
-<p>The first chapter <strong>Scale from Zero to Millions</strong> covers: vertical/horizontal scaling, load balancers, database replication, caching, CDN, stateless vs stateful architecture, decoupling via queues, and sharding.</p>
-<p>Other design examples include: rate limiter, consistent hashing, key-value store, unique ID generator, URL shortener, web crawler, notification system, news feed, chat system, search autocomplete, YouTube, Google Drive.</p>
+<p>The first chapter <strong>Scale from Zero to Millions</strong> covers: vertical/horizontal scaling, load balancers, database replication, caching, CDN, stateless vs stateful architecture, decoupling via queues, and sharding. This felt overwhelming at first but most of these topics come back later in more depth so there is no need to grasp everything immediately.</p>
+<p>Design examples from later chapters include: rate limiter, consistent hashing, key-value store, unique ID generator, URL shortener, web crawler, notification system, news feed, chat system, search autocomplete, YouTube and Google Drive.</p>
 <h3>What Stuck With Me</h3>
 <ul>
-<li>The <strong>framework</strong> is a powerful tool—I want to internalize the 4-step approach and apply it systematically.</li>
+<li>The 4-step framework feels pretty powerful — I want to internalize the approach and apply it systematically to future designs</li>
 <li>The <strong>scaling chapter</strong>, especially the discussion around load balancers and replication, feels foundational even if the examples are somewhat dated.</li>
 <li>Some examples—like explaining Amazon S3 basics—feel unnecessary now, especially for an experienced engineering audience.</li>
 <li>I will come back to this book as needed for future work or job interviews - autocomplete, chat systems and notification system all come up regularly in software design.</li>
 </ul>
-<h3>​ Applications / Relevance</h3>
+<h3>Applications / Relevance</h3>
 <ul>
-<li>As a learning exercise, I'd like to **implement a load-balancing pattern in Django, e.g. round-robin or sticky sessions.</li>
-<li>Planning to revisit this bookmark when tackling distributed features or app architectural decisions.</li>
+<li>As a learning exercise, I'd like to implement a load-balancing pattern in Django, e.g. round-robin or sticky sessions.</li>
+<li>I plan to revisit this blog post when tackling distributed features or app architectural decisions.</li>
 <li>The general patterns (e.g., caching, sharding, queues) remain relevant and can inform future projects like large-scale data ingest or feature expansion.</li>
 </ul>
 <h3>Lingering Questions</h3>
 <ul>
-<li>How is a load balancer implemented? I've never needed this in practice but would probably choose an off the shelf solution.</li>
+<li>How is a load balancer implemented? I've never needed this in practice and would definitely choose an off the shelf solution but it would be good to understand how they work.</li>
 <li>How do you choose between load balancer strategies: simple round-robin, least-connections, or sticky sessions?</li>
-<li>How do newer trends—like Kubernetes —map back to these patterns?</li>
+<li>How do newer trends—like Kubernetes —map back to these patterns and components?</li>
 </ul>
 
           
