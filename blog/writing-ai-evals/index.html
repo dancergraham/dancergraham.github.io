@@ -60,29 +60,30 @@
   </p>
       
           <p>I recently wrapped up a piece of work that involved writing 125 individual test cases, or 'evals', for an AI language model.</p>
-<p>I can’t share the specific details—but the <em>process</em> itself was surprisingly insightful and helped me understand LLMs a little better. It’s a strange new kind of task that’s one part coding, one part creative writing, and one part pure quality assurance.</p>
-<p>After writing 125 of them, I’ve formed some strong opinions on the process, what works, and what keeps me sane.</p>
+<p>I can’t share the specific details unfortunately but the process itself was surprising and helped me understand LLMs a little better. It’s a strange task that’s one part coding, one part creative writing, and one part pure quality assurance.</p>
+<p>Oh go on then I'll give you <em>some</em> details - these are evals for multimodal vision LLMs on computer use type tasks - doing a short sequence of related tasks using a single piece of software based on a short text prompt with a goal in mind.</p>
+<p>After writing 125 of them, I’ve formed some strong opinions on the process, what works, and what keeps me sane...</p>
 <h3>It’s a job of contradictions</h3>
 <p>The first surprise is that writing evals is not a walk in the park.</p>
 <p>One moment, you are buried in the most mind-numbing, repetitive data entry imaginable. The next, you’re trying to craft a perfectly balanced, tricky prompt, and it feels like a genuinely creative puzzle.</p>
-<p>It's not a task you can just brute-force. I found you have to get into a flow state, a bit like a good coding session. When you're "in the zone," you can design and write a whole cluster of related test cases, but when you're not, every single one feels like a slog. Sometimes, the only solution is to recognise the tedium has won and just take a break. Usually "the zone" sits just beyond that moment where you want to give up.</p>
+<p>I can't just brute-force it. I found you have to get into a flow state, a bit like a good coding session. When you're "in the zone," you can design and write a whole cluster of related test cases, but when you're not, every single one feels like a slog. Sometimes, the only solution is to recognise the tedium has won and just take a break. Usually "the zone" sits just beyond that moment where you want to give up - you have to go through the wall.</p>
 <h3>The 'Goldilocks' level of complexity</h3>
 <p>One of the main challenges is getting the complexity right.</p>
 <ul>
 <li><strong>Too easy:</strong> A test case with just a single step or request is usually too simple. It doesn't represent a real-world, interesting test of the model's capabilities.</li>
-<li><strong>Too hard:</strong> I found that as soon as a prompt included more than four or five distinct steps, or more than 10 items in a list, the LLM would almost always get lost. It would forget the first instruction by the time it got to the last, or it would merge two steps together.</li>
+<li><strong>Too long:</strong> Writing these things takes time and the more steps there are the more opportunities there are to go wrong in the writing. And even I don't have the patience to write dozens of 20-step challenges. </li>
 </ul>
 <p>The sweet spot for this specific set of tasks in late 2025 seems to be <strong>around 2-5 steps</strong>. This is complex enough to be a meaningful test of reasoning and instruction following, but not so complex that you're just setting the model up to fail.</p>
 <h3>How to stay motivated: humour and precision</h3>
-<p>Let's be honest: writing your 87th test case on a Tuesday afternoon can be a drag. I found two things help me stay engaged.</p>
+<p>Let's be honest: writing your 87th test case on a Tuesday afternoon can be a drag. I found two things help me stay engaged:</p>
 <p>First, <strong>look for opportunities for fun</strong>. I started embedding little jokes, puns, and wordplay into the test cases. Playing with corporate double-speak, using absurd character names, or creating ridiculous scenarios. This kept <em>me</em> interested. It’s more fun to test a model’s ability to "write a professionally-worded email declining an invitation to a mandatory fun-day to synergise core competencies" than something generic.</p>
-<p>I also found it helpful to draw on real-life examples with some emotional resonance, either positive or negative. That genuinely infuriating customer service chat I had last year? The surprisingly wonderful feedback I got on a project five years ago? These events make for great, realistic test scenarios because they have a human texture that's hard to invent from scratch, they add variety to the training data and they keep me interested.</p>
+<p>I also found it helpful to draw on real-life examples with some emotional resonance, either positive or negative. That genuinely infuriating debugging session I had last year? The surprisingly wonderful feedback I got on a project five years ago? These events also make for great, realistic test scenarios because they have a human texture that's hard to invent from scratch, they add variety to the training data as well as keeping me interested.</p>
 <p>Second, <strong>be ruthlessly precise</strong>. This is the QA side of the brain taking over.</p>
 <ol>
 <li><strong>On Input:</strong> Use copy and paste for any specific terms, names, or phrases. You have to be meticulous. A single typo or spelling variation invalidates the test, because you won't know if the model failed the <em>task</em> or just failed to understand your <em>typo</em> or missed a step which you forgot to write down.</li>
-<li><strong>On Output:</strong> This is the most critical part. You must be completely unambiguous about the expected output format. Don't just say "summarise this." Say "Summarise this text into a single paragraph of no more than 50 words." If you want JSON, define the exact schema. Any ambiguity in the "correct answer" makes the test case useless.</li>
+<li><strong>On Output:</strong> This is the most critical part. You must be completely unambiguous about the expected output format. Don't just say "summarise this." Say "Summarise this text into a single paragraph of no more than 50 words." If you want JSON, define the exact schema. Any ambiguity in the "correct answer" makes the test case useless, or much harder to automate.</li>
 </ol>
-<p>Writing evals for LLMs is a fascinating new discipline. It’s a deeply human task of trying to map the boundaries of a non-human intelligence. It takes the logic of a developer, the precision of a technical writer, and the creative spark of someone who needs to invent 125 different problems. It's tedious, it's fun, and it's a long way from being automated.</p>
+<p>Writing evals for LLMs is a strange discipline. It takes the logic of a software developer, the precision of a technical writer, and the creative spark of someone who needs to invent 125 different poems on a deadline. It's tedious, it's fun, and it's a long way from being automated.</p>
 
           
               <a href="../tags/ai" class="tag" title="all ai articles">ai</a>
