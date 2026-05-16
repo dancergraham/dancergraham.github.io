@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card workshop — grahamknapp.com</title>
+  <meta name="description" content="Design your own trading cards. Pick a colour, upload a photo, edit every word.">
+
+  <!-- Tabler icons (webfont) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;500;700&display=swap">
+
+  <style>
+    /* ---------- Page chrome ---------- */
+    :root {
+      --bg: #faf6ec;
+      --panel: #ffffff;
+      --ink: #1f1b16;
+      --ink-2: #5a534a;
+      --ink-3: #8b837a;
+      --line: #e7e0d2;
+      --accent: #c8553d;
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', -apple-system, system-ui, sans-serif;
+      color: var(--ink);
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, #e7dfcc 1px, transparent 1.5px);
+      background-size: 24px 24px;
+      background-position: 0 0;
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .site-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: var(--ink-2);
+    }
+    .site-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .site-nav a:hover { text-decoration: underline; }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 400;
+      margin: 0 0 8px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--ink-2);
+      margin: 0;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    .workshop {
+      background: var(--panel);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(50, 35, 10, 0.06);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--ink-3);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ---------- Buttons & inputs (was inherited from host) ---------- */
+    button {
+      background: var(--panel);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 11px;
+      font: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.05s;
+    }
+    button:hover:not(:disabled) { background: #faf6ec; border-color: #d0c7b3; }
+    button:active:not(:disabled) { transform: scale(0.97); }
+    button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ---------- Card creator widget ---------- */
+    .tcc-app { font-family: 'Nunito', sans-serif; }
+
+    .tcc-toolbar {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 18px; padding: 8px 10px;
+      background: #f5efe2; border-radius: 10px;
+    }
+    .tcc-toolbar button {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 13px;
+    }
+    .tcc-counter {
+      font-size: 13px; color: var(--ink-2);
+      flex: 1; text-align: center; font-weight: 700;
+    }
+
+    .tcc-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .tcc-layout { grid-template-columns: 1fr; justify-items: center; }
+      .workshop { padding: 16px; }
+    }
+    .tcc-card-stage { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+    .tcc-card {
+      width: 320px; height: 448px;
+      border-radius: 14px; padding: 10px;
+      background: var(--card-bg, #FBE36E);
+      border: 3px solid var(--card-border, #C99A1F);
+      color: #111;
+      font-family: Georgia, 'Times New Roman', serif;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .tcc-row-top {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.45);
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .tcc-stage {
+      font-size: 11px; text-transform: uppercase; opacity: 0.65;
+      min-width: 38px; font-family: 'Nunito', sans-serif;
+    }
+    .tcc-name { font-size: 19px; font-weight: 700; flex: 1; }
+    .tcc-hp-wrap { display: flex; align-items: center; gap: 4px; color: #b41e1e; }
+    .tcc-hp-label { font-size: 11px; font-weight: 700; }
+    .tcc-hp-num { font-size: 18px; font-weight: 700; }
+    .tcc-type-icon {
+      font-size: 18px; color: var(--card-accent, #9C7708);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; background: rgba(255,255,255,0.7);
+      border-radius: 50%; border: 1.5px solid var(--card-accent, #9C7708);
+    }
+
+    .tcc-image-wrap {
+      background: rgba(255,255,255,0.55);
+      border: 2px solid var(--card-border, #C99A1F);
+      height: 165px; position: relative; overflow: hidden;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+      user-select: none; touch-action: none;
+    }
+    .tcc-image-wrap.has-image { cursor: grab; }
+    .tcc-image-wrap.dragging { cursor: grabbing; }
+    .tcc-image-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      pointer-events: none; -webkit-user-drag: none;
+    }
+    .tcc-image-placeholder {
+      color: #555; font-size: 12px; text-align: center; padding: 12px;
+      font-family: 'Nunito', sans-serif; pointer-events: none;
+    }
+    .tcc-image-placeholder i { font-size: 28px; display: block; margin-bottom: 4px; opacity: 0.6; }
+    .tcc-drag-hint {
+      position: absolute; bottom: 4px; right: 6px;
+      background: rgba(0,0,0,0.55); color: #fff;
+      font-size: 11px; padding: 2px 6px; border-radius: 4px;
+      font-family: 'Nunito', sans-serif; pointer-events: none;
+      opacity: 0; transition: opacity 0.2s;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .tcc-image-wrap.has-image:hover .tcc-drag-hint { opacity: 0.9; }
+    .tcc-image-wrap.dragging .tcc-drag-hint { opacity: 0; }
+
+    .tcc-desc {
+      font-size: 11px; font-style: italic; text-align: center;
+      padding: 3px 0; border-bottom: 1px dashed rgba(0,0,0,0.3);
+    }
+
+    .tcc-attacks { display: flex; flex-direction: column; }
+    .tcc-attack {
+      display: grid; grid-template-columns: 36px 1fr auto;
+      gap: 8px; align-items: center; padding: 5px 4px;
+      border-bottom: 1px dashed rgba(0,0,0,0.25);
+    }
+    .tcc-attack-cost {
+      font-size: 13px; text-align: center;
+      color: var(--card-accent, #9C7708); font-weight: 700; letter-spacing: 1px;
+    }
+    .tcc-attack-body { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
+    .tcc-attack-name { font-size: 14px; font-weight: 700; }
+    .tcc-attack-text { font-size: 11px; line-height: 1.3; opacity: 0.85; }
+    .tcc-attack-text:empty::before { content: 'click to add a description'; opacity: 0.4; font-style: italic; }
+    .tcc-attack-damage { font-size: 19px; font-weight: 700; }
+
+    .tcc-footer-stats {
+      margin-top: auto;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px; text-align: center; padding: 5px 0 3px;
+      border-top: 1.5px solid rgba(0,0,0,0.35);
+    }
+    .tcc-footer-stats > div { display: flex; flex-direction: column; gap: 1px; }
+    .tcc-stat-label {
+      color: rgba(0,0,0,0.55); text-transform: uppercase;
+      letter-spacing: 0.5px; font-size: 11px;
+      font-family: 'Nunito', sans-serif;
+    }
+    .tcc-stat-val { font-weight: 700; font-size: 13px; }
+    .tcc-card-footer {
+      font-size: 11px; color: rgba(0,0,0,0.5);
+      text-align: center; padding-top: 2px;
+      font-family: 'Nunito', sans-serif;
+      display: flex; justify-content: space-between; padding: 2px 4px 0;
+    }
+
+    [contenteditable] { outline: none; border-radius: 2px; transition: background 0.15s; }
+    [contenteditable]:hover { background: rgba(255,255,255,0.5); }
+    [contenteditable]:focus { background: rgba(255,255,255,0.85); box-shadow: 0 0 0 1.5px rgba(0,0,0,0.4); }
+
+    .tcc-tip {
+      font-size: 12px; color: var(--ink-3);
+      text-align: center; max-width: 320px; margin: 0;
+    }
+    .tcc-tip i { vertical-align: -2px; margin-right: 4px; }
+
+    .tcc-controls { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; width: 100%; max-width: 320px; }
+    .tcc-section-label {
+      font-size: 12px; font-weight: 700; margin: 0 0 10px;
+      color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .tcc-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 8px; }
+    .tcc-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+    .tcc-swatch {
+      width: 100%; aspect-ratio: 1; border-radius: 8px;
+      border: 2px solid transparent; transition: transform 0.1s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tcc-swatch-wrap:hover .tcc-swatch { transform: scale(1.06); }
+    .tcc-swatch.active { border-color: var(--ink); }
+    .tcc-swatch i { font-size: 18px; opacity: 0.65; }
+    .tcc-swatch-label { font-size: 11px; color: var(--ink-2); }
+
+    .tcc-upload-btn {
+      width: 100%; padding: 11px; display: flex; align-items: center; justify-content: center;
+      gap: 6px; font-size: 14px; font-weight: 700;
+    }
+
+    .tcc-help {
+      font-size: 13px; color: var(--ink-2);
+      background: #faf6ec; padding: 12px 14px;
+      border-radius: 10px; line-height: 1.55;
+      border: 1px solid var(--line);
+    }
+    .tcc-help b { color: var(--ink); font-weight: 700; }
+
+    .tcc-toast {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--ink); color: #fff; padding: 10px 16px;
+      border-radius: 8px; font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+      z-index: 100;
+    }
+    .tcc-toast.show { opacity: 1; }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <nav class="site-nav">
+      <span>card workshop</span>
+      <a href="/">← grahamknapp.com</a>
+    </nav>
+
+    <header class="hero">
+      <h1>Card workshop</h1>
+      <p>Design your own trading cards. Pick a colour, upload a photo, edit every word.</p>
+    </header>
+
+    <main class="workshop">
+      <h2 class="sr-only">Interactive trading card creator with editable text, photo upload, drag-to-reframe, and colour palettes.</h2>
+
+      <div class="tcc-app">
+        <div class="tcc-toolbar">
+          <button id="tcc-prev" aria-label="Previous card"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <span class="tcc-counter" id="tcc-counter">Card 1 of 1</span>
+          <button id="tcc-next" aria-label="Next card"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+          <button id="tcc-add"><i class="ti ti-plus" aria-hidden="true"></i>New card</button>
+          <button id="tcc-delete" aria-label="Delete card"><i class="ti ti-trash" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="tcc-layout">
+          <div class="tcc-card-stage">
+            <div class="tcc-card" id="tcc-card">
+              <div class="tcc-row-top">
+                <span class="tcc-stage" data-field="stage" contenteditable="true">Basic</span>
+                <span class="tcc-name" data-field="name" contenteditable="true">Sparkletail</span>
+                <span class="tcc-hp-wrap">
+                  <span class="tcc-hp-label">HP</span>
+                  <span class="tcc-hp-num" data-field="hp" contenteditable="true">50</span>
+                </span>
+                <span class="tcc-type-icon" id="tcc-type-icon"><i class="ti ti-bolt" aria-hidden="true"></i></span>
+              </div>
+
+              <div class="tcc-image-wrap" id="tcc-image-wrap">
+                <div class="tcc-image-placeholder" id="tcc-image-placeholder">
+                  <i class="ti ti-camera-plus" aria-hidden="true"></i>
+                  <span>Tap to add a photo</span>
+                </div>
+                <img id="tcc-image" style="display:none" alt="">
+                <div class="tcc-drag-hint"><i class="ti ti-arrows-move" aria-hidden="true"></i>drag to reframe</div>
+              </div>
+
+              <div class="tcc-desc" data-field="desc" contenteditable="true">Tiny creature. Loves meadows. Glows at dawn.</div>
+
+              <div class="tcc-attacks">
+                <div class="tcc-attack">
+                  <span class="tcc-attack-cost" data-field="atk1.cost" contenteditable="true">★</span>
+                  <div class="tcc-attack-body">
+                    <span class="tcc-attack-name" data-field="atk1.name" contenteditable="true">Tail whip</span>
+                    <span class="tcc-attack-text" data-field="atk1.text" contenteditable="true"></span>
+                  </div>
+                  <span class="tcc-attack-damage" data-field="atk1.dmg" contenteditable="true">10</span>
+                </div>
+                <div class="tcc-attack">
+                  <span class="tcc-attack-cost" data-field="atk2.cost" contenteditable="true">★★</span>
+                  <div class="tcc-attack-body">
+                    <span class="tcc-attack-name" data-field="atk2.name" contenteditable="true">Spark bolt</span>
+                    <span class="tcc-attack-text" data-field="atk2.text" contenteditable="true">Flip a coin. If heads, deal +20.</span>
+                  </div>
+                  <span class="tcc-attack-damage" data-field="atk2.dmg" contenteditable="true">30</span>
+                </div>
+              </div>
+
+              <div class="tcc-footer-stats">
+                <div>
+                  <span class="tcc-stat-label">Weakness</span>
+                  <span class="tcc-stat-val" data-field="weakness" contenteditable="true">Water</span>
+                </div>
+                <div>
+                  <span class="tcc-stat-label">Resist</span>
+                  <span class="tcc-stat-val" data-field="resistance" contenteditable="true">—</span>
+                </div>
+                <div>
+                  <span class="tcc-stat-label">Retreat</span>
+                  <span class="tcc-stat-val" data-field="retreat" contenteditable="true">★</span>
+                </div>
+              </div>
+              <div class="tcc-card-footer">
+                <span data-field="artist" contenteditable="true">Illus. by me</span>
+                <span data-field="num" contenteditable="true">001/100</span>
+              </div>
+            </div>
+            <p class="tcc-tip"><i class="ti ti-pencil" aria-hidden="true"></i>Click text to edit · drag photo to reframe · double-click photo to recentre</p>
+          </div>
+
+          <div class="tcc-controls">
+            <div>
+              <p class="tcc-section-label">Card colour</p>
+              <div class="tcc-swatches" id="tcc-swatches"></div>
+            </div>
+            <div>
+              <p class="tcc-section-label">Creature photo</p>
+              <input type="file" id="tcc-file" accept="image/*" style="display:none">
+              <button class="tcc-upload-btn" id="tcc-upload"><i class="ti ti-upload" aria-hidden="true"></i>Upload photo</button>
+            </div>
+            <div class="tcc-help">
+              <b>How to play</b><br>
+              Click any text to edit. Pick a colour. Add a photo of your pet, a toy, or your own drawing. Drag the photo around to choose the best framing. Make as many cards as you want.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      Made by Graham using Claude Code. Cards live in this browser only.
+    </footer>
+  </div>
+
+  <div class="tcc-toast" id="tcc-toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function() {
+    const STORAGE_KEY = 'grahamknapp-cards-v1';
+
+    const PALETTES = [
+      { name: 'Sunny',   bg: '#FBE36E', border: '#C99A1F', accent: '#7C5A00', icon: 'ti-bolt' },
+      { name: 'Ocean',   bg: '#9BD0F0', border: '#2C6F9E', accent: '#1A4F76', icon: 'ti-droplet' },
+      { name: 'Volcano', bg: '#F5A480', border: '#A8462A', accent: '#7A2F18', icon: 'ti-flame' },
+      { name: 'Forest',  bg: '#A8D67D', border: '#3B6D11', accent: '#27500A', icon: 'ti-leaf' },
+      { name: 'Magic',   bg: '#CDBDEC', border: '#5A3C9A', accent: '#3C2870', icon: 'ti-sparkles' },
+      { name: 'Earth',   bg: '#D4B58B', border: '#7A5230', accent: '#5A3A20', icon: 'ti-mountain' },
+      { name: 'Sky',     bg: '#CFE7F6', border: '#5A8DAA', accent: '#3D6680', icon: 'ti-cloud' },
+      { name: 'Sweet',   bg: '#F5BFD3', border: '#A8487A', accent: '#7A2F58', icon: 'ti-heart' }
+    ];
+    const PRESETS = [
+      { name: 'Sparkletail', desc: 'Tiny creature. Loves meadows. Glows at dawn.' },
+      { name: 'Bubblewing',  desc: 'Floats over rivers. Carries a little song.' },
+      { name: 'Pebblepaw',   desc: 'Lives in caves. Naps on warm stones.' },
+      { name: 'Cloudpuff',   desc: 'Soft as snow. Sneezes lightning.' }
+    ];
+
+    function newCard(i) {
+      const p = PRESETS[i % PRESETS.length];
+      return {
+        id: 'c-' + Date.now() + '-' + Math.random().toString(36).slice(2,6),
+        stage: 'Basic', name: p.name, hp: '50', desc: p.desc, image: null,
+        imgPos: { x: 50, y: 50 },
+        'atk1.cost': '★', 'atk1.name': 'Tail whip', 'atk1.text': '', 'atk1.dmg': '10',
+        'atk2.cost': '★★', 'atk2.name': 'Spark bolt', 'atk2.text': 'Flip a coin. If heads, deal +20.', 'atk2.dmg': '30',
+        weakness: 'Water', resistance: '—', retreat: '★',
+        artist: 'Illus. by me', num: String(i + 1).padStart(3, '0') + '/100',
+        paletteIdx: i % PALETTES.length
+      };
+    }
+
+    let cards = [];
+    let idx = 0;
+    let saveTimer = null;
+
+    function showToast(msg, duration = 2400) {
+      const el = document.getElementById('tcc-toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(el._t);
+      el._t = setTimeout(() => el.classList.remove('show'), duration);
+    }
+
+    function save() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+        } catch (e) {
+          if (e && e.name === 'QuotaExceededError') {
+            showToast('Storage full — delete a card to save more.', 3500);
+          } else {
+            console.warn('Save failed:', e);
+          }
+        }
+      }, 300);
+    }
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length) cards = parsed;
+        }
+      } catch (e) {
+        console.warn('Load failed:', e);
+      }
+      if (!cards.length) cards = [newCard(0)];
+      cards.forEach(c => { if (!c.imgPos) c.imgPos = { x: 50, y: 50 }; });
+    }
+
+    function current() { return cards[idx]; }
+
+    function buildSwatches() {
+      const root = document.getElementById('tcc-swatches');
+      root.innerHTML = '';
+      PALETTES.forEach((p, i) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'tcc-swatch-wrap';
+        wrap.innerHTML =
+          '<div class="tcc-swatch" data-pi="' + i + '" style="background:' + p.bg + ';border-color:' + p.border + '">' +
+            '<i class="ti ' + p.icon + '" style="color:' + p.accent + '" aria-hidden="true"></i>' +
+          '</div>' +
+          '<span class="tcc-swatch-label">' + p.name + '</span>';
+        wrap.addEventListener('click', () => {
+          current().paletteIdx = i;
+          renderCard();
+          save();
+        });
+        root.appendChild(wrap);
+      });
+    }
+
+    function applyImagePosition() {
+      const c = current();
+      const img = document.getElementById('tcc-image');
+      if (c.image) img.style.objectPosition = c.imgPos.x + '% ' + c.imgPos.y + '%';
+    }
+
+    function renderCard() {
+      const c = current();
+      const p = PALETTES[c.paletteIdx] || PALETTES[0];
+      const cardEl = document.getElementById('tcc-card');
+      cardEl.style.setProperty('--card-bg', p.bg);
+      cardEl.style.setProperty('--card-border', p.border);
+      cardEl.style.setProperty('--card-accent', p.accent);
+
+      document.getElementById('tcc-type-icon').innerHTML = '<i class="ti ' + p.icon + '" aria-hidden="true"></i>';
+      document.getElementById('tcc-counter').textContent = 'Card ' + (idx + 1) + ' of ' + cards.length;
+
+      document.querySelectorAll('#tcc-card [data-field]').forEach(el => {
+        const f = el.dataset.field;
+        if (document.activeElement === el) return;
+        el.textContent = c[f] != null ? c[f] : '';
+      });
+
+      const img = document.getElementById('tcc-image');
+      const ph = document.getElementById('tcc-image-placeholder');
+      const wrap = document.getElementById('tcc-image-wrap');
+      if (c.image) {
+        img.src = c.image; img.style.display = 'block'; ph.style.display = 'none';
+        wrap.classList.add('has-image');
+        applyImagePosition();
+      } else {
+        img.style.display = 'none'; ph.style.display = 'block'; img.removeAttribute('src');
+        wrap.classList.remove('has-image');
+      }
+
+      document.querySelectorAll('#tcc-swatches .tcc-swatch').forEach(s => {
+        s.classList.toggle('active', +s.dataset.pi === c.paletteIdx);
+      });
+      document.getElementById('tcc-delete').disabled = cards.length <= 1;
+    }
+
+    function wireCardEdits() {
+      document.querySelectorAll('#tcc-card [data-field]').forEach(el => {
+        el.addEventListener('input', () => {
+          current()[el.dataset.field] = el.textContent;
+          save();
+        });
+        el.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const t = (e.clipboardData || window.clipboardData).getData('text/plain');
+          document.execCommand('insertText', false, t);
+        });
+      });
+    }
+
+    function resizeImage(file, maxDim = 600) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const scale = Math.min(maxDim / img.width, maxDim / img.height, 1);
+            const w = Math.round(img.width * scale);
+            const h = Math.round(img.height * scale);
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.85));
+          };
+          img.onerror = reject;
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function wireImageDrag() {
+      const wrap = document.getElementById('tcc-image-wrap');
+      let dragging = false;
+      let moved = false;
+      let startX = 0, startY = 0, startPosX = 50, startPosY = 50;
+
+      wrap.addEventListener('pointerdown', (e) => {
+        if (!current().image) return;
+        dragging = true; moved = false;
+        startX = e.clientX; startY = e.clientY;
+        startPosX = current().imgPos.x; startPosY = current().imgPos.y;
+        try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
+        wrap.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      wrap.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) moved = true;
+        const rect = wrap.getBoundingClientRect();
+        const newX = Math.max(0, Math.min(100, startPosX - (dx / rect.width) * 100));
+        const newY = Math.max(0, Math.min(100, startPosY - (dy / rect.height) * 100));
+        current().imgPos = { x: newX, y: newY };
+        document.getElementById('tcc-image').style.objectPosition = newX + '% ' + newY + '%';
+      });
+
+      const endDrag = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        wrap.classList.remove('dragging');
+        try { wrap.releasePointerCapture(e.pointerId); } catch (err) {}
+        if (moved) save();
+      };
+      wrap.addEventListener('pointerup', endDrag);
+      wrap.addEventListener('pointercancel', endDrag);
+
+      wrap.addEventListener('dblclick', () => {
+        if (!current().image) return;
+        current().imgPos = { x: 50, y: 50 };
+        applyImagePosition();
+        save();
+      });
+
+      wrap.addEventListener('click', () => {
+        if (current().image) return;
+        document.getElementById('tcc-file').click();
+      });
+    }
+
+    function wireControls() {
+      document.getElementById('tcc-prev').addEventListener('click', () => {
+        idx = (idx - 1 + cards.length) % cards.length;
+        renderCard();
+      });
+      document.getElementById('tcc-next').addEventListener('click', () => {
+        idx = (idx + 1) % cards.length;
+        renderCard();
+      });
+      document.getElementById('tcc-add').addEventListener('click', () => {
+        cards.push(newCard(cards.length));
+        idx = cards.length - 1;
+        renderCard();
+        save();
+      });
+      document.getElementById('tcc-delete').addEventListener('click', () => {
+        if (cards.length <= 1) return;
+        cards.splice(idx, 1);
+        if (idx >= cards.length) idx = cards.length - 1;
+        renderCard();
+        save();
+      });
+      const fileInput = document.getElementById('tcc-file');
+      document.getElementById('tcc-upload').addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', async (e) => {
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        try {
+          const dataUrl = await resizeImage(f);
+          current().image = dataUrl;
+          current().imgPos = { x: 50, y: 50 };
+          renderCard();
+          save();
+        } catch (err) {
+          console.warn('Image load failed:', err);
+          showToast('Could not read that image — try another.');
+        }
+        fileInput.value = '';
+      });
+    }
+
+    load();
+    buildSwatches();
+    wireCardEdits();
+    wireImageDrag();
+    wireControls();
+    renderCard();
+  })();
+  </script>
+</body>
+</html>
