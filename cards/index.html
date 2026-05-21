@@ -794,8 +794,6 @@
             await navigator.share({
               files: [file],
               title: exportTitle(),
-              text: `My trading card: ${exportTitle()}\n${shareUrl}`,
-              url: shareUrl,
             });
           } catch (err) {
             if (err?.name !== 'AbortError') {
