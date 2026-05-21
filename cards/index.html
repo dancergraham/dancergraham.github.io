@@ -789,11 +789,13 @@
 
           const blob = await captureCardBlob();
           const file = new File([blob], filename, { type: 'image/png' });
+          const shareUrl = window.location.href;
           try {
             await navigator.share({
               files: [file],
               title: exportTitle(),
-              text: `My trading card: ${exportTitle()}`,
+              text: `My trading card: ${exportTitle()}\n${shareUrl}`,
+              url: shareUrl,
             });
           } catch (err) {
             if (err?.name !== 'AbortError') {
