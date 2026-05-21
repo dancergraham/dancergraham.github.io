@@ -9,6 +9,8 @@
   <!-- Tabler icons (webfont) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.min.js"></script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,6 +105,7 @@
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
       overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
+    .tcc-hidden { display: none !important; }
 
     /* ---------- Buttons & inputs (was inherited from host) ---------- */
     button {
@@ -229,6 +232,8 @@
     .tcc-attack-text { font-size: 11px; line-height: 1.3; opacity: 0.85; }
     .tcc-attack-text:empty::before { content: 'click to add a description'; opacity: 0.4; font-style: italic; }
     .tcc-attack-damage { font-size: 19px; font-weight: 700; }
+    .tcc-card.exporting [contenteditable]:empty::before { content: ''; }
+    .tcc-card.exporting .tcc-drag-hint { display: none; }
 
     .tcc-footer-stats {
       margin-top: auto;
@@ -280,6 +285,11 @@
     .tcc-upload-btn {
       width: 100%; padding: 11px; display: flex; align-items: center; justify-content: center;
       gap: 6px; font-size: 14px; font-weight: 700;
+    }
+    .tcc-action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
     }
 
     .tcc-help {
@@ -401,6 +411,10 @@
               <input type="file" id="tcc-file" accept="image/*" style="display:none">
               <button class="tcc-upload-btn" id="tcc-upload"><i class="ti ti-upload" aria-hidden="true"></i>Upload photo</button>
             </div>
+            <div class="tcc-action-grid">
+              <button class="tcc-upload-btn" id="tcc-download"><i class="ti ti-download" aria-hidden="true"></i>Save</button>
+              <button class="tcc-upload-btn" id="tcc-share"><i class="ti ti-share" aria-hidden="true"></i>Share</button>
+            </div>
             <div class="tcc-help">
               <b>How to play</b><br>
               Click any text to edit. Pick a colour. Add a photo of your pet, a toy, or your own drawing. Drag the photo around to choose the best framing. Make as many cards as you want.
@@ -420,6 +434,7 @@
   <script>
   (function() {
     const STORAGE_KEY = 'grahamknapp-cards-v1';
+    const DOWNLOAD_CLEANUP_DELAY_MS = 1000;
 
     const PALETTES = [
       { name: 'Sunny',   bg: '#FBE36E', border: '#C99A1F', accent: '#7C5A00', icon: 'ti-bolt' },
@@ -455,6 +470,7 @@
     let cards = [];
     let idx = 0;
     let saveTimer = null;
+    let shareSupported = false;
 
     function showToast(msg, duration = 2400) {
       const el = document.getElementById('tcc-toast');
@@ -494,6 +510,70 @@
     }
 
     function current() { return cards[idx]; }
+
+    function exportFilename() {
+      const rawName = ((current().name || 'card') + '').trim().toLowerCase();
+      const slug = rawName
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      return (slug || 'card') + '.png';
+    }
+
+    function exportTitle() {
+      return current().name || 'Card workshop card';
+    }
+
+    function setExportButtonsBusy(isBusy) {
+      ['tcc-download', 'tcc-share'].forEach((id) => {
+        const btn = document.getElementById(id);
+        if (btn) btn.disabled = isBusy;
+      });
+    }
+
+    async function captureCardBlob() {
+      if (!window.htmlToImage || typeof window.htmlToImage.toBlob !== 'function') {
+        throw new Error('Unable to export card because the image export library did not load. Please refresh the page and try again.');
+      }
+      const card = document.getElementById('tcc-card');
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+      }
+      card.classList.add('exporting');
+      try {
+        const blob = await window.htmlToImage.toBlob(card, {
+          pixelRatio: 3,
+          backgroundColor: null,
+          cacheBust: true,
+        });
+        if (!blob) throw new Error('Export failed');
+        return blob;
+      } finally {
+        card.classList.remove('exporting');
+      }
+    }
+
+    function downloadBlob(blob, filename) {
+      const href = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = href;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(href), DOWNLOAD_CLEANUP_DELAY_MS);
+    }
+
+    function detectShareSupport() {
+      if (!navigator.share || !navigator.canShare || typeof File !== 'function') {
+        return false;
+      }
+      try {
+        const testFile = new File([new Blob()], 'card.png', { type: 'image/png' });
+        return navigator.canShare({ files: [testFile] });
+      } catch (err) {
+        return false;
+      }
+    }
 
     function buildSwatches() {
       const root = document.getElementById('tcc-swatches');
@@ -682,6 +762,52 @@
         }
         fileInput.value = '';
       });
+
+      document.getElementById('tcc-download').addEventListener('click', async () => {
+        setExportButtonsBusy(true);
+        try {
+          const blob = await captureCardBlob();
+          downloadBlob(blob, exportFilename());
+        } catch (err) {
+          console.warn('Download failed:', err);
+          showToast('Could not save the card image.');
+        } finally {
+          setExportButtonsBusy(false);
+        }
+      });
+
+      document.getElementById('tcc-share').addEventListener('click', async () => {
+        setExportButtonsBusy(true);
+        try {
+          const filename = exportFilename();
+          if (!shareSupported) {
+            const blob = await captureCardBlob();
+            downloadBlob(blob, filename);
+            showToast('Share not supported here — downloaded PNG instead.');
+            return;
+          }
+
+          const blob = await captureCardBlob();
+          const file = new File([blob], filename, { type: 'image/png' });
+          try {
+            await navigator.share({
+              files: [file],
+              title: exportTitle(),
+              text: `My trading card: ${exportTitle()}`,
+            });
+          } catch (err) {
+            if (err?.name !== 'AbortError') {
+              console.warn('Share failed:', err);
+              showToast('Could not share the card image. Try saving it instead.');
+            }
+          }
+        } catch (err) {
+          console.warn('Share export failed:', err);
+          showToast('Could not prepare the card image.');
+        } finally {
+          setExportButtonsBusy(false);
+        }
+      });
     }
 
     load();
@@ -690,6 +816,10 @@
     wireImageDrag();
     wireControls();
     renderCard();
+    shareSupported = detectShareSupport();
+    if (!shareSupported) {
+      document.getElementById('tcc-share').classList.add('tcc-hidden');
+    }
   })();
   </script>
 </body>
